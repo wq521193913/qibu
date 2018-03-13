@@ -21,6 +21,7 @@
     <module>service</module>
     <module>service-impl</module>
     <module>controller</module>
+      <module>code-generator</module>
   </modules>
 
   <properties>
