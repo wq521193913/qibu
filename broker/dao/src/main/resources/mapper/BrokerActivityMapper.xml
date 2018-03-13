@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.broker.dao.BrokerActivityMapper">
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    broker_user, activity_date, activity
+  </sql>
+  <select id="selectByExample" parameterType="com.broker.domain.BrokerActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.broker.domain.BrokerActivityExample">
+    delete from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.broker.domain.BrokerActivityExample" resultType="java.lang.Integer">
+    select count(*) from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update broker_activity
+    <set>
+      <if test="record.brokerUser != null">
+        broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityDate != null">
+        activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activity != null">
+        activity = #{record.activity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update broker_activity
+    set broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      activity = #{record.activity,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    broker_user, activity_date, activity
+  </sql>
+  <select id="selectByExample" parameterType="com.broker.domain.BrokerActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.broker.domain.BrokerActivityExample">
+    delete from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.broker.domain.BrokerActivityExample" resultType="java.lang.Integer">
+    select count(*) from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update broker_activity
+    <set>
+      <if test="record.brokerUser != null">
+        broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityDate != null">
+        activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activity != null">
+        activity = #{record.activity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update broker_activity
+    set broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      activity = #{record.activity,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    broker_user, activity_date, activity
+  </sql>
+  <select id="selectByExample" parameterType="com.broker.domain.BrokerActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.broker.domain.BrokerActivityExample">
+    delete from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.broker.domain.BrokerActivityExample" resultType="java.lang.Integer">
+    select count(*) from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update broker_activity
+    <set>
+      <if test="record.brokerUser != null">
+        broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityDate != null">
+        activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activity != null">
+        activity = #{record.activity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update broker_activity
+    set broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      activity = #{record.activity,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerActivity">
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="activity_date" jdbcType="TIMESTAMP" property="activityDate" />
+    <result column="activity" jdbcType="VARCHAR" property="activity" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    broker_user, activity_date, activity
+  </sql>
+  <select id="selectByExample" parameterType="com.broker.domain.BrokerActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.broker.domain.BrokerActivityExample">
+    delete from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity (broker_user, activity_date, activity
+      )
+    values (#{brokerUser,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerActivity">
+    insert into broker_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="activityDate != null">
+        activity_date,
+      </if>
+      <if test="activity != null">
+        activity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="activityDate != null">
+        #{activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity != null">
+        #{activity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.broker.domain.BrokerActivityExample" resultType="java.lang.Integer">
+    select count(*) from broker_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update broker_activity
+    <set>
+      <if test="record.brokerUser != null">
+        broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityDate != null">
+        activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activity != null">
+        activity = #{record.activity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update broker_activity
+    set broker_user = #{record.brokerUser,jdbcType=INTEGER},
+      activity_date = #{record.activityDate,jdbcType=TIMESTAMP},
+      activity = #{record.activity,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

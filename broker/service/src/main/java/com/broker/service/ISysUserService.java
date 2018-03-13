@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public interface ISysUserService {
 
-    @RequestMapping("/rpc-api/sysUser/insertSysUser")
+    @RequestMapping("/broker/sysUser/insertSysUser")
     void insertSysUser(SysUser sysUser);
 
-    @RequestMapping("/rpc-api/sysUser/querySysUserById")
+    @RequestMapping("/broker/sysUser/querySysUserById")
     SysUser querySysUserById(@RequestParam("uid") Integer uid);
 }
