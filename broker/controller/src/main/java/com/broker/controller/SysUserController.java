@@ -5,6 +5,7 @@ import com.broker.service.ISysUserService;
 import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,16 @@ public class SysUserController extends BaseController{
     @Autowired
     DiscoveryClient discoveryClient;
 
-    @RequestMapping(value = "querySysUserById")
+    @RequestMapping(value = "querySysUser")
     @ResponseBody
     public Result querySysUserById(@RequestParam(value = "uid")Integer uid){
         Result result = new Result();
         try {
-            List<String> serviceList = discoveryClient.getServices();
-            for (String service : serviceList){
-                System.out.println(service);
+            List<ServiceInstance> serviceInstances = discoveryClient.getInstances("broker");
+            for (ServiceInstance serviceInstance : serviceInstances){
+                System.out.println(serviceInstance.getUri());
+                System.out.println(serviceInstance.getMetadata());
+                System.out.println(serviceInstance.getUri());
             }
             SysUser sysUser = sysUserService.querySysUserById(uid);
             result.setData(sysUser);
