@@ -16,7 +16,7 @@ public class PropertiesUtil {
      * @return
      */
     public static String getProperties(String key){
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("config/application");
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("config/configuration");
         if(null == resourceBundle) return null;
         return resourceBundle.getString(key);
     }

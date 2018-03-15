@@ -22,7 +22,7 @@ public interface IWxUserService {
 
     /**
      * 微信用户登录
-     * @param wxUser
+     * @param code
      */
-    Result wxLogin(WxUser wxUser) ;
+    Result wxLogin(String code) ;
 }
