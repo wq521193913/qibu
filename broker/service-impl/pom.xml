@@ -24,6 +24,11 @@
       <artifactId>service</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.broker</groupId>
+      <artifactId>dao</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>service-impl</finalName>

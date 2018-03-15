@@ -92,19 +92,12 @@ public class Result {
 		}
 	}
 
-	public static Result getUpdateResult(Integer affectRow, Object data){
-		Result result = new Result();
-		if(null == affectRow){
-			result.setSuccess(false);
-			result.setMsg("非法的参数");
-		}else if(0 == affectRow.intValue()){
-			result.setSuccess(false);
-			result.setMsg("此数据不存在,无法更新");
-		}else {
-			result.setData(data);
-		}
+	public static Result getSuccessdResult(){
+		return new Result();
+	}
 
-		return result;
+	public static Result getFailedResult(String msg){
+		return new Result(false,msg,null,"1405");
 	}
 
 	public static String getSysCode(){
