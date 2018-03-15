@@ -24,6 +24,18 @@
       <artifactId>domain</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-context -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-context</artifactId>
+      <version>1.3.0.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>RELEASE</version>
+    </dependency>
+
 
   </dependencies>
   <build>
