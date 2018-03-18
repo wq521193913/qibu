@@ -12,7 +12,7 @@
     <result column="wx_country" jdbcType="VARCHAR" property="wxCountry" />
     <result column="wx_province" jdbcType="VARCHAR" property="wxProvince" />
     <result column="wx_city" jdbcType="VARCHAR" property="wxCity" />
-    <result column="wx_avatarUrl" jdbcType="VARCHAR" property="wxAvatarurl" />
+    <result column="wx_avatarUrl" jdbcType="VARCHAR" property="wxAvatarUrl" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -52,7 +52,7 @@
       wx_avatarUrl)
     values (#{wxOpenId,jdbcType=VARCHAR}, #{wxNickName,jdbcType=VARCHAR}, 
       #{wxCountry,jdbcType=VARCHAR}, #{wxProvince,jdbcType=VARCHAR}, #{wxCity,jdbcType=VARCHAR}, 
-      #{wxAvatarurl,jdbcType=VARCHAR})
+      #{wxAvatarUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.broker.domain.WxUser">
     <!--
@@ -80,7 +80,7 @@
       <if test="wxCity != null">
         wx_city,
       </if>
-      <if test="wxAvatarurl != null">
+      <if test="wxAvatarUrl != null">
         wx_avatarUrl,
       </if>
     </trim>
@@ -101,8 +101,8 @@
       <if test="wxCity != null">
         #{wxCity,jdbcType=VARCHAR},
       </if>
-      <if test="wxAvatarurl != null">
-        #{wxAvatarurl,jdbcType=VARCHAR},
+      <if test="wxAvatarUrl != null">
+        #{wxAvatarUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -128,8 +128,8 @@
       <if test="wxCity != null">
         wx_city = #{wxCity,jdbcType=VARCHAR},
       </if>
-      <if test="wxAvatarurl != null">
-        wx_avatarUrl = #{wxAvatarurl,jdbcType=VARCHAR},
+      <if test="wxAvatarUrl != null">
+        wx_avatarUrl = #{wxAvatarUrl,jdbcType=VARCHAR},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -145,7 +145,7 @@
       wx_country = #{wxCountry,jdbcType=VARCHAR},
       wx_province = #{wxProvince,jdbcType=VARCHAR},
       wx_city = #{wxCity,jdbcType=VARCHAR},
-      wx_avatarUrl = #{wxAvatarurl,jdbcType=VARCHAR}
+      wx_avatarUrl = #{wxAvatarUrl,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 

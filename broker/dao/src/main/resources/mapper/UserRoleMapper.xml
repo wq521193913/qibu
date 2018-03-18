@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.broker.dao.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.broker.domain.UserRole">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="role_no" jdbcType="VARCHAR" property="roleNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, user_id, role_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_role
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_role
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.UserRole">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_role (uid, user_id, role_no
+      )
+    values (#{uid,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{roleNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.UserRole">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      uid,
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="roleNo != null">
+        role_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uid,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="roleNo != null">
+        #{roleNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.UserRole">
+    update user_role
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="roleNo != null">
+        role_no = #{roleNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.broker.domain.UserRole">
+    update user_role
+    set user_id = #{userId,jdbcType=INTEGER},
+      role_no = #{roleNo,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.broker.dao.BrokerUserMapper">
+  <resultMap id="BaseResultMap" type="com.broker.domain.BrokerUser">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="broker_no" jdbcType="VARCHAR" property="brokerNo" />
+    <result column="broker_name" jdbcType="VARCHAR" property="brokerName" />
+    <result column="broker_phone" jdbcType="VARCHAR" property="brokerPhone" />
+    <result column="broker_sex" jdbcType="TINYINT" property="brokerSex" />
+    <result column="broker_idCard" jdbcType="VARCHAR" property="brokerIdcard" />
+    <result column="broker_address" jdbcType="VARCHAR" property="brokerAddress" />
+    <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="broker_qq" jdbcType="VARCHAR" property="brokerQq" />
+    <result column="broker_weixin" jdbcType="VARCHAR" property="brokerWeixin" />
+    <result column="broker_weibo" jdbcType="VARCHAR" property="brokerWeibo" />
+    <result column="broker_img" jdbcType="VARCHAR" property="brokerImg" />
+    <result column="other_tel" jdbcType="VARCHAR" property="otherTel" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="inv_code" jdbcType="VARCHAR" property="invCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, broker_no, broker_name, broker_phone, broker_sex, broker_idCard, broker_address, 
+    home_address, broker_qq, broker_weixin, broker_weibo, broker_img, other_tel, create_date, 
+    update_date, inv_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from broker_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.BrokerUser">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into broker_user (uid, broker_no, broker_name, 
+      broker_phone, broker_sex, broker_idCard, 
+      broker_address, home_address, broker_qq, 
+      broker_weixin, broker_weibo, broker_img, 
+      other_tel, create_date, update_date, 
+      inv_code)
+    values (#{uid,jdbcType=INTEGER}, #{brokerNo,jdbcType=VARCHAR}, #{brokerName,jdbcType=VARCHAR}, 
+      #{brokerPhone,jdbcType=VARCHAR}, #{brokerSex,jdbcType=TINYINT}, #{brokerIdcard,jdbcType=VARCHAR}, 
+      #{brokerAddress,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR}, #{brokerQq,jdbcType=VARCHAR}, 
+      #{brokerWeixin,jdbcType=VARCHAR}, #{brokerWeibo,jdbcType=VARCHAR}, #{brokerImg,jdbcType=VARCHAR}, 
+      #{otherTel,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{invCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.BrokerUser">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into broker_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      uid,
+      <if test="brokerNo != null">
+        broker_no,
+      </if>
+      <if test="brokerName != null">
+        broker_name,
+      </if>
+      <if test="brokerPhone != null">
+        broker_phone,
+      </if>
+      <if test="brokerSex != null">
+        broker_sex,
+      </if>
+      <if test="brokerIdcard != null">
+        broker_idCard,
+      </if>
+      <if test="brokerAddress != null">
+        broker_address,
+      </if>
+      <if test="homeAddress != null">
+        home_address,
+      </if>
+      <if test="brokerQq != null">
+        broker_qq,
+      </if>
+      <if test="brokerWeixin != null">
+        broker_weixin,
+      </if>
+      <if test="brokerWeibo != null">
+        broker_weibo,
+      </if>
+      <if test="brokerImg != null">
+        broker_img,
+      </if>
+      <if test="otherTel != null">
+        other_tel,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="invCode != null">
+        inv_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uid,jdbcType=INTEGER},
+      <if test="brokerNo != null">
+        #{brokerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerName != null">
+        #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerPhone != null">
+        #{brokerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerSex != null">
+        #{brokerSex,jdbcType=TINYINT},
+      </if>
+      <if test="brokerIdcard != null">
+        #{brokerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerAddress != null">
+        #{brokerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerQq != null">
+        #{brokerQq,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerWeixin != null">
+        #{brokerWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerWeibo != null">
+        #{brokerWeibo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerImg != null">
+        #{brokerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTel != null">
+        #{otherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invCode != null">
+        #{invCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.BrokerUser">
+    update broker_user
+    <set>
+      <if test="brokerNo != null">
+        broker_no = #{brokerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerName != null">
+        broker_name = #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerPhone != null">
+        broker_phone = #{brokerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerSex != null">
+        broker_sex = #{brokerSex,jdbcType=TINYINT},
+      </if>
+      <if test="brokerIdcard != null">
+        broker_idCard = #{brokerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerAddress != null">
+        broker_address = #{brokerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerQq != null">
+        broker_qq = #{brokerQq,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerWeixin != null">
+        broker_weixin = #{brokerWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerWeibo != null">
+        broker_weibo = #{brokerWeibo,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerImg != null">
+        broker_img = #{brokerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="otherTel != null">
+        other_tel = #{otherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invCode != null">
+        inv_code = #{invCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.broker.domain.BrokerUser">
+    update broker_user
+    set broker_no = #{brokerNo,jdbcType=VARCHAR},
+      broker_name = #{brokerName,jdbcType=VARCHAR},
+      broker_phone = #{brokerPhone,jdbcType=VARCHAR},
+      broker_sex = #{brokerSex,jdbcType=TINYINT},
+      broker_idCard = #{brokerIdcard,jdbcType=VARCHAR},
+      broker_address = #{brokerAddress,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      broker_qq = #{brokerQq,jdbcType=VARCHAR},
+      broker_weixin = #{brokerWeixin,jdbcType=VARCHAR},
+      broker_weibo = #{brokerWeibo,jdbcType=VARCHAR},
+      broker_img = #{brokerImg,jdbcType=VARCHAR},
+      other_tel = #{otherTel,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      inv_code = #{invCode,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
