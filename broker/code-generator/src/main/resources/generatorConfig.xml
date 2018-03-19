@@ -42,7 +42,7 @@
         <!-- 不生成注释 -->
 
 
-        <table tableName="%"
+        <table tableName="customer"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

@@ -5,8 +5,8 @@ spring:
     application:
         name: broker
     datasource:
-        name: test
-        url: jdbc:mysql://localhost:3306/qibu_broker
+        name: broker
+        url: jdbc:mysql://localhost:3306/qibu_broker?SSL=true
         username: root
         password: root
         # druid 数据库连接池

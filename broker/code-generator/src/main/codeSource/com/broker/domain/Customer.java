@@ -3,61 +3,32 @@ package com.broker.domain;
 import java.util.Date;
 
 public class Customer {
-    /**
-     * uid
-     */
     private Integer uid;
-    /**
-     * 客户手机号
-     */
+
     private String customerPhone;
-    /**
-     * 客户姓名
-     */
+
     private String customerName;
-    /**
-     * 详细地址
-     */
+
     private String address;
-    /**
-     * 录入经纪人
-     */
+
     private Integer brokerUser;
-    /**
-     * 装修意向(0=咨询;1=马上会装修;2=已装修;3=不装修了)
-     */
+
     private Boolean status;
-    /**
-     * 新增时间
-     */
+
     private Date createDate;
-    /**
-     * 修改时间
-     */
+
     private Date updateDate;
-    /**
-     * 修改人
-     */
+
     private Integer updateUser;
-    /**
-     * 备注
-     */
+
     private String remarks;
-    /**
-     * 省
-     */
+
     private String province;
-    /**
-     * 市
-     */
+
     private String city;
-    /**
-     * 区
-     */
+
     private String district;
-    /**
-     * 全地址
-     */
+
     private String addressDetail;
 
     public Integer getUid() {
