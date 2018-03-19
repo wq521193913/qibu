@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements ICustomerService {
         }
 
         if(StringUtils.isEmpty(customer.getCustomerPhone())){
-            return Result.getFailedResult("请输入客户手机号");
+            return Result.getFailedResult("请输入客户电话");
         }
 
         customerMapper.insert(customer);

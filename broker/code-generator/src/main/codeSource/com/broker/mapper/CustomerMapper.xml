@@ -990,6 +990,400 @@
     <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
     <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, customer_phone, customer_name, address, broker_user, status, create_date, update_date, 
+    update_user, remarks, province, city, district, address_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.Customer">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer (uid, customer_phone, customer_name, 
+      address, broker_user, status, 
+      create_date, update_date, update_user, 
+      remarks, province, city, 
+      district, address_detail)
+    values (#{uid,jdbcType=INTEGER}, #{customerPhone,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{brokerUser,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.Customer">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      uid,
+      <if test="customerPhone != null">
+        customer_phone,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uid,jdbcType=INTEGER},
+      <if test="customerPhone != null">
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.Customer">
+    update customer
+    <set>
+      <if test="customerPhone != null">
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerUser != null">
+        broker_user = #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.broker.domain.Customer">
+    update customer
+    set customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      broker_user = #{brokerUser,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address_detail = #{addressDetail,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.broker.domain.Customer">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, customer_phone, customer_name, address, broker_user, status, create_date, update_date, 
+    update_user, remarks, province, city, district, address_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.Customer">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer (uid, customer_phone, customer_name, 
+      address, broker_user, status, 
+      create_date, update_date, update_user, 
+      remarks, province, city, 
+      district, address_detail)
+    values (#{uid,jdbcType=INTEGER}, #{customerPhone,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{brokerUser,jdbcType=INTEGER}, #{status,jdbcType=BIT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.Customer">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      uid,
+      <if test="customerPhone != null">
+        customer_phone,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uid,jdbcType=INTEGER},
+      <if test="customerPhone != null">
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.Customer">
+    update customer
+    <set>
+      <if test="customerPhone != null">
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerUser != null">
+        broker_user = #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.broker.domain.Customer">
+    update customer
+    set customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      broker_user = #{brokerUser,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address_detail = #{addressDetail,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.broker.domain.Customer">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
     <result column="customer_add" jdbcType="VARCHAR" property="customerAdd" />
     <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
     <result column="status" jdbcType="BIT" property="status" />
