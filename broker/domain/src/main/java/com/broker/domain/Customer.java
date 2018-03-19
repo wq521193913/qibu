@@ -171,4 +171,24 @@ public class Customer {
     public void setAddressDetail(String addressDetail) {
         this.addressDetail = addressDetail == null ? null : addressDetail.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "uid=" + uid +
+                ", customerPhone='" + customerPhone + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", address='" + address + '\'' +
+                ", brokerUser=" + brokerUser +
+                ", status=" + status +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", updateUser=" + updateUser +
+                ", remarks='" + remarks + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", addressDetail='" + addressDetail + '\'' +
+                '}';
+    }
 }

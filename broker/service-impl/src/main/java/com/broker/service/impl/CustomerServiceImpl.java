@@ -3,7 +3,8 @@ package com.broker.service.impl;
 import com.broker.dao.CustomerMapper;
 import com.broker.domain.Customer;
 import com.broker.service.ICustomerService;
-import com.broker.util.Result;
+import com.broker.util.CustomException;
+import com.broker.util.CustomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +25,19 @@ public class CustomerServiceImpl implements ICustomerService {
     CustomerMapper customerMapper;
 
     @Override
-    public Result insertCustomer(Customer customer) {
+    public void insertCustomer(Customer customer)  throws CustomException {
         if(null == customer){
-            return Result.getFailedResult("参数检验有误:null");
+            throw new CustomException("参数检验有误:null");
         }
 
         if(StringUtils.isEmpty(customer.getCustomerPhone())){
-            return Result.getFailedResult("请输入客户电话");
+            throw new CustomException("请输入客户电话");
         }
-
+        customer.setAddressDetail(CustomStringUtils.nullConvertEmpty(customer.getProvince()) +
+                CustomStringUtils.nullConvertEmpty(customer.getCity()) +
+                CustomStringUtils.nullConvertEmpty(customer.getDistrict()) +
+                CustomStringUtils.nullConvertEmpty(customer.getAddress()));
         customerMapper.insert(customer);
-
-        return new Result();
-
     }
 
     @Override

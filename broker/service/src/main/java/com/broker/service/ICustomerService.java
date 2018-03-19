@@ -1,7 +1,7 @@
 package com.broker.service;
 
 import com.broker.domain.Customer;
-import com.broker.util.Result;
+import com.broker.util.CustomException;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +14,11 @@ import java.util.Map;
  */
 public interface ICustomerService {
 
-    Result insertCustomer(Customer customer);
+    void insertCustomer(Customer customer) throws CustomException;
 
-    int deleteCustomerById(int uid);
+    int deleteCustomerById(int uid) throws CustomException;
 
-    int updateCustomerById(Customer customer);
+    int updateCustomerById(Customer customer) throws CustomException;
 
     Customer queryCustomerById(int uid);
 

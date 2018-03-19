@@ -17,12 +17,12 @@
     <result column="other_tel" jdbcType="VARCHAR" property="otherTel" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="inv_code" jdbcType="VARCHAR" property="invCode" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
   </resultMap>
   <sql id="Base_Column_List">
     uid, broker_no, broker_name, broker_phone, broker_sex, broker_idCard, broker_address, 
     home_address, broker_qq, broker_weixin, broker_weibo, broker_img, other_tel, create_date, 
-    update_date, inv_code
+    update_date, user_code
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -43,13 +43,13 @@
       broker_address, home_address, broker_qq, 
       broker_weixin, broker_weibo, broker_img, 
       other_tel, create_date, update_date, 
-      inv_code)
+      user_code)
     values (#{uid,jdbcType=INTEGER}, #{brokerNo,jdbcType=VARCHAR}, #{brokerName,jdbcType=VARCHAR}, 
       #{brokerPhone,jdbcType=VARCHAR}, #{brokerSex,jdbcType=TINYINT}, #{brokerIdcard,jdbcType=VARCHAR}, 
       #{brokerAddress,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR}, #{brokerQq,jdbcType=VARCHAR}, 
       #{brokerWeixin,jdbcType=VARCHAR}, #{brokerWeibo,jdbcType=VARCHAR}, #{brokerImg,jdbcType=VARCHAR}, 
       #{otherTel,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{invCode,jdbcType=VARCHAR})
+      #{userCode,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.broker.domain.BrokerUser">
     <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
@@ -94,14 +94,11 @@
       <if test="otherTel != null">
         other_tel,
       </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
       <if test="createDate != null">
         create_date,
-      </if>
-      <if test="updateDate != null">
-        update_date,
-      </if>
-      <if test="invCode != null">
-        inv_code,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -142,15 +139,10 @@
       <if test="otherTel != null">
         #{otherTel,jdbcType=VARCHAR},
       </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
       </if>
-      <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="invCode != null">
-        #{invCode,jdbcType=VARCHAR},
-      </if>
+      now()
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.BrokerUser">
@@ -198,8 +190,8 @@
       <if test="updateDate != null">
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="invCode != null">
-        inv_code = #{invCode,jdbcType=VARCHAR},
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -220,7 +212,7 @@
       other_tel = #{otherTel,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
-      inv_code = #{invCode,jdbcType=VARCHAR}
+      user_code = #{userCode,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

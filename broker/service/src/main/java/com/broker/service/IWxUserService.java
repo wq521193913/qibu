@@ -1,7 +1,7 @@
 package com.broker.service;
 
 import com.broker.domain.WxUser;
-import com.broker.util.Result;
+import com.broker.util.CustomException;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ public interface IWxUserService {
      * 新增
      * @param wxUser
      */
-    void insertWxUser(WxUser wxUser);
+    void insertWxUser(WxUser wxUser) throws CustomException;
 
     /**
      * 查询
@@ -25,5 +25,5 @@ public interface IWxUserService {
      * @param wxUser
      * @param sessionId
      */
-    Result wxLogin(WxUser wxUser, String sessionId) ;
+    boolean wxLogin(WxUser wxUser, String sessionId) throws CustomException ;
 }

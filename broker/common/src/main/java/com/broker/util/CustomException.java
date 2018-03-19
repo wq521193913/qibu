@@ -22,4 +22,9 @@ public class CustomException extends Exception {
     public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
     }
+
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
 }

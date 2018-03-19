@@ -3,10 +3,7 @@ package com.broker.service.impl;
 import com.broker.dao.WxUserMapper;
 import com.broker.domain.WxUser;
 import com.broker.service.IWxUserService;
-import com.broker.util.HttpUtils;
-import com.broker.util.PropertiesUtil;
-import com.broker.util.RedisUtils;
-import com.broker.util.Result;
+import com.broker.util.*;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +31,23 @@ public class WxUserServiceImpl implements IWxUserService {
     }
 
     @Override
-    public Result wxLogin(WxUser wxUser, String sessionId) {
+    public boolean wxLogin(WxUser wxUser, String sessionId) throws CustomException{
         String code = wxUser.getCode();
         String encryptedData = wxUser.getEncryptedData();
         if(StringUtils.isEmpty(code)){
-            return Result.getFailedResult("微信登录Code不能为空");
+            throw new CustomException("微信登录Code不能为空");
         }
 
         String returnData = HttpUtils.getInstance().requestGet(String.format(PropertiesUtil.getProperties("wx_getOpenIdUrl"),code));
         if(null == returnData){
-            return Result.getFailedResult("无法得到用户唯一标识");
+            throw new CustomException("无法得到用户唯一标识");
         }
         JSONObject jsonObject = JSONObject.fromObject(returnData);
 
         String openId = jsonObject.getString("openid");
         String sessionKey = jsonObject.getString("session_key");
         if(StringUtils.isEmpty(openId)){
-            return Result.getFailedResult("获取用户openId失败");
+            throw new CustomException("获取用户openId失败");
         }
         if(null == sessionId){
             sessionId = String.valueOf(System.currentTimeMillis());
@@ -61,7 +58,7 @@ public class WxUserServiceImpl implements IWxUserService {
         Result result = new Result();
 
         if(null == wxUser){
-            return Result.getFailedResult("参数检验有误");
+            throw new CustomException("参数检验有误");
         }
         wxUser.setWxOpenId(openId);
 
@@ -73,6 +70,6 @@ public class WxUserServiceImpl implements IWxUserService {
             this.insertWxUser(wxUser);
         }
         result.setData(sessionId);
-        return result;
+        return true;
     }
 }

@@ -31,7 +31,7 @@ public class BrokerUser {
     /**
      * 用户身份证号
      */
-    private String userIdcard;
+    private String userIdCard;
 
     /**
      * 用户现住址
@@ -167,16 +167,16 @@ public class BrokerUser {
      * 用户身份证号
      * @return user_idCard 用户身份证号
      */
-    public String getUserIdcard() {
-        return userIdcard;
+    public String getUserIdCard() {
+        return userIdCard;
     }
 
     /**
      * 用户身份证号
-     * @param userIdcard 用户身份证号
+     * @param userIdCard 用户身份证号
      */
-    public void setUserIdcard(String userIdcard) {
-        this.userIdcard = userIdcard == null ? null : userIdcard.trim();
+    public void setUserIdCard(String userIdCard) {
+        this.userIdCard = userIdCard == null ? null : userIdCard.trim();
     }
 
     /**
