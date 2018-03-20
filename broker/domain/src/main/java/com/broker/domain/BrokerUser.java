@@ -82,6 +82,10 @@ public class BrokerUser {
      * 认证码
      */
     private String userCode;
+    /**
+     * 微信openid
+     */
+    private String openId;
 
     /**
      * id
@@ -337,5 +341,14 @@ public class BrokerUser {
      */
     public void setUserCode(String userCode) {
         this.userCode = userCode == null ? null : userCode.trim();
+    }
+
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }
