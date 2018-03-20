@@ -19,10 +19,13 @@ public class StaticController extends BaseController {
 
     @RequestMapping(value = "/wxLogin", method = RequestMethod.POST)
     @ResponseBody
-    public Result wxLogin(@RequestBody WxUser wxUser){
+    public Result wxLogin(WxUser wxUser, @RequestParam("iv")String iv){
         Result result = new Result();
         try {
-            boolean loginOk = wxUserService.wxLogin(wxUser, this.getHttpSession().getId());
+            boolean loginOk = wxUserService.wxLogin(wxUser, iv);
+            if(!loginOk){
+                return Result.getFailedResult("登录失败");
+            }
         }catch (CustomException ce){
             logger.error("params:" + wxUser, ce);
             return Result.getSystemErrorMsg(ce);

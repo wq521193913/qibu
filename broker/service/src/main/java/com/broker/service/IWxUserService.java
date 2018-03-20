@@ -23,7 +23,7 @@ public interface IWxUserService {
     /**
      * 微信用户登录
      * @param wxUser
-     * @param sessionId
+     * @param iv
      */
-    boolean wxLogin(WxUser wxUser, String sessionId) throws CustomException ;
+    boolean wxLogin(WxUser wxUser, String iv) throws CustomException ;
 }

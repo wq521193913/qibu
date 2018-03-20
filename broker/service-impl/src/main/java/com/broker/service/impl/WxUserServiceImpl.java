@@ -31,7 +31,11 @@ public class WxUserServiceImpl implements IWxUserService {
     }
 
     @Override
-    public boolean wxLogin(WxUser wxUser, String sessionId) throws CustomException{
+    public boolean wxLogin(WxUser wxUser, String iv) throws CustomException{
+        if(null == wxUser){
+            throw new CustomException("参数检验有误:null");
+        }
+        boolean loginOk = false;
         String code = wxUser.getCode();
         String encryptedData = wxUser.getEncryptedData();
         if(StringUtils.isEmpty(code)){
@@ -49,27 +53,22 @@ public class WxUserServiceImpl implements IWxUserService {
         if(StringUtils.isEmpty(openId)){
             throw new CustomException("获取用户openId失败");
         }
-        if(null == sessionId){
-            sessionId = String.valueOf(System.currentTimeMillis());
-        }
 
-        redisUtils.set(sessionId,returnData,30L);
-
+        //获取用户信息
+//        String Stringdec = AesCbcUtils.getInstance().decrypt(encryptedData,sessionKey,iv,"UTF-8");
         Result result = new Result();
-
-        if(null == wxUser){
-            throw new CustomException("参数检验有误");
+        if(redisUtils.get(openId) == null || (null != redisUtils.get(openId) && !redisUtils.get(openId).equals(returnData))){
+            redisUtils.set(openId,returnData,30L);
+            WxUser wxUser1 = this.queryWxUserKey(new HashMap<String, Object>(){{
+                put("openId", wxUser.getWxOpenId());
+            }});
+            if(null == wxUser1){
+                wxUser.setWxOpenId(openId);
+                this.insertWxUser(wxUser);
+            }
         }
-        wxUser.setWxOpenId(openId);
-
-        WxUser wxUser1 = this.queryWxUserKey(new HashMap<String, Object>(){{
-            put("openId", wxUser.getWxOpenId());
-        }});
-
-        if(null == wxUser1){
-            this.insertWxUser(wxUser);
-        }
-        result.setData(sessionId);
-        return true;
+        result.setData(openId);
+        loginOk = true;
+        return loginOk;
     }
 }
