@@ -11,32 +11,32 @@ public class BrokerUser {
     /**
      * 用户编号
      */
-    private String userNo;
+    private String brokerNo;
 
     /**
      * 用户姓名
      */
-    private String userName;
+    private String brokerName;
 
     /**
      * 用户手机
      */
-    private String userPhone;
+    private String brokerPhone;
 
     /**
      * 用户性别(-1:没填写;0=女;1=男)
      */
-    private Byte userSex;
+    private Byte brokerSex;
 
     /**
      * 用户身份证号
      */
-    private String userIdCard;
+    private String brokerIdCard;
 
     /**
      * 用户现住址
      */
-    private String userAddress;
+    private String brokerAddress;
 
     /**
      * 家庭住址
@@ -46,22 +46,22 @@ public class BrokerUser {
     /**
      * 用户
      */
-    private String userQq;
+    private String brokerQq;
 
     /**
      * 用户微信
      */
-    private String userWeixin;
+    private String brokerWeixin;
 
     /**
      * 用户微博号
      */
-    private String userWeibo;
+    private String brokerWeibo;
 
     /**
      * 用户头像
      */
-    private String userImg;
+    private String brokerImg;
 
     /**
      * 其他联系电话
@@ -103,246 +103,125 @@ public class BrokerUser {
         this.uid = uid;
     }
 
-    /**
-     * 用户编号
-     * @return user_no 用户编号
-     */
-    public String getUserNo() {
-        return userNo;
+    public String getBrokerNo() {
+        return brokerNo;
     }
 
-    /**
-     * 用户编号
-     * @param userNo 用户编号
-     */
-    public void setUserNo(String userNo) {
-        this.userNo = userNo == null ? null : userNo.trim();
+    public void setBrokerNo(String brokerNo) {
+        this.brokerNo = brokerNo;
     }
 
-    /**
-     * 用户姓名
-     * @return user_name 用户姓名
-     */
-    public String getUserName() {
-        return userName;
+    public String getBrokerName() {
+        return brokerName;
     }
 
-    /**
-     * 用户姓名
-     * @param userName 用户姓名
-     */
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setBrokerName(String brokerName) {
+        this.brokerName = brokerName;
     }
 
-    /**
-     * 用户手机
-     * @return user_phone 用户手机
-     */
-    public String getUserPhone() {
-        return userPhone;
+    public String getBrokerPhone() {
+        return brokerPhone;
     }
 
-    /**
-     * 用户手机
-     * @param userPhone 用户手机
-     */
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone == null ? null : userPhone.trim();
+    public void setBrokerPhone(String brokerPhone) {
+        this.brokerPhone = brokerPhone;
     }
 
-    /**
-     * 用户性别(-1:没填写;0=女;1=男)
-     * @return user_sex 用户性别(-1:没填写;0=女;1=男)
-     */
-    public Byte getUserSex() {
-        return userSex;
+    public Byte getBrokerSex() {
+        return brokerSex;
     }
 
-    /**
-     * 用户性别(-1:没填写;0=女;1=男)
-     * @param userSex 用户性别(-1:没填写;0=女;1=男)
-     */
-    public void setUserSex(Byte userSex) {
-        this.userSex = userSex;
+    public void setBrokerSex(Byte brokerSex) {
+        this.brokerSex = brokerSex;
     }
 
-    /**
-     * 用户身份证号
-     * @return user_idCard 用户身份证号
-     */
-    public String getUserIdCard() {
-        return userIdCard;
+    public String getBrokerIdCard() {
+        return brokerIdCard;
     }
 
-    /**
-     * 用户身份证号
-     * @param userIdCard 用户身份证号
-     */
-    public void setUserIdCard(String userIdCard) {
-        this.userIdCard = userIdCard == null ? null : userIdCard.trim();
+    public void setBrokerIdCard(String brokerIdCard) {
+        this.brokerIdCard = brokerIdCard;
     }
 
-    /**
-     * 用户现住址
-     * @return user_address 用户现住址
-     */
-    public String getUserAddress() {
-        return userAddress;
+    public String getBrokerAddress() {
+        return brokerAddress;
     }
 
-    /**
-     * 用户现住址
-     * @param userAddress 用户现住址
-     */
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress == null ? null : userAddress.trim();
+    public void setBrokerAddress(String brokerAddress) {
+        this.brokerAddress = brokerAddress;
     }
 
-    /**
-     * 家庭住址
-     * @return home_address 家庭住址
-     */
     public String getHomeAddress() {
         return homeAddress;
     }
 
-    /**
-     * 家庭住址
-     * @param homeAddress 家庭住址
-     */
     public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress == null ? null : homeAddress.trim();
+        this.homeAddress = homeAddress;
     }
 
-    /**
-     * 用户
-     * @return user_qq 用户
-     */
-    public String getUserQq() {
-        return userQq;
+    public String getBrokerQq() {
+        return brokerQq;
     }
 
-    /**
-     * 用户
-     * @param userQq 用户
-     */
-    public void setUserQq(String userQq) {
-        this.userQq = userQq == null ? null : userQq.trim();
+    public void setBrokerQq(String brokerQq) {
+        this.brokerQq = brokerQq;
     }
 
-    /**
-     * 用户微信
-     * @return user_weixin 用户微信
-     */
-    public String getUserWeixin() {
-        return userWeixin;
+    public String getBrokerWeixin() {
+        return brokerWeixin;
     }
 
-    /**
-     * 用户微信
-     * @param userWeixin 用户微信
-     */
-    public void setUserWeixin(String userWeixin) {
-        this.userWeixin = userWeixin == null ? null : userWeixin.trim();
+    public void setBrokerWeixin(String brokerWeixin) {
+        this.brokerWeixin = brokerWeixin;
     }
 
-    /**
-     * 用户微博号
-     * @return user_weibo 用户微博号
-     */
-    public String getUserWeibo() {
-        return userWeibo;
+    public String getBrokerWeibo() {
+        return brokerWeibo;
     }
 
-    /**
-     * 用户微博号
-     * @param userWeibo 用户微博号
-     */
-    public void setUserWeibo(String userWeibo) {
-        this.userWeibo = userWeibo == null ? null : userWeibo.trim();
+    public void setBrokerWeibo(String brokerWeibo) {
+        this.brokerWeibo = brokerWeibo;
     }
 
-    /**
-     * 用户头像
-     * @return user_img 用户头像
-     */
-    public String getUserImg() {
-        return userImg;
+    public String getBrokerImg() {
+        return brokerImg;
     }
 
-    /**
-     * 用户头像
-     * @param userImg 用户头像
-     */
-    public void setUserImg(String userImg) {
-        this.userImg = userImg == null ? null : userImg.trim();
+    public void setBrokerImg(String brokerImg) {
+        this.brokerImg = brokerImg;
     }
 
-    /**
-     * 其他联系电话
-     * @return other_tel 其他联系电话
-     */
     public String getOtherTel() {
         return otherTel;
     }
 
-    /**
-     * 其他联系电话
-     * @param otherTel 其他联系电话
-     */
     public void setOtherTel(String otherTel) {
-        this.otherTel = otherTel == null ? null : otherTel.trim();
+        this.otherTel = otherTel;
     }
 
-    /**
-     * 创建时间
-     * @return create_date 创建时间
-     */
     public Date getCreateDate() {
         return createDate;
     }
 
-    /**
-     * 创建时间
-     * @param createDate 创建时间
-     */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    /**
-     * 修改时间
-     * @return update_date 修改时间
-     */
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    /**
-     * 修改时间
-     * @param updateDate 修改时间
-     */
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
-    /**
-     * 认证码
-     * @return user_code 认证码
-     */
     public String getUserCode() {
         return userCode;
     }
 
-    /**
-     * 认证码
-     * @param userCode 认证码
-     */
     public void setUserCode(String userCode) {
-        this.userCode = userCode == null ? null : userCode.trim();
+        this.userCode = userCode;
     }
-
 
     public String getOpenId() {
         return openId;
@@ -350,5 +229,28 @@ public class BrokerUser {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    @Override
+    public String toString() {
+        return "BrokerUser{" +
+                "uid=" + uid +
+                ", brokerNo='" + brokerNo + '\'' +
+                ", brokerName='" + brokerName + '\'' +
+                ", brokerPhone='" + brokerPhone + '\'' +
+                ", brokerSex=" + brokerSex +
+                ", brokerIdCard='" + brokerIdCard + '\'' +
+                ", brokerAddress='" + brokerAddress + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", brokerQq='" + brokerQq + '\'' +
+                ", brokerWeixin='" + brokerWeixin + '\'' +
+                ", brokerWeibo='" + brokerWeibo + '\'' +
+                ", brokerImg='" + brokerImg + '\'' +
+                ", otherTel='" + otherTel + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", userCode='" + userCode + '\'' +
+                ", openId='" + openId + '\'' +
+                '}';
     }
 }

@@ -19,5 +19,7 @@ public interface IBrokerUserService {
 
     int deleteBrokerUserById(int uid) throws CustomException;
 
-    BrokerUser queryBrokerUserByKey(Map<String, Object> map);
+    BrokerUser getBrokerUserByKey(Map<String, Object> map);
+
+    BrokerUser getBrokerUserByOpenId(String openId);
 }

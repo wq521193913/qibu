@@ -9,10 +9,7 @@ import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: Administrator
@@ -31,13 +28,12 @@ public class BrokerUserController extends BaseController {
     @Autowired
     RedisUtils redisUtils;
 
-    @RequestMapping(value = "insertBrokerUser")
+    @RequestMapping(value = "insertBrokerUser", method = RequestMethod.POST)
     @ResponseBody
-    public Result insertBrokerUser(@RequestBody BrokerUser brokerUser, @RequestHeader(value = "session_3rd")String session_3rd){
+    public Result insertBrokerUser(BrokerUser brokerUser, @RequestHeader(value = "session_3rd")String session_3rd){
         Result result = new Result();
         try {
-            String wxData = (String) redisUtils.get(session_3rd);
-            brokerUser.setOpenId(JSONObject.fromObject(wxData).get("openId").toString());
+            brokerUser.setOpenId(session_3rd);
             brokerUserService.insertBrokerUser(brokerUser);
         }catch (CustomException ce){
             logger.error("params:"+brokerUser, ce);

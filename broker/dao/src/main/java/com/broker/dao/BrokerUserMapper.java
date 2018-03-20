@@ -2,6 +2,8 @@ package com.broker.dao;
 
 import com.broker.domain.BrokerUser;
 
+import java.util.Map;
+
 public interface BrokerUserMapper {
     /**
      *
@@ -38,4 +40,7 @@ public interface BrokerUserMapper {
      * @mbggenerated 2018-03-10
      */
     int updateByPrimaryKey(BrokerUser record);
+
+    BrokerUser getBrokerUserByKey(Map<String, Object> map);
+
 }

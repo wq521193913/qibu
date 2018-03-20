@@ -7,7 +7,7 @@
     <result column="broker_name" jdbcType="VARCHAR" property="brokerName" />
     <result column="broker_phone" jdbcType="VARCHAR" property="brokerPhone" />
     <result column="broker_sex" jdbcType="TINYINT" property="brokerSex" />
-    <result column="broker_idCard" jdbcType="VARCHAR" property="brokerIdcard" />
+    <result column="broker_idCard" jdbcType="VARCHAR" property="brokerIdCard" />
     <result column="broker_address" jdbcType="VARCHAR" property="brokerAddress" />
     <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
     <result column="broker_qq" jdbcType="VARCHAR" property="brokerQq" />
@@ -18,11 +18,12 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId"></result>
   </resultMap>
   <sql id="Base_Column_List">
     uid, broker_no, broker_name, broker_phone, broker_sex, broker_idCard, broker_address, 
     home_address, broker_qq, broker_weixin, broker_weibo, broker_img, other_tel, create_date, 
-    update_date, user_code
+    update_date, user_code,open_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -38,18 +39,18 @@
     <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into broker_user (uid, broker_no, broker_name, 
+    insert into broker_user (broker_no, broker_name,
       broker_phone, broker_sex, broker_idCard, 
       broker_address, home_address, broker_qq, 
       broker_weixin, broker_weibo, broker_img, 
-      other_tel, create_date, update_date, 
-      user_code)
-    values (#{uid,jdbcType=INTEGER}, #{brokerNo,jdbcType=VARCHAR}, #{brokerName,jdbcType=VARCHAR}, 
-      #{brokerPhone,jdbcType=VARCHAR}, #{brokerSex,jdbcType=TINYINT}, #{brokerIdcard,jdbcType=VARCHAR}, 
+      other_tel, create_date,
+      user_code,open_id)
+    values (#{brokerNo,jdbcType=VARCHAR}, #{brokerName,jdbcType=VARCHAR},
+      #{brokerPhone,jdbcType=VARCHAR}, #{brokerSex,jdbcType=TINYINT}, #{brokerIdCard,jdbcType=VARCHAR}, 
       #{brokerAddress,jdbcType=VARCHAR}, #{homeAddress,jdbcType=VARCHAR}, #{brokerQq,jdbcType=VARCHAR}, 
       #{brokerWeixin,jdbcType=VARCHAR}, #{brokerWeibo,jdbcType=VARCHAR}, #{brokerImg,jdbcType=VARCHAR}, 
-      #{otherTel,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{userCode,jdbcType=VARCHAR})
+      #{otherTel,jdbcType=VARCHAR}, now(),
+      #{userCode,jdbcType=VARCHAR},#{openId, jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.broker.domain.BrokerUser">
     <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
@@ -70,7 +71,7 @@
       <if test="brokerSex != null">
         broker_sex,
       </if>
-      <if test="brokerIdcard != null">
+      <if test="brokerIdCard != null">
         broker_idCard,
       </if>
       <if test="brokerAddress != null">
@@ -115,8 +116,8 @@
       <if test="brokerSex != null">
         #{brokerSex,jdbcType=TINYINT},
       </if>
-      <if test="brokerIdcard != null">
-        #{brokerIdcard,jdbcType=VARCHAR},
+      <if test="brokerIdCard != null">
+        #{brokerIdCard,jdbcType=VARCHAR},
       </if>
       <if test="brokerAddress != null">
         #{brokerAddress,jdbcType=VARCHAR},
@@ -160,8 +161,8 @@
       <if test="brokerSex != null">
         broker_sex = #{brokerSex,jdbcType=TINYINT},
       </if>
-      <if test="brokerIdcard != null">
-        broker_idCard = #{brokerIdcard,jdbcType=VARCHAR},
+      <if test="brokerIdCard != null">
+        broker_idCard = #{brokerIdCard,jdbcType=VARCHAR},
       </if>
       <if test="brokerAddress != null">
         broker_address = #{brokerAddress,jdbcType=VARCHAR},
@@ -202,7 +203,7 @@
       broker_name = #{brokerName,jdbcType=VARCHAR},
       broker_phone = #{brokerPhone,jdbcType=VARCHAR},
       broker_sex = #{brokerSex,jdbcType=TINYINT},
-      broker_idCard = #{brokerIdcard,jdbcType=VARCHAR},
+      broker_idCard = #{brokerIdCard,jdbcType=VARCHAR},
       broker_address = #{brokerAddress,jdbcType=VARCHAR},
       home_address = #{homeAddress,jdbcType=VARCHAR},
       broker_qq = #{brokerQq,jdbcType=VARCHAR},
@@ -215,4 +216,18 @@
       user_code = #{userCode,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+  <select id="getBrokerUserByKey" parameterType="java.util.Map" resultType="com.broker.domain.BrokerUser">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM broker_user bu
+    <where>
+      <if test="brokerPhone != null and brokerPhone != ''"> AND bu.broker_phone = #{brokerPhone}</if>
+    </where>
+    <where>
+      <if test="openId != null and openId != ''"> AND bu.open_id = #{openId}</if>
+    </where>
+
+    limit 1
+  </select>
 </mapper>

@@ -8,6 +8,7 @@ import com.broker.util.CustomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,8 +26,16 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     @Override
     public void insertBrokerUser(BrokerUser brokerUser) throws CustomException {
         if(null == brokerUser) throw new CustomException("参数检验有误:null");
-        if(CustomStringUtils.isEmpty(brokerUser.getUserPhone())) throw new CustomException("用户手机号不能为空");
+        if(CustomStringUtils.isEmpty(brokerUser.getBrokerPhone())) throw new CustomException("用户手机号不能为空");
         brokerUser.setUserCode(String.valueOf(System.currentTimeMillis()));
+
+        BrokerUser brokerUser1 = brokerUserMapper.getBrokerUserByKey(new HashMap<String, Object>(){{
+            put("brokerPhone", brokerUser.getBrokerPhone());
+        }});
+        if(null != brokerUser1){
+            throw new CustomException("此手机号已注册");
+        }
+
         brokerUserMapper.insert(brokerUser);
     }
 
@@ -41,7 +50,15 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     }
 
     @Override
-    public BrokerUser queryBrokerUserByKey(Map<String, Object> map) {
-        return null;
+    public BrokerUser getBrokerUserByKey(Map<String, Object> map) {
+        return brokerUserMapper.getBrokerUserByKey(map);
+    }
+
+    @Override
+    public BrokerUser getBrokerUserByOpenId(String openId) {
+        BrokerUser brokerUser = this.getBrokerUserByKey(new HashMap<String, Object>(){{
+            put("openId", openId);
+        }});
+        return brokerUser;
     }
 }

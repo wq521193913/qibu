@@ -56,18 +56,17 @@ public class WxUserServiceImpl implements IWxUserService {
 
         //获取用户信息
 //        String Stringdec = AesCbcUtils.getInstance().decrypt(encryptedData,sessionKey,iv,"UTF-8");
-        Result result = new Result();
+        wxUser.setWxOpenId(openId);
         if(redisUtils.get(openId) == null || (null != redisUtils.get(openId) && !redisUtils.get(openId).equals(returnData))){
             redisUtils.set(openId,returnData,30L);
             WxUser wxUser1 = this.queryWxUserKey(new HashMap<String, Object>(){{
                 put("openId", wxUser.getWxOpenId());
             }});
             if(null == wxUser1){
-                wxUser.setWxOpenId(openId);
+
                 this.insertWxUser(wxUser);
             }
         }
-        result.setData(openId);
         loginOk = true;
         return loginOk;
     }
