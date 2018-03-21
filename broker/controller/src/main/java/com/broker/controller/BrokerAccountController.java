@@ -58,7 +58,7 @@ public class BrokerAccountController extends BaseController {
         try {
             WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_"+session_3rd);
             if(null == loginInfo){
-
+                return Result.getFailedResult("您登录已失效");
             }
             BrokerAccount brokerAccount = brokerAccountService.getBrokerAccountByUserId(loginInfo.getBrokerId());
             result.setData(brokerAccount);
