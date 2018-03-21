@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ControllerIntercept extends HandlerInterceptorAdapter {
 
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         return super.preHandle(request, response, handler);
@@ -15,6 +17,14 @@ public class ControllerIntercept extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        if(request.getRequestURI().indexOf("static") <= 0){
+            if(null != request.getHeader("session_3rd")){
+
+            }
+        }
+
+
         super.postHandle(request, response, handler, modelAndView);
     }
 

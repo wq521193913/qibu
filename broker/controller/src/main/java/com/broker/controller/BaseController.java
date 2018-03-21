@@ -21,6 +21,8 @@ public class BaseController {
     protected HttpServletResponse response;
     protected HttpSession session;
 
+//    protected LoginInfo loginInfo;
+
     protected HttpServletRequest getServletRequest(){
         return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     }

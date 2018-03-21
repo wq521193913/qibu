@@ -1,7 +1,7 @@
 package com.broker.controller;
 
 import com.broker.domain.BrokerAccount;
-import com.broker.domain.LoginInfo;
+import com.broker.domain.WxLoginInfo;
 import com.broker.service.IBrokerAccountService;
 import com.broker.util.CustomException;
 import com.broker.util.RedisUtils;
@@ -56,7 +56,10 @@ public class BrokerAccountController extends BaseController {
     public Result getAccountBySession(@RequestHeader("session_3rd")String session_3rd){
         Result result = new Result();
         try {
-            LoginInfo loginInfo = (LoginInfo)redisUtils.get("user_"+session_3rd);
+            WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_"+session_3rd);
+            if(null == loginInfo){
+
+            }
             BrokerAccount brokerAccount = brokerAccountService.getBrokerAccountByUserId(loginInfo.getBrokerId());
             result.setData(brokerAccount);
         }catch (Exception e){

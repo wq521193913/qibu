@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @date: Create in 2018/3/19 0019 下午 9:11
  * @modified:
  */
-public class LoginInfo implements Serializable{
+public class WxLoginInfo implements Serializable{
 
     private int brokerId;
 
