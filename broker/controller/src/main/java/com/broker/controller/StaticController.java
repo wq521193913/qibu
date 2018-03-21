@@ -51,4 +51,9 @@ public class StaticController extends BaseController {
         }
         return result;
     }
+
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String testPage(){
+        return "test";
+    }
 }

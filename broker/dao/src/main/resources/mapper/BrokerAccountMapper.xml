@@ -27,10 +27,10 @@
     <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into broker_account (uid, broker_user, bank_no, 
+    insert into broker_account (broker_user, bank_no,
       bank_name, bank_branch, account_balance, 
       freeze_balance)
-    values (#{uid,jdbcType=INTEGER}, #{brokerUser,jdbcType=INTEGER}, #{bankNo,jdbcType=VARCHAR}, 
+    values (#{brokerUser,jdbcType=INTEGER}, #{bankNo,jdbcType=VARCHAR},
       #{bankName,jdbcType=VARCHAR}, #{bankBranch,jdbcType=VARCHAR}, #{accountBalance,jdbcType=DECIMAL}, 
       #{freezeBalance,jdbcType=DECIMAL})
   </insert>
@@ -116,4 +116,11 @@
       freeze_balance = #{freezeBalance,jdbcType=DECIMAL}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+  <select id="getBrokerAccountByUserId" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM broker_account ba
+    WHERE ba.broker_user = #{0}
+  </select>
 </mapper>

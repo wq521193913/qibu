@@ -38,4 +38,6 @@ public interface BrokerAccountMapper {
      * @mbggenerated 2018-03-10
      */
     int updateByPrimaryKey(BrokerAccount record);
+
+    BrokerAccount getBrokerAccountByUserId(int brokerUser);
 }

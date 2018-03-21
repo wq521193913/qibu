@@ -1,7 +1,9 @@
 package com.broker.service.impl;
 
 import com.broker.dao.BrokerUserMapper;
+import com.broker.domain.BrokerAccount;
 import com.broker.domain.BrokerUser;
+import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerUserService;
 import com.broker.util.CustomException;
 import com.broker.util.CustomStringUtils;
@@ -22,6 +24,8 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
 
     @Autowired
     private BrokerUserMapper brokerUserMapper;
+    @Autowired
+    private IBrokerAccountService brokerAccountService;
 
     @Override
     public void insertBrokerUser(BrokerUser brokerUser) throws CustomException {
@@ -35,8 +39,12 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
         if(null != brokerUser1){
             throw new CustomException("此手机号已注册");
         }
-
         brokerUserMapper.insert(brokerUser);
+
+        //账户
+        BrokerAccount brokerAccount = new BrokerAccount();
+        brokerAccount.setBrokerUser(brokerUser.getUid());
+        brokerAccountService.insertBrokerAccount(brokerAccount);
     }
 
     @Override
