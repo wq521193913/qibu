@@ -46,7 +46,7 @@ public class BrokerEarningController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "getEarningsPageList", method = RequestMethod.GET)
+    @RequestMapping(value = "getEarningPageList", method = RequestMethod.GET)
     @ResponseBody
     public Result getEarningPageList(){
         Result result = new Result();
