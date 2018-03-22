@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.broker.dao.BrokerearningMapper">
+  <resultMap id="BaseResultMap" type="com.broker.domain.Brokerearning">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="broker_user" jdbcType="INTEGER" property="brokerUser" />
+    <result column="earning_amount" jdbcType="DECIMAL" property="earningAmount" />
+    <result column="earning_source" jdbcType="VARCHAR" property="earningSource" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, broker_user, earning_amount, earning_source, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from broker_earning
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from broker_earning
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.broker.domain.Brokerearning">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into broker_earning (uid, broker_user, earning_amount, 
+      earning_source, status)
+    values (#{uid,jdbcType=INTEGER}, #{brokerUser,jdbcType=INTEGER}, #{earningAmount,jdbcType=DECIMAL}, 
+      #{earningSource,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.broker.domain.Brokerearning">
+    <selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into broker_earning
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      uid,
+      <if test="brokerUser != null">
+        broker_user,
+      </if>
+      <if test="earningAmount != null">
+        earning_amount,
+      </if>
+      <if test="earningSource != null">
+        earning_source,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uid,jdbcType=INTEGER},
+      <if test="brokerUser != null">
+        #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="earningAmount != null">
+        #{earningAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="earningSource != null">
+        #{earningSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.broker.domain.Brokerearning">
+    update broker_earning
+    <set>
+      <if test="brokerUser != null">
+        broker_user = #{brokerUser,jdbcType=INTEGER},
+      </if>
+      <if test="earningAmount != null">
+        earning_amount = #{earningAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="earningSource != null">
+        earning_source = #{earningSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.broker.domain.Brokerearning">
+    update broker_earning
+    set broker_user = #{brokerUser,jdbcType=INTEGER},
+      earning_amount = #{earningAmount,jdbcType=DECIMAL},
+      earning_source = #{earningSource,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+
+  <select id="getearningPageList" parameterType="java.util.Map" resultType="com.broker.domain.Brokerearning">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM broker_earning
+    <where>
+      <if test="brokerUser != null and brokerUser !=''"> AND broker_user = #{brokerUser}</if>
+    </where>
+    LIMIT ${offset},${rows}
+  </select>
+</mapper>

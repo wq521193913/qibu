@@ -3,6 +3,8 @@ package com.broker.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -87,6 +89,8 @@ public class RedisUtils {
     public boolean set(final String key, Object value) {
         boolean result = false;
         try {
+            RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+            redisTemplate.setKeySerializer(redisSerializer);
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             result = true;
@@ -107,6 +111,7 @@ public class RedisUtils {
     public boolean set(final String key, Object value, Long expireTime) {
         boolean result = false;
         try {
+            redisTemplate.setKeySerializer(new StringRedisSerializer());
             ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             redisTemplate.expire(key, expireTime, TimeUnit.SECONDS);

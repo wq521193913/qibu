@@ -51,12 +51,12 @@ public class BrokerAccountController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "getAccountBySession", method = RequestMethod.GET)
+    @RequestMapping(value = "getAccountBySession", method = RequestMethod.POST)
     @ResponseBody
     public Result getAccountBySession(@RequestHeader("session_3rd")String session_3rd){
         Result result = new Result();
         try {
-            WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_"+session_3rd);
+            WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_" + session_3rd);
             if(null == loginInfo){
                 return Result.getFailedResult("您登录已失效");
             }

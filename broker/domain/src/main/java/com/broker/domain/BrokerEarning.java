@@ -2,7 +2,7 @@ package com.broker.domain;
 
 import java.math.BigDecimal;
 
-public class BrokerEarnings {
+public class BrokerEarning {
     /**
      * uid
      */
@@ -16,12 +16,12 @@ public class BrokerEarnings {
     /**
      * 收益金额
      */
-    private BigDecimal earningsAmount;
+    private BigDecimal earningAmount;
 
     /**
      * 收益来源
      */
-    private String earningsSource;
+    private String earningSource;
 
     /**
      * 状态(0=待收;1=已收)
@@ -62,34 +62,34 @@ public class BrokerEarnings {
 
     /**
      * 收益金额
-     * @return earnings_amount 收益金额
+     * @return earning_amount 收益金额
      */
-    public BigDecimal getEarningsAmount() {
-        return earningsAmount;
+    public BigDecimal getearningAmount() {
+        return earningAmount;
     }
 
     /**
      * 收益金额
-     * @param earningsAmount 收益金额
+     * @param earningAmount 收益金额
      */
-    public void setEarningsAmount(BigDecimal earningsAmount) {
-        this.earningsAmount = earningsAmount;
+    public void setearningAmount(BigDecimal earningAmount) {
+        this.earningAmount = earningAmount;
     }
 
     /**
      * 收益来源
-     * @return earnings_source 收益来源
+     * @return earning_source 收益来源
      */
-    public String getEarningsSource() {
-        return earningsSource;
+    public String getearningSource() {
+        return earningSource;
     }
 
     /**
      * 收益来源
-     * @param earningsSource 收益来源
+     * @param earningSource 收益来源
      */
-    public void setEarningsSource(String earningsSource) {
-        this.earningsSource = earningsSource == null ? null : earningsSource.trim();
+    public void setearningSource(String earningSource) {
+        this.earningSource = earningSource == null ? null : earningSource.trim();
     }
 
     /**

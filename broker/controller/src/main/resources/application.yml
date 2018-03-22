@@ -6,7 +6,7 @@ spring:
         name: broker
     datasource:
         name: broker
-        url: jdbc:mysql://localhost:3306/qibu_broker?SSL=true
+        url: jdbc:mysql://192.168.0.178:3306/qibu_broker?SSL=true
         username: root
         password: root
         # druid 数据库连接池
@@ -25,6 +25,7 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+
     redis:
       database: 0
       host: localhost
@@ -48,6 +49,8 @@ spring:
 mybatis:
   type-aliases-package: com.broker.domain
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 #mybatis:
 #  mapper-locations: classpath:mapping/*.xml
