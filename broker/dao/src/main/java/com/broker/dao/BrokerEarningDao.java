@@ -5,7 +5,7 @@ import com.broker.domain.BrokerEarning;
 import java.util.List;
 import java.util.Map;
 
-public interface BrokerEarningMapper {
+public interface BrokerEarningDao {
     /**
      *
      * @mbggenerated 2018-03-10

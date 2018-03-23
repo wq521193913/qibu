@@ -1,6 +1,6 @@
 package com.broker.service.impl;
 
-import com.broker.dao.WxUserMapper;
+import com.broker.dao.WxUserDao;
 import com.broker.domain.WxUser;
 import com.broker.service.IWxUserService;
 import com.broker.util.*;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class WxUserServiceImpl implements IWxUserService {
 
     @Autowired
-    WxUserMapper wxUserMapper;
+    WxUserDao wxUserMapper;
     @Autowired
     RedisUtils redisUtils;
 

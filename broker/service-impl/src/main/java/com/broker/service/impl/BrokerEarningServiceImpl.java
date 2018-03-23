@@ -1,6 +1,6 @@
 package com.broker.service.impl;
 
-import com.broker.dao.BrokerEarningMapper;
+import com.broker.dao.BrokerEarningDao;
 import com.broker.domain.BrokerEarning;
 import com.broker.service.IBrokerEarningService;
 import com.broker.util.CustomException;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class BrokerEarningServiceImpl implements IBrokerEarningService {
 
     @Autowired
-    BrokerEarningMapper brokerEarningMapper;
+    BrokerEarningDao brokerEarningMapper;
 
     @Override
     public void insertBrokerEarning(BrokerEarning brokerEarnings) throws CustomException {

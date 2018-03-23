@@ -1,6 +1,3 @@
-package com.broker.service;
-
-import com.broker.domain.InviteFriend;
 
 import java.util.List;
 import java.util.Map;

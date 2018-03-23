@@ -1,9 +1,4 @@
-package com.broker.service.impl;
 
-import com.broker.dao.InviteFriendDao;
-import com.broker.domain.InviteFriend;
-import com.broker.service.IInviteFriendService;
-import com.broker.util.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +11,7 @@ import java.util.Map;
  * @date 2018-03-23 22:07:05
 */
 @Service
-public class InviteFriendServiceImpl implements IInviteFriendService {
+public class InviteFriendServiceImpl implements IInviteFriendService{
 
     @Autowired
     private InviteFriendDao inviteFriendDao;

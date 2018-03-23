@@ -1,9 +1,4 @@
-package com.broker.controller;
 
-import com.broker.domain.InviteFriend;
-import com.broker.service.IInviteFriendService;
-import com.broker.util.CustomException;
-import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

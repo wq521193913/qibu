@@ -4,7 +4,7 @@ import com.broker.domain.BrokerUser;
 
 import java.util.Map;
 
-public interface BrokerUserMapper {
+public interface BrokerUserDao {
     /**
      *
      * @mbggenerated 2018-03-10

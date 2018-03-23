@@ -2,7 +2,7 @@ package com.broker.dao;
 
 import com.broker.domain.Customer;
 
-public interface CustomerMapper {
+public interface CustomerDao {
     int deleteByPrimaryKey(Integer uid);
 
     int insert(Customer record);

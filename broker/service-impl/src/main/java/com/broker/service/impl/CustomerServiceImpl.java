@@ -1,6 +1,6 @@
 package com.broker.service.impl;
 
-import com.broker.dao.CustomerMapper;
+import com.broker.dao.CustomerDao;
 import com.broker.domain.Customer;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
@@ -22,7 +22,7 @@ import java.util.Map;
 public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
-    CustomerMapper customerMapper;
+    CustomerDao customerMapper;
 
     @Override
     public void insertCustomer(Customer customer)  throws CustomException {

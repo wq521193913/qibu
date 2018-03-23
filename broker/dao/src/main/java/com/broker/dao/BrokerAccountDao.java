@@ -2,7 +2,7 @@ package com.broker.dao;
 
 import com.broker.domain.BrokerAccount;
 
-public interface BrokerAccountMapper {
+public interface BrokerAccountDao {
     /**
      *
      * @mbggenerated 2018-03-10

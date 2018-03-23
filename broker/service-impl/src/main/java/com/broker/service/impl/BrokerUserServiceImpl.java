@@ -1,6 +1,6 @@
 package com.broker.service.impl;
 
-import com.broker.dao.BrokerUserMapper;
+import com.broker.dao.BrokerUserDao;
 import com.broker.domain.BrokerAccount;
 import com.broker.domain.BrokerUser;
 import com.broker.service.IBrokerAccountService;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class BrokerUserServiceImpl implements IBrokerUserService {
 
     @Autowired
-    private BrokerUserMapper brokerUserMapper;
+    private BrokerUserDao brokerUserMapper;
     @Autowired
     private IBrokerAccountService brokerAccountService;
 

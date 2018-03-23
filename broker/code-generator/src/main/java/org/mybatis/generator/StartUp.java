@@ -1,18 +1,14 @@
 package org.mybatis.generator;
 
-import com.broker.generator.CodeGenerator;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.TableConfiguration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,8 +27,8 @@ public class StartUp {
         codeFilePath = StartUp.class.getResource("/").getPath();
         codeFilePath = codeFilePath.substring(0,codeFilePath.indexOf("code-generator")+"code-generator".length());
         codeFilePath += "/src/main/codeSource";
-//        new StartUp().generateCode();
-        System.out.println(codeFilePath);
+        new StartUp().generateCode();
+//        System.out.println(codeFilePath);
     }
 
     public void generateCode(){
@@ -56,9 +52,9 @@ public class StartUp {
             for(TableConfiguration tableConfiguration : tables){
                 this.className = this.generateClassName(tableConfiguration.getTableName());
                 this.livingExample = this.className.substring(0,1).toLowerCase() + this.className.substring(1);
-                this.generateLogicCode(tableConfiguration.getTableName(),"service","I");
-                this.generateLogicCode(tableConfiguration.getTableName(), "ServiceImpl", null);
-                this.generateLogicCode(tableConfiguration.getTableName(), "Controller", null);
+                this.generateLogicCode(tableConfiguration.getTableName(),"Service","I", "com.broker.service");
+                this.generateLogicCode(tableConfiguration.getTableName(), "ServiceImpl", null, "com.broker.service.impl");
+                this.generateLogicCode(tableConfiguration.getTableName(), "Controller", null, "com.broker.controller");
             }
             //生成service controller
 //            myBatisGenerator.
@@ -76,12 +72,22 @@ public class StartUp {
      * @author: Administrator
      * @date: 2016/12/31 15:26
      */
-    public void generateLogicCode(String table,String type, String prefix){
+    public void generateLogicCode(String table,String type, String prefix, String packagePath){
         Writer writer = null;
         BufferedWriter bw = null;
         Reader reader = null;
         BufferedReader br = null;
+        String codePath = this.codeFilePath;
         try {
+            if(null != packagePath){
+                String[] arr = packagePath.split("\\.");
+                for (String str : arr){
+                    codePath += "/" + str;
+                }
+                if(!(new File(codePath).exists())){
+                    new File(codePath).mkdirs();
+                }
+            }
             String createDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             File templateFile;
 
@@ -89,7 +95,7 @@ public class StartUp {
                 URL url = StartUp.class.getResource("/template/Template" + type + ".java");
                 templateFile =  new File(url.getFile());
             }else {
-                URL url = StartUp.class.getResource("/template/"+ prefix + "Template" + type + ".java");
+                URL url = StartUp.class.getResource("/template/" + prefix + "Template" + type + ".java");
                 templateFile = new File(url.getFile());
             }
 
@@ -97,9 +103,9 @@ public class StartUp {
             br = new BufferedReader(reader);
             File codeFile;
             if(null != prefix){
-                codeFile = new File(this.codeFilePath+"/" + prefix + this.className + type + ".java");
+                codeFile = new File(codePath+"/" + prefix + this.className + type + ".java");
             }else {
-                codeFile = new File(this.codeFilePath+"/" + this.className + type + ".java");
+                codeFile = new File(codePath+"/" + this.className + type + ".java");
             }
 
             if(codeFile.exists()){
