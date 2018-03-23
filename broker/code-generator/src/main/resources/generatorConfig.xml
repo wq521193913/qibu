@@ -8,14 +8,8 @@
     <properties resource="mysql.properties"/>
 
     <context id="mysqlTables" targetRuntime="MyBatis3">
-        <commentGenerator>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
-            <!-- 不希望生成的注释中包含时间戳 -->
-            <property name="suppressDate" value="true" />
-            <!-- 是否  自动为每一个生成的类创建一个构造方法-->
-            <property name="constructorBased" value="false"/>
-        </commentGenerator>
+
+        <commentGenerator type="org.mybatis.generator.MyCommentGenerator"/>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="${jdbc.url}" userId="${jdbc.username}"
                         password="${jdbc.password}">
@@ -42,7 +36,7 @@
         <!-- 不生成注释 -->
 
 
-        <table tableName="customer"
+        <table tableName="invite-friend"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

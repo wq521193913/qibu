@@ -1,6 +1,6 @@
 package com.broker.domain;
 
-public class InviteFriends {
+public class InviteFriend {
     /**
      * uid
      */
@@ -14,12 +14,12 @@ public class InviteFriends {
     /**
      * 好友手机号
      */
-    private String friendsPhone;
+    private String friendPhone;
 
     /**
-     * 来源
+     * 好友ID
      */
-    private String inviteSource;
+    private Integer friendId;
 
     /**
      * uid
@@ -55,33 +55,33 @@ public class InviteFriends {
 
     /**
      * 好友手机号
-     * @return friends_phone 好友手机号
+     * @return friend_phone 好友手机号
      */
-    public String getFriendsPhone() {
-        return friendsPhone;
+    public String getFriendPhone() {
+        return friendPhone;
     }
 
     /**
      * 好友手机号
-     * @param friendsPhone 好友手机号
+     * @param friendPhone 好友手机号
      */
-    public void setFriendsPhone(String friendsPhone) {
-        this.friendsPhone = friendsPhone == null ? null : friendsPhone.trim();
+    public void setFriendPhone(String friendPhone) {
+        this.friendPhone = friendPhone == null ? null : friendPhone.trim();
     }
 
     /**
-     * 来源
-     * @return invite_source 来源
+     * 好友ID
+     * @return friend_id 好友ID
      */
-    public String getInviteSource() {
-        return inviteSource;
+    public Integer getFriendId() {
+        return friendId;
     }
 
     /**
-     * 来源
-     * @param inviteSource 来源
+     * 好友ID
+     * @param friendId 好友ID
      */
-    public void setInviteSource(String inviteSource) {
-        this.inviteSource = inviteSource == null ? null : inviteSource.trim();
+    public void setFriendId(Integer friendId) {
+        this.friendId = friendId;
     }
 }

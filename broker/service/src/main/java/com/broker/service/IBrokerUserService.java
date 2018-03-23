@@ -22,4 +22,6 @@ public interface IBrokerUserService {
     BrokerUser getBrokerUserByKey(Map<String, Object> map);
 
     BrokerUser getBrokerUserByOpenId(String openId);
+
+    void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws CustomException;
 }

@@ -48,6 +48,15 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     }
 
     @Override
+    public void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws CustomException{
+        this.insertBrokerUser(brokerUser);
+
+        if(null != inviteCode){
+
+        }
+    }
+
+    @Override
     public int updateBrokerUserById(BrokerUser brokerUser) throws CustomException{
         return 0;
     }
