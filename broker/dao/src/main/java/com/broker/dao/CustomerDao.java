@@ -1,6 +1,7 @@
 package com.broker.dao;
 
 import com.broker.domain.Customer;
+import org.apache.ibatis.annotations.Param;
 
 public interface CustomerDao {
     int deleteByPrimaryKey(Integer uid);
@@ -14,4 +15,6 @@ public interface CustomerDao {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    Customer getCustomerByPhone(@Param("customerPhone") String customerPhone);
 }

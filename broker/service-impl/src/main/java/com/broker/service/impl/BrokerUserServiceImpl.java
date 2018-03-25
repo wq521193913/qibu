@@ -3,10 +3,13 @@ package com.broker.service.impl;
 import com.broker.dao.BrokerUserDao;
 import com.broker.domain.BrokerAccount;
 import com.broker.domain.BrokerUser;
+import com.broker.domain.InviteFriend;
 import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerUserService;
+import com.broker.service.IInviteFriendService;
 import com.broker.util.CustomException;
 import com.broker.util.CustomStringUtils;
+import com.broker.util.RandomCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +26,11 @@ import java.util.Map;
 public class BrokerUserServiceImpl implements IBrokerUserService {
 
     @Autowired
-    private BrokerUserDao brokerUserMapper;
+    private BrokerUserDao brokerUserDao;
     @Autowired
     private IBrokerAccountService brokerAccountService;
+    @Autowired
+    private IInviteFriendService inviteFriendService;
 
     @Override
     public void insertBrokerUser(BrokerUser brokerUser) throws CustomException {
@@ -33,13 +38,14 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
         if(CustomStringUtils.isEmpty(brokerUser.getBrokerPhone())) throw new CustomException("用户手机号不能为空");
         brokerUser.setUserCode(String.valueOf(System.currentTimeMillis()));
 
-        BrokerUser brokerUser1 = brokerUserMapper.getBrokerUserByKey(new HashMap<String, Object>(){{
+        BrokerUser brokerUser1 = brokerUserDao.getBrokerUserByKey(new HashMap<String, Object>(){{
             put("brokerPhone", brokerUser.getBrokerPhone());
         }});
         if(null != brokerUser1){
             throw new CustomException("此手机号已注册");
         }
-        brokerUserMapper.insert(brokerUser);
+        brokerUser.setUserCode(RandomCodeUtils.getInstance().getRandomCode() + brokerUser.getBrokerPhone().substring(brokerUser.getBrokerPhone().length() - 2));
+        brokerUserDao.insert(brokerUser);
 
         //账户
         BrokerAccount brokerAccount = new BrokerAccount();
@@ -48,11 +54,20 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     }
 
     @Override
-    public void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws CustomException{
+    public void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws Exception{
         this.insertBrokerUser(brokerUser);
 
-        if(null != inviteCode){
-
+        //如果是好友邀请的,添加邀请记录
+        if(null != inviteCode && !inviteCode.equals("test")){
+            BrokerUser inviteUser = brokerUserDao.getBrokerUserByKey(new HashMap<String, Object>(){{
+                put("userCode", inviteCode);
+            }});
+            if(null == inviteUser) throw new CustomException("无法查询到邀请人");
+            InviteFriend inviteFriend = new InviteFriend();
+            inviteFriend.setFriendId(brokerUser.getUid());
+            inviteFriend.setFriendPhone(brokerUser.getBrokerPhone());
+            inviteFriend.setBrokerUser(inviteUser.getUid());
+            inviteFriendService.insertInviteFriend(inviteFriend);
         }
     }
 
@@ -68,7 +83,7 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
 
     @Override
     public BrokerUser getBrokerUserByKey(Map<String, Object> map) {
-        return brokerUserMapper.getBrokerUserByKey(map);
+        return brokerUserDao.getBrokerUserByKey(map);
     }
 
     @Override

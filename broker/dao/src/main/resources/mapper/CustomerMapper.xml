@@ -27,7 +27,14 @@
     from customer
     where uid = #{uid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getCustomerByPhone" parameterType="java.util.Map" resultType="com.broker.domain.Customer">
+      SELECT
+      <include refid="Base_Column_List"></include>
+      FROM customer
+      WHERE customer_phone = #{customerPhone}
+      limit 1
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from customer
     where uid = #{uid,jdbcType=INTEGER}
   </delete>

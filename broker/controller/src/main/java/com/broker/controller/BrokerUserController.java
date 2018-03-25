@@ -5,7 +5,6 @@ import com.broker.service.IBrokerUserService;
 import com.broker.util.CustomException;
 import com.broker.util.RedisUtils;
 import com.broker.util.Result;
-import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

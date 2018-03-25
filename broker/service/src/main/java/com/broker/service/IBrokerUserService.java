@@ -23,5 +23,14 @@ public interface IBrokerUserService {
 
     BrokerUser getBrokerUserByOpenId(String openId);
 
-    void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws CustomException;
+    /**
+     * @author: Administrator
+     * @description: 邀请好友注册
+     * @param brokerUser
+     * @param inviteCode
+     * @return:
+     * @date: Create in 2018/3/24 0024 上午 11:18
+     * @modified:
+     */
+    void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws Exception;
 }

@@ -1,16 +1,14 @@
 package com.broker.controller;
 
 import com.broker.domain.Customer;
+import com.broker.domain.WxLoginInfo;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: Administrator
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/customer")
-public class CustomerController {
+public class CustomerController extends BaseController{
 
     final Logger logger = Logger.getLogger(CustomerController.class);
     @Autowired
@@ -31,6 +29,7 @@ public class CustomerController {
     public Result insertCustomer(@RequestBody Customer customer){
         Result result = null;
         try {
+            customer.setBrokerUser(((WxLoginInfo)this.getHttpSession().getAttribute("userInfo")).getBrokerId());
             customerService.insertCustomer(customer);
         }catch (CustomException ce){
             logger.error("params:"+customer,ce);

@@ -22,7 +22,7 @@ import java.util.Map;
 public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
-    CustomerDao customerMapper;
+    CustomerDao customerDao;
 
     @Override
     public void insertCustomer(Customer customer)  throws CustomException {
@@ -33,11 +33,17 @@ public class CustomerServiceImpl implements ICustomerService {
         if(StringUtils.isEmpty(customer.getCustomerPhone())){
             throw new CustomException("请输入客户电话");
         }
+
+        Customer customer1 = customerDao.getCustomerByPhone(customer.getCustomerPhone());
+        if(null != customer1){
+            throw new CustomException("此手机号的客户已被登记");
+        }
+
         customer.setAddressDetail(CustomStringUtils.nullConvertEmpty(customer.getProvince()) +
                 CustomStringUtils.nullConvertEmpty(customer.getCity()) +
                 CustomStringUtils.nullConvertEmpty(customer.getDistrict()) +
                 CustomStringUtils.nullConvertEmpty(customer.getAddress()));
-        customerMapper.insert(customer);
+        customerDao.insert(customer);
     }
 
     @Override

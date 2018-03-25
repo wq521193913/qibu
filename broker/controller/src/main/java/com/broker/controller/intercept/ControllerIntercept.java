@@ -2,11 +2,9 @@ package com.broker.controller.intercept;
 
 import com.broker.domain.BrokerUser;
 import com.broker.domain.WxLoginInfo;
-import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerUserService;
 import com.broker.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -43,6 +41,7 @@ public class ControllerIntercept extends HandlerInterceptorAdapter {
                        wxLoginInfo.setBrokerPhone(brokerUser.getBrokerPhone());
                    }
                     redisUtils.set("user_" + session_3rd, wxLoginInfo, 30*60L);
+                    request.getSession().setAttribute("userInfo", wxLoginInfo);
                 }
             }
         }
