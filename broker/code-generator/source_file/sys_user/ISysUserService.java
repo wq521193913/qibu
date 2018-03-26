@@ -1,6 +1,3 @@
-package com.broker.service;
-
-import com.broker.domain.SysUser;
 
 import java.util.List;
 import java.util.Map;
@@ -49,12 +46,4 @@ public interface ISysUserService {
      */
     public List<SysUser> querySysUserList(Map<String, Object> map) throws Exception;
 
-    /**
-     * 登录
-     * @param userNo
-     * @param password
-     * @return
-     * @throws Exception
-     */
-    boolean login(String userNo, String password) throws Exception;
 }

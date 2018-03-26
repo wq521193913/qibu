@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.broker.dao.DbOrderQueueDao">
+  <insert id="insertDbOrderQueue" parameterType="com.broker.domain.DbOrderQueue">INSERT INTO db_order_queue(id,queue_no,tables_type,person_num,create_date,status) VALUES (#{id},#{queue_no},#{tables_type},#{person_num},#{create_date},#{status})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateDbOrderQueueById" parameterType="com.broker.domain.DbOrderQueue">UPDATE db_order_queue
+    <set>
+      <if test="id!=null">id=#{id},</if>
+      <if test="queue_no!=null">queue_no=#{queue_no},</if>
+      <if test="tables_type!=null">tables_type=#{tables_type},</if>
+      <if test="person_num!=null">person_num=#{person_num},</if>
+      <if test="create_date!=null">create_date=#{create_date},</if>
+      <if test="status!=null">status=#{status},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteDbOrderQueue" parameterType="java.lang.Integer">DELETE FROM db_order_queue WHERE uid = #{uid}</delete>
+  <select id="queryDbOrderQueueById" parameterType="java.lang.Integer" resultType="com.broker.domain.DbOrderQueue">SELECT * FROM db_order_queue WHERE uid = #{uid}</select>
+  <select id="queryDbOrderQueueList" parameterType="java.util.Map" resultType="com.broker.domain.DbOrderQueue">SELECT * FROM db_order_queue
+    <where>
+      <if test="id!=null">AND id=#{id}</if>
+      <if test="queue_no!=null">AND queue_no=#{queue_no}</if>
+      <if test="tables_type!=null">AND tables_type=#{tables_type}</if>
+      <if test="person_num!=null">AND person_num=#{person_num}</if>
+      <if test="create_date!=null">AND create_date=#{create_date}</if>
+      <if test="status!=null">AND status=#{status}</if>
+    </where>
+  </select>
+</mapper>

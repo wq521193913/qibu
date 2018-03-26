@@ -1,9 +1,4 @@
-package com.broker.controller;
 
-import com.broker.domain.SysUser;
-import com.broker.service.ISysUserService;
-import com.broker.util.CustomException;
-import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,56 +15,56 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-03-26 10:26:30
+ * @date 2018-03-26 15:00:18
 */
 @Controller
-@RequestMapping(value = "/sysUser")
-public class SysUserController {
+@RequestMapping(value = "/dbOrderQueue")
+public class DbOrderQueueController {
 	
-	private final Logger logger = Logger.getLogger(SysUserController.class);
+	private final Logger logger = Logger.getLogger(DbOrderQueueController.class);
 
     @Autowired
-    private ISysUserService sysUserService;
+    private IDbOrderQueueService dbOrderQueueService;
 
     /**
      * 新增
-     * @param sysUser
+     * @param dbOrderQueue
      * @return 
      * @author Administrator
-     * @date 2018-03-26 10:26:30
+     * @date 2018-03-26 15:00:18
     */
-    @RequestMapping(value = "insertSysUser", method = RequestMethod.POST)
+    @RequestMapping(value = "insertDbOrderQueue", method = RequestMethod.POST)
     @ResponseBody
-    public Result insertSysUser(SysUser sysUser){
+    public Result insertDbOrderQueue(DbOrderQueue dbOrderQueue){
         Result result = new Result();
         try {
-            sysUserService.insertSysUser(sysUser);
+            dbOrderQueueService.insertDbOrderQueue(dbOrderQueue);
         }catch (CustomException ce){
-            logger.error("params:" + sysUser, ce);
+            logger.error("params:" + dbOrderQueue, ce);
             return Result.getSystemErrorMsg(ce);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("SysUserController.insertSysUser error:", e);
+            logger.error("DbOrderQueueController.insertDbOrderQueue error:", e);
         }
         return result;
     }
 
     /**
      * 根据id更新表数据
-     * @param sysUser
+     * @param dbOrderQueue
      * @return 
      * @author Administrator
-     * @date 2018-03-26 10:26:30
+     * @date 2018-03-26 15:00:18
     */
-    @RequestMapping(value = "updateSysUserById", method = RequestMethod.POST)
+    @RequestMapping(value = "updateDbOrderQueueById", method = RequestMethod.POST)
     @ResponseBody
-    public Result updateSysUserById(SysUser sysUser){
+    public Result updateDbOrderQueueById(DbOrderQueue dbOrderQueue){
         Result result = new Result();
         try {
-            sysUserService.updateSysUserById(sysUser);
+            dbOrderQueueService.updateDbOrderQueueById(dbOrderQueue);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("SysUserController.updateSysUserById error:", e);
+            logger.error("DbOrderQueueController.updateDbOrderQueueById error:", e);
         }
         return result;
     }
@@ -79,17 +74,17 @@ public class SysUserController {
      * @param id
      * @return
      * @author Administrator
-     * @date 2018-03-26 10:26:30
+     * @date 2018-03-26 15:00:18
     */
-    @RequestMapping(value = "deleteSysUser", method = RequestMethod.POST)
+    @RequestMapping(value = "deleteDbOrderQueue", method = RequestMethod.POST)
     @ResponseBody
-    public Result deleteSysUser(@RequestParam(value = "id")Integer id){
+    public Result deleteDbOrderQueue(@RequestParam(value = "id")Integer id){
         Result result = new Result();
         try {
-            sysUserService.deleteSysUser(id);
+            dbOrderQueueService.deleteDbOrderQueue(id);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("SysUserController.deleteSysUser error:", e);
+            logger.error("DbOrderQueueController.deleteDbOrderQueue error:", e);
         }
         return result;
     }
@@ -99,23 +94,23 @@ public class SysUserController {
      * @param id
      * @return 
      * @author Administrator
-     * @date 2018-03-26 10:26:30
+     * @date 2018-03-26 15:00:18
     */
-    @RequestMapping(value = "querySysUserById", method = RequestMethod.GET)
+    @RequestMapping(value = "queryDbOrderQueueById", method = RequestMethod.GET)
     @ResponseBody
-    public Result querySysUserById(@RequestParam(value = "id")Integer id){
+    public Result queryDbOrderQueueById(@RequestParam(value = "id")Integer id){
         Result result = new Result();
         try {
-            SysUser sysUser = sysUserService.querySysUserById(id);
-            if(null == sysUser){
+            DbOrderQueue dbOrderQueue = dbOrderQueueService.queryDbOrderQueueById(id);
+            if(null == dbOrderQueue){
                 result.setSuccess(false);
                 result.setMsg("无法查询此数据");
             }else {
-                result.setData(sysUser);
+                result.setData(dbOrderQueue);
             }
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("SysUserController.querySysUserById error:", e);
+            logger.error("DbOrderQueueController.queryDbOrderQueueById error:", e);
         }
         return result;
     }
@@ -125,19 +120,19 @@ public class SysUserController {
      * @param
      * @return 
      * @author Administrator
-     * @date 2018-03-26 10:26:30
+     * @date 2018-03-26 15:00:18
     */
-    @RequestMapping(value = "querySysUserList", method = RequestMethod.GET)
+    @RequestMapping(value = "queryDbOrderQueueList", method = RequestMethod.GET)
     @ResponseBody
-    public Result querySysUserList(ServletRequest request){
+    public Result queryDbOrderQueueList(ServletRequest request){
         Result result = new Result();
         try {
             Map<String, Object> paramMap = WebUtils.getParametersStartingWith(request,"");
-            List<SysUser> sysUserList = sysUserService.querySysUserList(paramMap);
-            result.setData(sysUserList);
+            List<DbOrderQueue> dbOrderQueueList = dbOrderQueueService.queryDbOrderQueueList(paramMap);
+            result.setData(dbOrderQueueList);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("SysUserController.querySysUserList error:", e);
+            logger.error("DbOrderQueueController.queryDbOrderQueueList error:", e);
         }
         return result;
     }
