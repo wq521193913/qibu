@@ -1,5 +1,6 @@
 package com.broker.service;
 
+import com.broker.domain.LoginInfo;
 import com.broker.domain.SysUser;
 
 import java.util.List;
@@ -56,5 +57,5 @@ public interface ISysUserService {
      * @return
      * @throws Exception
      */
-    boolean login(String userNo, String password) throws Exception;
+    LoginInfo login(String userNo, String password) throws Exception;
 }

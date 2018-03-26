@@ -1,22 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>登录</title>
-</head>
-<body>
-    <div>登录页</div>
-    <div>
-        <div>
-            <label>登录名 :</label>
-            <input type="text" name="userNo"/>
+<html lang="en" xmlns:th="http://www.w3.org/2005/Atom">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>登录</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/plugin/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/plugin/form-elements.css"/>
+        <link rel="stylesheet" href="css/plugin/style.css"/>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Login to our site</h3>
+                            		<p>Enter your username and password to log on:</p>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="userNo">Username</label>
+			                        	<input type="text" id="userNo" name="userNo" placeholder="Username..." class="form-username form-control" />
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="password">Password</label>
+			                        	<input type="password" id="password" name="password" placeholder="Password..." class="form-password form-control"/>
+			                        </div>
+			                        <button class="btn" onclick="signIn()">Sign in!</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label>密 &nbsp; 码 :</label>
-            <input type="password" name="password"/>
-        </div>
-    </div>
-</body>
-<script type="text/javascript" src="static/js/plugin/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="static/js/plugin/layer/layer.js"></script>
+
+
+        <!-- Javascript -->
+        <script src="js/plugin/jquery/jquery-3.3.1.min.js"></script>
+        <script src="js/plugin/bootstrap/bootstrap.min.js"></script>
+        <script src="js/plugin/jquery/jquery.backstretch.js"></script>
+        <script src="js/plugin/layer/layer.js"></script>
+		<script type="text/javascript" src="js/main/login.js"></script>
+    </body>
+
 </html>

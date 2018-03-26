@@ -1,5 +1,5 @@
 $(function(){
-    $.backstretch("/qibu/broker/controller/src/main/resources/static/img/1.jpg");
+    $.backstretch("img/1.jpg");
 
 
 });

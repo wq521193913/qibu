@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.broker.dao.SysUserDao">
-  <insert id="insertSysUser" parameterType="com.broker.domain.SysUser">INSERT INTO sys_user(uid,user_no,user_name,user_idCard,user_phone,user_address,home_address,user_sex,user_birthday,user_school,user_education,user_strong,entry_date,dimission_date,status,remarks,create_date,create_user,update_date,update_user) VALUES (#{uid},#{user_no},#{user_name},#{user_idCard},#{user_phone},#{user_address},#{home_address},#{user_sex},#{user_birthday},#{user_school},#{user_education},#{user_strong},#{entry_date},#{dimission_date},#{status},#{remarks},#{create_date},#{create_user},#{update_date},#{update_user})
+  <insert id="insertSysUser" parameterType="com.broker.domain.SysUser">
+    INSERT INTO sys_user(user_no,user_name,user_idCard,user_phone,user_address,home_address
+    ,user_sex,user_birthday,user_school,user_education,user_strong,entry_date,dimission_date,status
+    ,remarks,create_date,create_user,password)
+    VALUES (#{user_no},#{user_name},#{user_idCard},#{user_phone},#{user_address},#{home_address},#{user_sex}
+    ,#{user_birthday},#{user_school},#{user_education},#{user_strong},#{entry_date},#{dimission_date},#{status}
+    ,#{remarks},NOW(),#{create_user},#{password})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateSysUserById" parameterType="com.broker.domain.SysUser">UPDATE sys_user
@@ -22,10 +28,10 @@
       <if test="dimission_date!=null">dimission_date=#{dimission_date},</if>
       <if test="status!=null">status=#{status},</if>
       <if test="remarks!=null">remarks=#{remarks},</if>
-      <if test="create_date!=null">create_date=#{create_date},</if>
-      <if test="create_user!=null">create_user=#{create_user},</if>
-      <if test="update_date!=null">update_date=#{update_date},</if>
       <if test="update_user!=null">update_user=#{update_user},</if>
+      <if test="password!=null">password=#{password},</if>
+
+      update_date = NOW()
     </set>where uid = #{uid}
   </update>
   <delete id="deleteSysUser" parameterType="java.lang.Integer">DELETE FROM sys_user WHERE uid = #{uid}</delete>
@@ -53,5 +59,11 @@
       <if test="update_date!=null">AND update_date=#{update_date}</if>
       <if test="update_user!=null">AND update_user=#{update_user}</if>
     </where>
+  </select>
+
+  <select id="login" parameterType="java.util.Map" resultType="com.broker.domain.SysUser">
+    SELECT *
+    FROM sys_user
+    WHERE user_phone = #{userNo} AND password = #{password}
   </select>
 </mapper>

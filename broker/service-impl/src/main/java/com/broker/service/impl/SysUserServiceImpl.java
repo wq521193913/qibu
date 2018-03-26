@@ -1,10 +1,12 @@
 package com.broker.service.impl;
 
 import com.broker.dao.SysUserDao;
+import com.broker.domain.LoginInfo;
 import com.broker.domain.SysUser;
 import com.broker.service.ISysUserService;
 import com.broker.util.CustomException;
 import com.broker.util.MD5Utils;
+import com.broker.util.TransformMapEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,9 +80,7 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     @Override
-    public boolean login(String userNo, String password) throws Exception {
-
-        boolean res = true;
+    public LoginInfo login(String userNo, String password) throws Exception {
 
         if(null == userNo || null == password) throw new CustomException("参数检验错误");
 
@@ -89,6 +89,9 @@ public class SysUserServiceImpl implements ISysUserService {
             throw new CustomException("您输入的用户名或密码有误,请重新输入");
         }
 
-        return res;
+        LoginInfo loginInfo = new LoginInfo();
+        TransformMapEntity.entityToEntity(sysUser, loginInfo);
+
+        return loginInfo;
     }
 }

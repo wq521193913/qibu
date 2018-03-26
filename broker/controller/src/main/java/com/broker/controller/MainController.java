@@ -1,5 +1,6 @@
 package com.broker.controller;
 
+import com.broker.domain.LoginInfo;
 import com.broker.service.ISysUserService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
@@ -8,7 +9,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author: Administrator
@@ -37,11 +40,13 @@ public class MainController extends BaseController {
         return "main";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
     public Result login(@RequestParam("userNo")String userNo, @RequestParam("password")String password){
         Result result = new Result();
         try {
-            boolean loginOk = userService.login(userNo, password);
-
+            LoginInfo loginInfo = userService.login(userNo, password);
+            result.setData(loginInfo);
         }catch (CustomException ce){
             logger.error("params:" + JSONObject.fromObject(this.request.getParameterMap()), ce);
             return Result.getSystemErrorMsg(ce);

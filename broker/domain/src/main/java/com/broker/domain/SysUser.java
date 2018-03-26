@@ -88,6 +88,11 @@ public class SysUser {
      */
     private Integer updateUser;
 
+    /**
+     * 密码
+     */
+    private String password;
+
     public void setUid(Integer uid) {
         this.uid = uid;
     }
@@ -248,4 +253,11 @@ public class SysUser {
         return this.updateUser;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
