@@ -10,7 +10,6 @@ button:focus,button:active:focus,button.active:focus,button.focus,button:active.
     box-shadow:none;
 }
 
-
 .main-head{
     background: #2a6496;
     width: 100%;
@@ -23,4 +22,11 @@ button:focus,button:active:focus,button.active:focus,button.focus,button:active.
     float: right;
     color: white;
     padding: 35px;
+}
+.head-info .msg-btn{
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    margin-left: 50px;
 }
