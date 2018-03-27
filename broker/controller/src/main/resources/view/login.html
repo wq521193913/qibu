@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/2005/Atom">
+<html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -37,7 +37,7 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post" class="login-form">
+			                    <form class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="userNo">Username</label>
 			                        	<input type="text" id="userNo" name="userNo" placeholder="Username..." class="form-username form-control" />
@@ -46,8 +46,9 @@
 			                        	<label class="sr-only" for="password">Password</label>
 			                        	<input type="password" id="password" name="password" placeholder="Password..." class="form-password form-control"/>
 			                        </div>
-			                        <button class="btn" onclick="signIn()">Sign in!</button>
+                                    <button type="button" class="btn" onclick="signIn()">Sign in!</button>
 			                    </form>
+
 		                    </div>
                         </div>
                     </div>

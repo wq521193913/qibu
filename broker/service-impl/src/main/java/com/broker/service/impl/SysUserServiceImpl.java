@@ -91,6 +91,7 @@ public class SysUserServiceImpl implements ISysUserService {
 
         LoginInfo loginInfo = new LoginInfo();
         TransformMapEntity.entityToEntity(sysUser, loginInfo);
+        loginInfo.setUserId(sysUser.getUid());
 
         return loginInfo;
     }

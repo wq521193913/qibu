@@ -26,7 +26,7 @@ spring:
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
     resources:
-      static-locations: ["/templates/", "/static/", "/view/"]
+      static-locations: ["/templates/", "/static/"]
     devtools:
       restart:
         enabled: false

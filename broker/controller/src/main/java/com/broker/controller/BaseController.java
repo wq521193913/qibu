@@ -1,5 +1,6 @@
 package com.broker.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.WebUtils;
@@ -17,7 +18,9 @@ import java.util.Map;
  */
 public class BaseController {
 
+    @Autowired
     protected HttpServletRequest request;
+    @Autowired
     protected HttpServletResponse response;
     protected HttpSession session;
 

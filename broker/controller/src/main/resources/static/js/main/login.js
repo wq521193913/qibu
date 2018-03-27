@@ -1,7 +1,5 @@
 $(function(){
     $.backstretch("img/1.jpg");
-
-
 });
 
 /**
