@@ -223,11 +223,28 @@
     FROM broker_user bu
     <where>
       <if test="brokerPhone != null and brokerPhone != ''"> AND bu.broker_phone = #{brokerPhone}</if>
-    </where>
-    <where>
       <if test="openId != null and openId != ''"> AND bu.open_id = #{openId}</if>
     </where>
-
     limit 1
+  </select>
+
+  <sql id="brokerUserPageSql">
+    FROM broker_user bu
+    <where>
+      <if test="brokerPhone != null and brokerPhone != ''"> AND bu.broker_phone = #{brokerPhone}</if>
+      <if test="brokerName != null and brokerName != ''"> AND bu.broker_name = #{brokerName}</if>
+      <if test="brokerIdCard != null and brokerIdCard != ''"> AND bu.broker_idCard = #{brokerIdCard}</if>
+    </where>
+  </sql>
+  <select id="brokerUserPageList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerUser">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    <include refid="brokerUserPageSql"></include>
+    LIMIT ${offset}, ${rows}
+  </select>
+
+  <select id="brokerUserPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    <include refid="brokerUserPageSql"></include>
   </select>
 </mapper>

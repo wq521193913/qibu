@@ -2,6 +2,7 @@ package com.broker.dao;
 
 import com.broker.domain.BrokerUser;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BrokerUserDao {
@@ -43,4 +44,17 @@ public interface BrokerUserDao {
 
     BrokerUser getBrokerUserByKey(Map<String, Object> map);
 
+    /**
+     * 分页查询
+     * @param map
+     * @return
+     */
+    List<BrokerUser> brokerUserPageList(Map<String, Object> map);
+
+    /**
+     * 分页查询总条数
+     * @param map
+     * @return
+     */
+    int brokerUserPageCount(Map<String, Object> map);
 }

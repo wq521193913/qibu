@@ -1,6 +1,7 @@
 package com.broker.controller.intercept;
 
 import com.broker.domain.BrokerUser;
+import com.broker.domain.LoginInfo;
 import com.broker.domain.WxLoginInfo;
 import com.broker.service.IBrokerUserService;
 import com.broker.util.RedisUtils;
@@ -42,6 +43,12 @@ public class ControllerIntercept extends HandlerInterceptorAdapter {
                    }
                     redisUtils.set("user_" + session_3rd, wxLoginInfo, 30*60L);
                     request.getSession().setAttribute("userInfo", wxLoginInfo);
+                }
+            }else {
+                LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute("loginInfo");
+                if(null == loginInfo){
+                    response.sendRedirect("/");
+                    return;
                 }
             }
         }

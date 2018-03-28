@@ -8,6 +8,7 @@ import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,8 @@ public class MainController extends BaseController {
     }
 
     @RequestMapping("/main")
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("loginInfo", this.getHttpSession().getAttribute("loginInfo"));
         return "main";
     }
 
@@ -46,6 +48,7 @@ public class MainController extends BaseController {
         Result result = new Result();
         try {
             LoginInfo loginInfo = userService.login(userNo, password);
+            this.getHttpSession().setAttribute("loginInfo", loginInfo);
             result.setData(loginInfo);
         }catch (CustomException ce){
             logger.error("params:" + JSONObject.fromObject(this.request.getParameterMap()), ce);

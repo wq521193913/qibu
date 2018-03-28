@@ -7,7 +7,7 @@
     <version>1.0.0</version>
   </parent>
   <artifactId>controller</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <version>${parent.version}</version>
   <name>broker</name>
   <url>http://maven.apache.org</url>

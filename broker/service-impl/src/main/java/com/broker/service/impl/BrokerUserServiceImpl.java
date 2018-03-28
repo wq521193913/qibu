@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -92,5 +93,15 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
             put("openId", openId);
         }});
         return brokerUser;
+    }
+
+    @Override
+    public List<BrokerUser> brokerUserPageList(Map<String, Object> map) {
+        return brokerUserDao.brokerUserPageList(map);
+    }
+
+    @Override
+    public int brokerUserPageCount(Map<String, Object> map) {
+        return brokerUserDao.brokerUserPageCount(map);
     }
 }

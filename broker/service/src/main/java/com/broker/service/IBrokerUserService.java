@@ -3,6 +3,7 @@ package com.broker.service;
 import com.broker.domain.BrokerUser;
 import com.broker.util.CustomException;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,4 +34,20 @@ public interface IBrokerUserService {
      * @modified:
      */
     void insertBrokerUser(BrokerUser brokerUser, String inviteCode) throws Exception;
+
+    /**
+     * @author: wq
+     * @description: 分页查询
+     * @date: 2018/3/28 0028 16:28
+     * @modified:
+     */
+    List<BrokerUser> brokerUserPageList(Map<String, Object> map);
+
+    /**
+     * @author: wq
+     * @description: 分页查询总条数
+     * @date: 2018/3/28 0028 16:29
+     * @modified:
+     */
+    int brokerUserPageCount(Map<String, Object> map);
 }

@@ -3,12 +3,16 @@ package com.broker.controller;
 import com.broker.domain.BrokerUser;
 import com.broker.service.IBrokerUserService;
 import com.broker.util.CustomException;
+import com.broker.util.PageResult;
 import com.broker.util.RedisUtils;
 import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Administrator
@@ -60,6 +64,35 @@ public class BrokerUserController extends BaseController {
             return Result.getSystemErrorMsg();
         }
         return result;
-
     }
+
+    @RequestMapping(value = "brokerUserPageList", method = RequestMethod.GET)
+    @ResponseBody
+    public Result brokerUserPageList(){
+        Result result = new Result();
+        try {
+            Map<String, Object> map = this.getWebPageParameters();
+
+            List<BrokerUser> brokerUsers = brokerUserService.brokerUserPageList(map);
+            int total = brokerUserService.brokerUserPageCount(map);
+
+            result.setData(PageResult.getPageResult(total, map.get("page"), map.get("rows"), brokerUsers));
+
+        }catch (Exception e){
+            logger.error(e.getLocalizedMessage(),e);
+            return Result.getSystemErrorMsg();
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "brokerListPage", method = RequestMethod.GET)
+    public String brokerListPage(){
+        return "broker/broker_list";
+    }
+
+    @RequestMapping(value = "brokerEditPage", method = RequestMethod.GET)
+    public String brokerEditPage(){
+        return "broker/broker_edit";
+    }
+
 }
