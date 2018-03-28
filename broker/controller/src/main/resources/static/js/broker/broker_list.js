@@ -68,5 +68,12 @@ function getData(page, rows) {
 }
 
 function operatorFormatter(value, rows, index) {
-    return "<button>修改</button><button>删除</button>";
+    var data = JSON.stringify(rows);
+    return "<button onclick='updateBrokerUser("+data+")'>修改</button><button>删除</button>";
+}
+
+function updateBrokerUser(data) {
+    console.log(data);
+    sessionStorage.setItem("brokerData",data);
+    loadPage("brokerUser/brokerEditPage");
 }
