@@ -29,10 +29,10 @@
                 <label class="col-sm-2 control-label">性别:</label>
                 <div class="col-sm-10">
                     <label>
-                        <input type="radio" name="optionsRadios" value="0" checked> 女
+                        <input type="radio" name="brokerSex" id="brokerSex0" value="0" checked> 女
                     </label>
                     <label>
-                        <input type="radio" name="optionsRadios" value="1"> 男
+                        <input type="radio" name="brokerSex" id="brokerSex1"value="1"> 男
                     </label>
 
                 </div>
@@ -52,8 +52,8 @@
                 </div>
             </div>
 
-            <button type="button">提交</button>
-            <button type="reset">重置</button>
+            <button type="button" onclick="updateSubmit()">提交</button>
+            <button type="button" onclick="updateCancel()">取消</button>
         </form>
     </div>
 

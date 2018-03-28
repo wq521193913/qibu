@@ -73,7 +73,7 @@ function operatorFormatter(value, rows, index) {
 }
 
 function updateBrokerUser(data) {
-    console.log(data);
-    sessionStorage.setItem("brokerData",data);
+    console.log( data.uid);
+    sessionStorage.setItem("brokerData", JSON.stringify(data));
     loadPage("brokerUser/brokerEditPage");
 }
