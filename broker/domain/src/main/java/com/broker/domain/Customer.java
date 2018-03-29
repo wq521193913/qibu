@@ -64,6 +64,10 @@ public class Customer {
      * 审计(0=待审核;1=装修中;2=装修完工)
      */
     private Integer audit;
+    /**
+     * 审计备注
+     */
+    private String auditRemarks;
 
     public Integer getUid() {
         return uid;
@@ -185,24 +189,11 @@ public class Customer {
         this.audit = audit;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "uid=" + uid +
-                ", customerPhone='" + customerPhone + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", address='" + address + '\'' +
-                ", brokerUser=" + brokerUser +
-                ", status=" + status +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                ", updateUser=" + updateUser +
-                ", remarks='" + remarks + '\'' +
-                ", province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", district='" + district + '\'' +
-                ", addressDetail='" + addressDetail + '\'' +
-                ", audit=" + audit +
-                '}';
+    public String getAuditRemarks() {
+        return auditRemarks;
+    }
+
+    public void setAuditRemarks(String auditRemarks) {
+        this.auditRemarks = auditRemarks;
     }
 }
