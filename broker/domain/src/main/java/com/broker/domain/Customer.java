@@ -60,6 +60,11 @@ public class Customer {
      */
     private String addressDetail;
 
+    /**
+     * 审计(0=待审核;1=装修中;2=装修完工)
+     */
+    private Integer audit;
+
     public Integer getUid() {
         return uid;
     }
@@ -172,6 +177,14 @@ public class Customer {
         this.addressDetail = addressDetail == null ? null : addressDetail.trim();
     }
 
+    public Integer getAudit() {
+        return audit;
+    }
+
+    public void setAudit(Integer audit) {
+        this.audit = audit;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -189,6 +202,7 @@ public class Customer {
                 ", city='" + city + '\'' +
                 ", district='" + district + '\'' +
                 ", addressDetail='" + addressDetail + '\'' +
+                ", audit=" + audit +
                 '}';
     }
 }

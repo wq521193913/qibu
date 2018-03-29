@@ -41,7 +41,7 @@ public class GeneratedUtils {
 //                ",decoration_order,decoration_own,delay_inform,dept,design_contract,earnest,flow_dept,img_path,img_source,measure,menu"+
 //                ",model_detail,owner,project_progress,project_schedule,reformation,repeal_order,role,role_app_module,role_menu"+
 //                ",schedule_detail,schedule_item,schedule_model,sys_type,user,user_register,flow_user";
-        String table = "db_order_reserver,db_order_queue,db_advertorial";
+        String table = "customer";
         generatedUtil.generateCode(table);
         System.out.println("generate code complete...");
     }

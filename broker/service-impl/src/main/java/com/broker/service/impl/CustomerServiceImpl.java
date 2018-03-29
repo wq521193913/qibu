@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 CustomStringUtils.nullConvertEmpty(customer.getCity()) +
                 CustomStringUtils.nullConvertEmpty(customer.getDistrict()) +
                 CustomStringUtils.nullConvertEmpty(customer.getAddress()));
-        customerDao.insert(customer);
+        customerDao.insertCustomer(customer);
     }
 
     @Override

@@ -10,12 +10,12 @@ import java.util.List;
 public class DataTableAccess {
     private Connection connection;
 
-    String dataBase = "diancan";
+    String dataBase = "qibu_broker";
 
     private void connect(){
         try {
-//            String url = "jdbc:mysql://192.168.0.178:3306/" + dataBase + "?user=root&password=root&useUnicode=true&characterEncoding=utf-8";
-            String url = "jdbc:mysql://123.206.176.29:3306/" + dataBase + "?user=root&password=weishier123456&useUnicode=true&characterEncoding=utf-8";
+            String url = "jdbc:mysql://192.168.0.178:3306/" + dataBase + "?user=root&password=root&useUnicode=true&characterEncoding=utf-8";
+//            String url = "jdbc:mysql://123.206.176.29:3306/" + dataBase + "?user=root&password=weishier123456&useUnicode=true&characterEncoding=utf-8";
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(url);
         }catch (Exception e){
