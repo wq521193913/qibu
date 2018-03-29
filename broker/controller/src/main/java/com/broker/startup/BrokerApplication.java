@@ -7,9 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-//@ImportResource(locations = {"classpath:config/application-*.xml"})
+@ImportResource(locations = {"classpath:config/applicationContext-*.xml"})
+@EnableTransactionManagement
 @ComponentScan(value = {"com.broker"})
 @MapperScan("com.broker.dao")
 public class BrokerApplication extends SpringBootServletInitializer{

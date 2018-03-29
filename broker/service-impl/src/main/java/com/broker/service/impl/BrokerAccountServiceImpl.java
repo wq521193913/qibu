@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class BrokerAccountServiceImpl implements IBrokerAccountService {
 
     @Autowired
-    private BrokerAccountDao brokerAccountMapper;
+    private BrokerAccountDao brokerAccountDao;
 
     @Override
     public void insertBrokerAccount(BrokerAccount brokerAccount) throws CustomException {
@@ -21,7 +21,7 @@ public class BrokerAccountServiceImpl implements IBrokerAccountService {
             throw new CustomException("参数检验有误:经济人ID不能为空");
         }
 
-        brokerAccountMapper.insert(brokerAccount);
+        brokerAccountDao.insert(brokerAccount);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BrokerAccountServiceImpl implements IBrokerAccountService {
 
     @Override
     public BrokerAccount getBrokerAccountByUserId(int brokerUser) {
-        BrokerAccount brokerAccount = brokerAccountMapper.getBrokerAccountByUserId(brokerUser);
+        BrokerAccount brokerAccount = brokerAccountDao.getBrokerAccountByUserId(brokerUser);
         return brokerAccount;
     }
 }

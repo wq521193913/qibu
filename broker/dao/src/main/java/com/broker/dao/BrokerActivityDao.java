@@ -1,7 +1,9 @@
 package com.broker.dao;
 
 import com.broker.domain.BrokerActivity;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BrokerActivityDao {
     /**
      *

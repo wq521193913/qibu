@@ -206,4 +206,25 @@
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 
+  <sql id="customerPageSql">
+    FROM customer c
+    JOIN broker_user bu on c.broker_user = bu.uid
+    <where>
+      <if test="customerPhone != null and customerPhone != ''"> AND c.customer_phone = #{customerPhone}</if>
+      <if test="customerName != null and customerName != ''"> AND c.customer_name LIKE CONCAT('%',#{customerName},'%')</if>
+      <if test="brokerName != null and brokerName != ''"> AND bu.broker_name LIKE CONCAT('%',#{brokerName},'%')</if>
+    </where>
+  </sql>
+
+  <select id="customerPageList" parameterType="java.util.Map" resultType="com.broker.domain.extend.CustomerExt">
+    SELECT c.*, bu.broker_name
+    <include refid="customerPageSql"></include>
+    ORDER BY c.uid desc
+    LIMIT ${offset},${rows}
+  </select>
+
+  <select id="customerPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    <include refid="customerPageSql"></include>
+  </select>
 </mapper>

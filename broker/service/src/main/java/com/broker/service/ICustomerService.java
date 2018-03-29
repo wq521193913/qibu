@@ -23,4 +23,8 @@ public interface ICustomerService {
     Customer queryCustomerById(int uid);
 
     List<Customer> queryCustomerList(Map<String, Object> map);
+
+    List<Customer> customerPageList(Map<String, Object> map);
+
+    int customerPageCount(Map<String, Object> map);
 }

@@ -65,4 +65,15 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<Customer> queryCustomerList(Map<String, Object> map) {
         return null;
     }
+
+    @Override
+    public List<Customer> customerPageList(Map<String, Object> map) {
+        return customerDao.customerPageList(map);
+    }
+
+    @Override
+    public int customerPageCount(Map<String, Object> map) {
+        return customerDao.customerPageCount(map);
+
+    }
 }

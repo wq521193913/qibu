@@ -20,7 +20,7 @@ import java.util.Map;
 public class BrokerEarningServiceImpl implements IBrokerEarningService {
 
     @Autowired
-    BrokerEarningDao brokerEarningMapper;
+    BrokerEarningDao brokerEarningDao;
 
     @Override
     public void insertBrokerEarning(BrokerEarning brokerEarnings) throws CustomException {
@@ -44,6 +44,6 @@ public class BrokerEarningServiceImpl implements IBrokerEarningService {
 
     @Override
     public List<BrokerEarning> getEarningPageList(Map<String, Object> map) {
-        return brokerEarningMapper.getEarningPageList(map);
+        return brokerEarningDao.getEarningPageList(map);
     }
 }

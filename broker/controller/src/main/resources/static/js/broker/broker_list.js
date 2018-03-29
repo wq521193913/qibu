@@ -58,7 +58,6 @@ function getData(page, rows) {
         data: params,
         dataType: 'json',
         success: function (res) {
-            console.log(res)
             $('#dataTable').bootstrapTable("load", res.data);
         },
         error: function (xhr) {
@@ -73,7 +72,6 @@ function operatorFormatter(value, rows, index) {
 }
 
 function updateBrokerUser(data) {
-    console.log( data.uid);
     sessionStorage.setItem("brokerData", JSON.stringify(data));
     loadPage("brokerUser/brokerEditPage");
 }

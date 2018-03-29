@@ -1,10 +1,12 @@
 package com.broker.dao;
 
 import com.broker.domain.BrokerUser;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public interface BrokerUserDao {
     /**
      *

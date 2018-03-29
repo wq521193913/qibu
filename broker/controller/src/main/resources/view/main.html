@@ -44,7 +44,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="javascript:void (0);" onclick="loadPage('brokerUser/brokerListPage')">经纪人列表</a></li>
-                                <li><a href="javascript:void (0);" onclick="loadPage('brokerUser/brokerEditPage')">新增经纪人</a></li>
+                                <li><a href="javascript:void (0);" onclick="addBrokerUser()">新增经纪人</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,9 +60,10 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                            vice lomo.
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="javascript:void (0);" onclick="loadPage('customer/customerListPage')">客户列表</a></li>
+                                <!--<li><a href="javascript:void (0);" onclick="addBrokerUser()">新增客户</a></li>-->
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -112,5 +113,6 @@
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-multiselect.js"></script>
     <script src="js/plugin/layer/layer.js"></script>
     <script src="js/main/main.js"></script>
+    <script src="js/main/utils.js"></script>
 </body>
 </html>

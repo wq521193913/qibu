@@ -12,6 +12,7 @@ import com.broker.util.CustomStringUtils;
 import com.broker.util.RandomCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,7 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     @Autowired
     private IInviteFriendService inviteFriendService;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void insertBrokerUser(BrokerUser brokerUser) throws CustomException {
         if(null == brokerUser) throw new CustomException("参数检验有误:null");

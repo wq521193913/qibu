@@ -1,5 +1,7 @@
 package com.broker.controller;
 
+import com.broker.util.PageResult;
+import com.broker.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -76,5 +78,18 @@ public class BaseController {
         map.put("offset", offset);
         map.put("rows", rows);
         return map;
+    }
+
+    /**
+     * 返回分页列表
+     * @param total
+     * @param data
+     * @return
+     */
+    protected Result defaultPageResult(int total, Object data){
+        Map<String, Object> map = this.getWebPageParameters();
+        Result result = new Result();
+        result.setData(PageResult.getPageResult(total, map.get("page"), map.get("rows"), data));
+        return result;
     }
 }

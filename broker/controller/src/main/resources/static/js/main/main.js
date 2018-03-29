@@ -35,3 +35,8 @@ function loadPage(url, id) {
         }
     });
 }
+
+function addBrokerUser() {
+    sessionStorage.setItem("addBrokerPage",1);
+    loadPage('brokerUser/brokerEditPage')
+}

@@ -1,6 +1,16 @@
+var addBrokerPage = 0;
 $(function () {
-    var brokerData = sessionStorage.getItem("brokerData");
-    fullData(brokerData);
+
+    addBrokerPage = sessionStorage.getItem("addBrokerPage");
+    console.log(addBrokerPage);
+    if(addBrokerPage == 1){
+        $("#EditForm").reset;
+        sessionStorage.removeItem("addBrokerPage");
+    }else {
+        var brokerData = sessionStorage.getItem("brokerData");
+        fullData(brokerData);
+    }
+
 });
 
 //填充数据
@@ -18,8 +28,28 @@ function fullData(data) {
 }
 //提交
 function updateSubmit() {
-    var params = $("#EditForm").serializeArray();
-    console.log(params);
+    let params = $("#EditForm").formDataFormatter();
+    let url = '';
+    if(addBrokerPage == 1){
+        //新增
+        url = 'brokerUser/insertBrokerUser';
+    }else{
+        //修改
+        url = 'brokerUser/updateBrokerUser';
+    }
+
+    $.ajaxPost({
+        url: url,
+        data: params,
+        success: function (res) {
+            if(res.success){
+                layer.alert("保存成功");
+            }else{
+                layer.alert(res.msg || "操作失败,请重新操作");
+            }
+        }
+    });
+
 }
 
 function updateCancel() {
