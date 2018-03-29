@@ -2,9 +2,9 @@ package com.broker.controller;
 
 import com.broker.domain.Customer;
 import com.broker.domain.WxLoginInfo;
+import com.broker.enumerate.AuditEnum;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
-import com.broker.util.PageResult;
 import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,24 @@ public class CustomerController extends BaseController{
             List<Customer> customers = customerService.customerPageList(map);
             int total = customerService.customerPageCount(map);
             result = super.defaultPageResult(total,customers);
+        }catch (Exception e){
+            logger.error(e);
+            return Result.getSystemErrorMsg();
+        }
+        return result;
+    }
+
+    /**
+     * @author: wq
+     * @description:
+     * @date: Create in 2018/3/29 0029 下午 8:35
+     * @modified:
+     */
+    public Result auditCustomer(@RequestParam("id")Integer id, @RequestParam("audit")Integer audit,
+                                @RequestParam(value = "auditRemarks", required = false)String auditRemarks){
+        Result result = new Result();
+        try {
+            boolean auditOk = customerService.auditCustomer(id,  AuditEnum.valueOf(audit), auditRemarks);
         }catch (Exception e){
             logger.error(e);
             return Result.getSystemErrorMsg();

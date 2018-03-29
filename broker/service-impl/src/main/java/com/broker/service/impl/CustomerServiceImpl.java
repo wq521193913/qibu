@@ -2,6 +2,7 @@ package com.broker.service.impl;
 
 import com.broker.dao.CustomerDao;
 import com.broker.domain.Customer;
+import com.broker.enumerate.AuditEnum;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.CustomStringUtils;
@@ -75,5 +76,16 @@ public class CustomerServiceImpl implements ICustomerService {
     public int customerPageCount(Map<String, Object> map) {
         return customerDao.customerPageCount(map);
 
+    }
+
+    @Override
+    public boolean auditCustomer(Integer id, AuditEnum auditEnum, String auditRemarks) throws Exception{
+        if(null == id) {
+            throw new CustomException("参数检验有误:id is null");
+        }
+
+        Customer customer = customerDao.
+
+        return false;
     }
 }

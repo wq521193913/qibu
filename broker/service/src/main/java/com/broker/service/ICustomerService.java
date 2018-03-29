@@ -1,6 +1,7 @@
 package com.broker.service;
 
 import com.broker.domain.Customer;
+import com.broker.enumerate.AuditEnum;
 import com.broker.util.CustomException;
 
 import java.util.List;
@@ -27,4 +28,13 @@ public interface ICustomerService {
     List<Customer> customerPageList(Map<String, Object> map);
 
     int customerPageCount(Map<String, Object> map);
+
+    /**
+     * 客户审核
+     * @param id
+     * @param auditEnum
+     * @param auditRemarks
+     * @return
+     */
+    boolean auditCustomer(Integer id, AuditEnum auditEnum, String auditRemarks) throws Exception;
 }
