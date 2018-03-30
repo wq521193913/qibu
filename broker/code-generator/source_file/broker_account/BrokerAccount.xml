@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.broker.dao.BrokerAccountDao">
+  <insert id="insertBrokerAccount" parameterType="com.broker.domain.BrokerAccount">INSERT INTO broker_account(uid,broker_user,bank_no,bank_name,bank_branch,account_balance,freeze_balance) VALUES (#{uid},#{broker_user},#{bank_no},#{bank_name},#{bank_branch},#{account_balance},#{freeze_balance})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateBrokerAccountById" parameterType="com.broker.domain.BrokerAccount">UPDATE broker_account
+    <set>
+      <if test="broker_user!=null">broker_user=#{broker_user},</if>
+      <if test="bank_no!=null">bank_no=#{bank_no},</if>
+      <if test="bank_name!=null">bank_name=#{bank_name},</if>
+      <if test="bank_branch!=null">bank_branch=#{bank_branch},</if>
+      <if test="account_balance!=null">account_balance=#{account_balance},</if>
+      <if test="freeze_balance!=null">freeze_balance=#{freeze_balance},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteBrokerAccount" parameterType="java.lang.Integer">DELETE FROM broker_account WHERE uid = #{uid}</delete>
+  <select id="queryBrokerAccountById" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">SELECT * FROM broker_account WHERE uid = #{uid}</select>
+  <select id="queryBrokerAccountList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerAccount">SELECT * FROM broker_account
+    <where>
+      <if test="uid!=null">AND uid=#{uid}</if>
+      <if test="broker_user!=null">AND broker_user=#{broker_user}</if>
+      <if test="bank_no!=null">AND bank_no=#{bank_no}</if>
+      <if test="bank_name!=null">AND bank_name=#{bank_name}</if>
+      <if test="bank_branch!=null">AND bank_branch=#{bank_branch}</if>
+      <if test="account_balance!=null">AND account_balance=#{account_balance}</if>
+      <if test="freeze_balance!=null">AND freeze_balance=#{freeze_balance}</if>
+    </where>
+  </select>
+</mapper>

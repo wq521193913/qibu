@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.broker.dao.BrokerActivityDao">
+  <insert id="insertBrokerActivity" parameterType="com.broker.domain.BrokerActivity">
+    INSERT INTO broker_activity(broker_user,activity_date,activity) VALUES (#{broker_user},#{activity_date},#{activity})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateBrokerActivityById" parameterType="com.broker.domain.BrokerActivity">UPDATE broker_activity
+    <set>
+      <if test="broker_user!=null">broker_user=#{broker_user},</if>
+      <if test="activity_date!=null">activity_date=#{activity_date},</if>
+      <if test="activity!=null">activity=#{activity},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteBrokerActivity" parameterType="java.lang.Integer">DELETE FROM broker_activity WHERE uid = #{uid}</delete>
+  <select id="queryBrokerActivityById" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerActivity">SELECT * FROM broker_activity WHERE uid = #{uid}</select>
+  <select id="queryBrokerActivityList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerActivity">SELECT * FROM broker_activity
+    <where>
+      <if test="broker_user!=null">AND broker_user=#{broker_user}</if>
+      <if test="activity_date!=null">AND activity_date=#{activity_date}</if>
+      <if test="activity!=null">AND activity=#{activity}</if>
+    </where>
+  </select>
+</mapper>
