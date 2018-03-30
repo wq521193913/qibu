@@ -59,4 +59,11 @@ public interface CustomerDao {
     int customerPageCount(Map<String, Object> map);
 
     Customer getCustomerByPhone(String customerPhone);
+
+    /**
+     * 查询经济人登记客户已成功总数
+     * @param brokerUserId
+     * @return
+     */
+    int getCompleteCount(int brokerUserId);
 }

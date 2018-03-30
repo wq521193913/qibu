@@ -24,4 +24,7 @@
       <if test="friend_id!=null">AND friend_id=#{friend_id}</if>
     </where>
   </select>
+    <select id="getInviteFriendByInv" parameterType="java.lang.Integer" resultType="com.broker.domain.InviteFriend">
+      SELECT * FROM invite_friend WHERE friend_id=#{0}
+    </select>
 </mapper>

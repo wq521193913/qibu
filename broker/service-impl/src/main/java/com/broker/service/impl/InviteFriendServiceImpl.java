@@ -79,4 +79,9 @@ public class InviteFriendServiceImpl implements IInviteFriendService {
     public List<InviteFriend> queryInviteFriendPageList(Map<String, Object> map) throws Exception{
         return inviteFriendDao.queryInviteFriendPageList(map);
     }
+
+    @Override
+    public InviteFriend getInviteFriendByInv(int inviteeId) {
+        return inviteFriendDao.getInviteFriendByInv(inviteeId);
+    }
 }

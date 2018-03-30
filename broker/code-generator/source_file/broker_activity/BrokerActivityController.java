@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-03-30 11:04:27
+ * @date 2018-03-30 14:45:12
 */
 @Controller
 @RequestMapping(value = "/brokerActivity")
@@ -31,7 +31,7 @@ public class BrokerActivityController {
      * @param brokerActivity
      * @return 
      * @author Administrator
-     * @date 2018-03-30 11:04:27
+     * @date 2018-03-30 14:45:12
     */
     @RequestMapping(value = "insertBrokerActivity", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +54,7 @@ public class BrokerActivityController {
      * @param brokerActivity
      * @return 
      * @author Administrator
-     * @date 2018-03-30 11:04:27
+     * @date 2018-03-30 14:45:12
     */
     @RequestMapping(value = "updateBrokerActivityById", method = RequestMethod.POST)
     @ResponseBody
@@ -74,7 +74,7 @@ public class BrokerActivityController {
      * @param id
      * @return
      * @author Administrator
-     * @date 2018-03-30 11:04:27
+     * @date 2018-03-30 14:45:12
     */
     @RequestMapping(value = "deleteBrokerActivity", method = RequestMethod.POST)
     @ResponseBody
@@ -94,7 +94,7 @@ public class BrokerActivityController {
      * @param id
      * @return 
      * @author Administrator
-     * @date 2018-03-30 11:04:27
+     * @date 2018-03-30 14:45:12
     */
     @RequestMapping(value = "queryBrokerActivityById", method = RequestMethod.GET)
     @ResponseBody
@@ -120,7 +120,7 @@ public class BrokerActivityController {
      * @param
      * @return 
      * @author Administrator
-     * @date 2018-03-30 11:04:27
+     * @date 2018-03-30 14:45:12
     */
     @RequestMapping(value = "queryBrokerActivityList", method = RequestMethod.GET)
     @ResponseBody

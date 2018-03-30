@@ -116,11 +116,11 @@ public class GeneratedUtils {
             DOMElement setEl = new DOMElement("set");
             String columnName = "";
             for(TableColumnInfo tableColumnInfo : this.tableColumnInfos){
-                columnName = tableColumnInfo.getColumnName();
                 if(columnName.equals("uid")) continue;
+                columnName = getColumn(tableColumnInfo.getColumnName());
                 DOMElement ifEl = new DOMElement("if");
                 ifEl.addAttribute("test", columnName + "!=null");
-                ifEl.setText(columnName + "=#{" + columnName + "},");
+                ifEl.setText(tableColumnInfo.getColumnName() + "=#{" + columnName + "},");
                 setEl.add(ifEl);
             }
             updateEl.add(setEl);
@@ -147,10 +147,10 @@ public class GeneratedUtils {
             queryListEl.setText("SELECT * FROM " + table + "");
             DOMElement whereEl = new DOMElement("where");
             for(TableColumnInfo tableColumnInfo : this.tableColumnInfos){
-                columnName = tableColumnInfo.getColumnName();
+                columnName = getColumn(tableColumnInfo.getColumnName());
                 DOMElement ifEl = new DOMElement("if");
                 ifEl.addAttribute("test", columnName + "!=null");
-                ifEl.setText(" AND "+columnName + "=#{" + columnName + "}");
+                ifEl.setText(" AND "+tableColumnInfo.getColumnName() + "=#{" + columnName + "}");
                 whereEl.add(ifEl);
             }
             queryListEl.add(whereEl);
@@ -171,6 +171,23 @@ public class GeneratedUtils {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private String getColumn(String column){
+        StringBuilder renCol = new StringBuilder();
+        if(column.indexOf("_") > 0){
+            int index = 0;
+            String[] columnArr = column.split("_");
+            for(String col : columnArr){
+                if(index == 0){
+                    renCol.append(col);
+                }else {
+                    renCol.append(col.substring(0,1).toUpperCase() + col.substring(1));
+                }
+                index++;
+            }
+        }
+        return renCol.toString();
     }
 
     /**
@@ -262,7 +279,8 @@ public class GeneratedUtils {
             codeStr.append("package " + packageName + ".domain;");
             codeStr.append("\r\n");
             codeStr.append("/** \r\n" +
-                    "* @author Administrator \r\n" +
+                    "* @author: Administrator \r\n" +
+                    "* @description:" +
                     "* @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\r\n" +
                     "*/ \r\n"
             );
@@ -271,6 +289,7 @@ public class GeneratedUtils {
             String fieldName = "";
             String getAndSetName = "";
             String fieldType = "";
+            String valueColumn = "";
             for(TableColumnInfo tableColumnInfo : this.tableColumnInfos){
                 fieldComment = this.generateFieldComment(tableColumnInfo);
                 fieldName = this.generateFieldName(tableColumnInfo.getColumnName());
@@ -291,7 +310,12 @@ public class GeneratedUtils {
                 fileGetAndSetCode.append("}\r\n");
                 fileGetAndSetCode.append("\r\n");
                 this.columnsString += tableColumnInfo.getColumnName() +",";
-                this.valuesString += String.format("#{%s},",tableColumnInfo.getColumnName());
+                if(tableColumnInfo.getColumnName().indexOf("_") > 0){
+                    valueColumn = tableColumnInfo.getColumnName().split("_")[0] + tableColumnInfo.getColumnName().split("_")[1].substring(0,1).toUpperCase() + tableColumnInfo.getColumnName().split("_")[1].substring(1);
+                }else {
+                    valueColumn = tableColumnInfo.getColumnName();
+                }
+                this.valuesString += String.format("#{%s},",valueColumn);
             }
             this.columnsString = this.columnsString.substring(0,this.columnsString.length() - 1);
             this.valuesString = this.valuesString.substring(0,this.valuesString.length() - 1);

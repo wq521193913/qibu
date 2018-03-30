@@ -38,6 +38,7 @@ $(function () {
             {field: 'addressDetail', title:"客户住址",width:200},
             {field: 'brokerName', title:"经纪人",width:200},
             {field: 'status', title:"装修意向",width:50, formatter:statusFormatter},
+            {field: 'audit', title:"审计",width:50, formatter:auditFormatter},
             {field: 'remarks', title:"备注",width:200},
             {field: '', title: "操作", width: 100, formatter: operatorFormatter}
         ],
@@ -46,6 +47,18 @@ $(function () {
         }
     });
 })
+
+function auditFormatter(value) {
+    if(value == 0){
+        return "<span>待审核</span>";
+    }else if(value == 1){
+        return "<span>装修中</span>";
+    }else if(value == 2){
+        return "<span>装修完工</span>";
+    }else if(value == 3){
+        return "<span>洽谈失败</span>";
+    }
+}
 
 function statusFormatter(value) {
     if(value == 0){
@@ -65,17 +78,31 @@ function operatorFormatter(value, rows, index) {
 }
 
 function auditCustomer(id) {
+    if(!id) return false;
     layer.open({
-        type: 2
-        ,title: '当你选择该窗体时，即会在最顶端'
+        type: 1
         ,area: ['390px', '260px']
-        ,shade: 0
-        ,maxmin: true
-
-        ,content: 'http://layer.layui.com/test/settop.html'
-        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-        ,yes: function(){
-            $(that).click();
+        ,shade:  [0.8, '#393D49']
+        ,shadeClose:true
+        // ,maxmin: true
+        ,content: $("#auditView")
+        ,btn: ['确定', '取消']
+        ,btn1: function(){
+            let audit = $("#auditView").find("input:radio[name='audit']:checked").val();
+            let auditRemarks = $("#auditRemarks").val();
+            if(!audit) return false;
+            $.ajaxPost({
+                url:'customer/auditCustomer',
+                data:{'id':id, 'audit': audit, 'auditRemarks': auditRemarks},
+                success: function (res) {
+                    if(res.success){
+                        $('#dataTable').bootstrapTable("refresh");
+                        layer.closeAll();
+                    }else {
+                        layer.alert(res.msg || "操作失败");
+                    }
+                }
+            })
         }
         ,btn2: function(){
             layer.closeAll();

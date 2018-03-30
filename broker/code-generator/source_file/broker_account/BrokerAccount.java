@@ -1,7 +1,7 @@
 package com.broker.domain;
 /** 
-* @author Administrator 
-* @date 2018-03-30 11:04:27
+* @author: Administrator 
+* @description:* @date 2018-03-30 14:45:12
 */ 
 public class BrokerAccount{ 
 /** 

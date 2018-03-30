@@ -11,20 +11,19 @@
   </insert>
   <update id="updateCustomerById" parameterType="com.broker.domain.Customer">UPDATE customer
     <set>
-      <if test="customer_phone!=null">customer_phone=#{customer_phone},</if>
-      <if test="customer_name!=null">customer_name=#{customer_name},</if>
+      <if test="customerPhone!=null">customer_phone=#{customerPhone},</if>
+      <if test="customerName!=null">customer_name=#{customerName},</if>
       <if test="address!=null">address=#{address},</if>
-      <if test="broker_user!=null">broker_user=#{broker_user},</if>
+      <if test="brokerUser!=null">broker_user=#{brokerUser},</if>
       <if test="status!=null">status=#{status},</if>
-      <if test="create_date!=null">create_date=#{create_date},</if>
-      <if test="update_date!=null">update_date=#{update_date},</if>
-      <if test="update_user!=null">update_user=#{update_user},</if>
+      <if test="updateUser!=null">update_user=#{updateUser},</if>
       <if test="remarks!=null">remarks=#{remarks},</if>
       <if test="province!=null">province=#{province},</if>
       <if test="city!=null">city=#{city},</if>
       <if test="district!=null">district=#{district},</if>
-      <if test="address_detail!=null">address_detail=#{address_detail},</if>
+      <if test="addressDetail!=null">address_detail=#{addressDetail},</if>
       <if test="audit!=null">audit=#{audit},</if>
+      update_date=NOW()
     </set>where uid = #{uid}
   </update>
   <delete id="deleteCustomer" parameterType="java.lang.Integer">DELETE FROM customer WHERE uid = #{uid}</delete>
@@ -74,5 +73,8 @@
     SELECT *
     FROM customer
     WHERE customer_phone = #{_param}
+  </select>
+  <select id="getCompleteCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM customer WHERE broker_user = #{0} and audit = 2
   </select>
 </mapper>

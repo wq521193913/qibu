@@ -7,30 +7,32 @@
     uid, broker_user, bank_no, bank_name, bank_branch, account_balance, freeze_balance
   </sql>
   <insert id="insertBrokerAccount" parameterType="com.broker.domain.BrokerAccount">
-    INSERT INTO broker_account(uid,broker_user,bank_no,bank_name,bank_branch,account_balance,freeze_balance) VALUES (#{uid},#{broker_user},#{bank_no},#{bank_name},#{bank_branch},#{account_balance},#{freeze_balance})
+    INSERT INTO broker_account(uid,broker_user,bank_no,bank_name,bank_branch,account_balance,freeze_balance)
+    VALUES (#{uid},#{brokerUser},#{bankNo},#{bankName},#{bankBranch},#{accountBalance},#{freezeBalance})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateBrokerAccountById" parameterType="com.broker.domain.BrokerAccount">UPDATE broker_account
     <set>
-      <if test="broker_user!=null">broker_user=#{broker_user},</if>
-      <if test="bank_no!=null">bank_no=#{bank_no},</if>
-      <if test="bank_name!=null">bank_name=#{bank_name},</if>
-      <if test="bank_branch!=null">bank_branch=#{bank_branch},</if>
-      <if test="account_balance!=null">account_balance=#{account_balance},</if>
-      <if test="freeze_balance!=null">freeze_balance=#{freeze_balance},</if>
+      <if test="!=null">uid=#{},</if>
+      <if test="brokerUser!=null">broker_user=#{brokerUser},</if>
+      <if test="bankNo!=null">bank_no=#{bankNo},</if>
+      <if test="bankName!=null">bank_name=#{bankName},</if>
+      <if test="bankBranch!=null">bank_branch=#{bankBranch},</if>
+      <if test="accountBalance!=null">account_balance=#{accountBalance},</if>
+      <if test="freezeBalance!=null">freeze_balance=#{freezeBalance},</if>
     </set>where uid = #{uid}
   </update>
   <delete id="deleteBrokerAccount" parameterType="java.lang.Integer">DELETE FROM broker_account WHERE uid = #{uid}</delete>
   <select id="queryBrokerAccountById" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">SELECT * FROM broker_account WHERE uid = #{uid}</select>
   <select id="queryBrokerAccountList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerAccount">SELECT * FROM broker_account
     <where>
-      <if test="uid!=null">AND uid=#{uid}</if>
-      <if test="broker_user!=null">AND broker_user=#{broker_user}</if>
-      <if test="bank_no!=null">AND bank_no=#{bank_no}</if>
-      <if test="bank_name!=null">AND bank_name=#{bank_name}</if>
-      <if test="bank_branch!=null">AND bank_branch=#{bank_branch}</if>
-      <if test="account_balance!=null">AND account_balance=#{account_balance}</if>
-      <if test="freeze_balance!=null">AND freeze_balance=#{freeze_balance}</if>
+      <if test="!=null">AND uid=#{}</if>
+      <if test="brokerUser!=null">AND broker_user=#{brokerUser}</if>
+      <if test="bankNo!=null">AND bank_no=#{bankNo}</if>
+      <if test="bankName!=null">AND bank_name=#{bankName}</if>
+      <if test="bankBranch!=null">AND bank_branch=#{bankBranch}</if>
+      <if test="accountBalance!=null">AND account_balance=#{accountBalance}</if>
+      <if test="freezeBalance!=null">AND freeze_balance=#{freezeBalance}</if>
     </where>
   </select>
   <select id="brokerAccountByUser" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">

@@ -2,24 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.broker.dao.BrokerBribeDao">
-  <insert id="insertBrokerBribe" parameterType="com.broker.domain.BrokerBribe">INSERT INTO broker_bribe(uid,broker_user,bribe_id,bribe_amount) VALUES (#{uid},#{broker_user},#{bribe_id},#{bribe_amount})
+  <insert id="insertBrokerBribe" parameterType="com.broker.domain.BrokerBribe">INSERT INTO broker_bribe(uid,broker_user,bribe_id,bribe_amount) VALUES (#{uid},#{brokerUser},#{bribeId},#{bribeAmount})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateBrokerBribeById" parameterType="com.broker.domain.BrokerBribe">UPDATE broker_bribe
     <set>
-      <if test="broker_user!=null">broker_user=#{broker_user},</if>
-      <if test="bribe_id!=null">bribe_id=#{bribe_id},</if>
-      <if test="bribe_amount!=null">bribe_amount=#{bribe_amount},</if>
+      <if test="!=null">uid=#{},</if>
+      <if test="brokerUser!=null">broker_user=#{brokerUser},</if>
+      <if test="bribeId!=null">bribe_id=#{bribeId},</if>
+      <if test="bribeAmount!=null">bribe_amount=#{bribeAmount},</if>
     </set>where uid = #{uid}
   </update>
   <delete id="deleteBrokerBribe" parameterType="java.lang.Integer">DELETE FROM broker_bribe WHERE uid = #{uid}</delete>
   <select id="queryBrokerBribeById" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerBribe">SELECT * FROM broker_bribe WHERE uid = #{uid}</select>
   <select id="queryBrokerBribeList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerBribe">SELECT * FROM broker_bribe
     <where>
-      <if test="uid!=null">AND uid=#{uid}</if>
-      <if test="broker_user!=null">AND broker_user=#{broker_user}</if>
-      <if test="bribe_id!=null">AND bribe_id=#{bribe_id}</if>
-      <if test="bribe_amount!=null">AND bribe_amount=#{bribe_amount}</if>
+      <if test="!=null">AND uid=#{}</if>
+      <if test="brokerUser!=null">AND broker_user=#{brokerUser}</if>
+      <if test="bribeId!=null">AND bribe_id=#{bribeId}</if>
+      <if test="bribeAmount!=null">AND bribe_amount=#{bribeAmount}</if>
     </where>
   </select>
 </mapper>

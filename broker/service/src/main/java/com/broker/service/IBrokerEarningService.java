@@ -2,6 +2,7 @@ package com.broker.service;
 
 import com.broker.domain.BrokerEarning;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -55,4 +56,6 @@ public interface IBrokerEarningService {
      * @return
      */
     BrokerEarning queryBrokerEarning(Map<String, Object> map);
+
+
 }

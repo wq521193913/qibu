@@ -36,7 +36,7 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void insertBrokerUser(BrokerUser brokerUser) throws CustomException {
+    public void insertBrokerUser(BrokerUser brokerUser) throws Exception {
         if(null == brokerUser) throw new CustomException("参数检验有误:null");
         if(CustomStringUtils.isEmpty(brokerUser.getBrokerPhone())) throw new CustomException("用户手机号不能为空");
         brokerUser.setUserCode(String.valueOf(System.currentTimeMillis()));

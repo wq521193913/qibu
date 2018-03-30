@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface IBrokerUserService {
 
-    void insertBrokerUser(BrokerUser brokerUser) throws CustomException;
+    void insertBrokerUser(BrokerUser brokerUser) throws Exception ;
 
     int updateBrokerUserById(BrokerUser brokerUser) throws CustomException;
 

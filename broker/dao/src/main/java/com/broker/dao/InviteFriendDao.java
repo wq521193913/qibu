@@ -62,4 +62,11 @@ public interface InviteFriendDao {
      * @return Integer
      */
     public Integer queryInviteFriendPageCount(Map<String, Object> map);
+
+    /**
+     * 根据被邀请人查询
+     * @param inviteeId
+     * @return
+     */
+    InviteFriend getInviteFriendByInv(int inviteeId);
 }

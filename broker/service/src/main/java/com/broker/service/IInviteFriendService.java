@@ -49,4 +49,10 @@ public interface IInviteFriendService {
      */
     public List<InviteFriend> queryInviteFriendList(Map<String, Object> map) throws Exception;
 
+    /**
+     * 根据被邀请人查询
+     * @param inviteeId
+     * @return
+     */
+    InviteFriend getInviteFriendByInv(int inviteeId);
 }

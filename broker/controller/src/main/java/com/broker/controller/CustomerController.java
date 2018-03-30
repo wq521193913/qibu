@@ -2,10 +2,12 @@ package com.broker.controller;
 
 import com.broker.domain.Customer;
 import com.broker.domain.WxLoginInfo;
-import com.broker.enumerate.AuditEnum;
+import com.broker.enumerate.CustomerAuditEnum;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
+import net.sf.json.JSONObject;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,13 +69,20 @@ public class CustomerController extends BaseController{
      * @date: Create in 2018/3/29 0029 下午 8:35
      * @modified:
      */
+    @RequestMapping(value = "auditCustomer", method = RequestMethod.POST)
+    @ResponseBody
     public Result auditCustomer(@RequestParam("id")Integer id, @RequestParam("audit")Integer audit,
                                 @RequestParam(value = "auditRemarks", required = false)String auditRemarks){
         Result result = new Result();
         try {
-            boolean auditOk = customerService.auditCustomer(id,  AuditEnum.valueOf(audit), auditRemarks);
+            boolean auditOk = customerService.auditCustomer(id,  CustomerAuditEnum.valueOf(audit), auditRemarks);
+        }catch (CustomException ce){
+            logger.error("params:" + JSONObject.fromObject(this.getWebParameters()));
+            logger.error(ce.getMessage(),ce);
+            return Result.getSystemErrorMsg(ce);
         }catch (Exception e){
-            logger.error(e);
+            logger.error("params:" + JSONObject.fromObject(this.getWebParameters()));
+            logger.error(ExceptionUtils.getStackTrace(e));
             return Result.getSystemErrorMsg();
         }
         return result;
