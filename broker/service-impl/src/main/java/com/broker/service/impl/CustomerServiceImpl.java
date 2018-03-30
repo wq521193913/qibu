@@ -1,15 +1,21 @@
 package com.broker.service.impl;
 
 import com.broker.dao.CustomerDao;
+import com.broker.domain.BrokerAccount;
+import com.broker.domain.BrokerEarning;
 import com.broker.domain.Customer;
 import com.broker.enumerate.AuditEnum;
+import com.broker.service.IBrokerAccountService;
+import com.broker.service.IBrokerEarningService;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.CustomStringUtils;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +30,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     CustomerDao customerDao;
+    @Autowired
+    private IBrokerEarningService brokerEarningService;
+    @Autowired
+    private IBrokerAccountService brokerAccountService;
 
     @Override
     public void insertCustomer(Customer customer)  throws CustomException {
@@ -84,8 +94,55 @@ public class CustomerServiceImpl implements ICustomerService {
             throw new CustomException("参数检验有误:id is null");
         }
 
-        Customer customer = customerDao.
+        Customer customer = customerDao.queryCustomerById(id);
+        if(null == customer) throw new CustomException("无法查询到此数据");
+        BrokerEarning brokerEarning = null;
+        Map<String, Object> map = null;
+        int brokerUserId = customer.getBrokerUser();
+        int customerId = customer.getUid();
+        switch (auditEnum){
+            case STATUS_WAIT:
+                //待审核
+                break;
+            case STATUS_UNDER_WAY:
+                //装修中
+                //给经济人新增收益
+                brokerEarning = new BrokerEarning();
+                brokerEarning.setBrokerUser(brokerUserId);
+                brokerEarning.setEarningsAmount(BigDecimal.valueOf(1000));
+                brokerEarning.setEarningsSource("登记客户洽谈成功");
+                brokerEarning.setStatus(0);
+                brokerEarning.setSourceId(customerId);
+                brokerEarning.setSourceType(0);
+                brokerEarningService.insertBrokerEarning(brokerEarning);
+                break;
+            case STATUS_COMPLETE:
+                //装修完成
+                map = Maps.newHashMap();
+                map.put("sourceType",0);
+                map.put("sourceId", customerId);
+                map.put("brokerUser", brokerUserId);
+                brokerEarning = brokerEarningService.queryBrokerEarning(map);
+                if(null != brokerEarning){
+                    BrokerAccount brokerAccount = brokerAccountService.brokerAccountByUser(brokerUserId);
+                    if(null == brokerAccount){
+                        brokerAccount = new BrokerAccount();
+                    }
+                    brokerAccount.setBrokerUser(brokerUserId);
+                    brokerAccount.setAccountBalance(brokerAccount.getAccountBalance().add(brokerEarning.getEarningsAmount()));
+                    brokerAccountService.updateBrokerAccountById(brokerAccount);
+                    //TODO 发送短信
+                }
 
-        return false;
+                break;
+            case STATUS_FAIL:
+                //洽谈失败
+                customer.setAudit(auditEnum.getIndex());
+                customerDao.updateCustomerById(customer);
+                //TODO 发送短信
+                break;
+        }
+
+        return true;
     }
 }

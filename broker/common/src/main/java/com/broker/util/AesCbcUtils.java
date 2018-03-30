@@ -27,12 +27,14 @@ public class AesCbcUtils {
     private AesCbcUtils(){}
 
     public static AesCbcUtils getInstance(){
-        synchronized (lock){
-            if(null == aesCbcUtils){
-                aesCbcUtils = new AesCbcUtils();
+        if(null == aesCbcUtils){
+            synchronized (lock){
+                if(null == aesCbcUtils){
+                    aesCbcUtils = new AesCbcUtils();
+                }
             }
-            return aesCbcUtils;
         }
+        return aesCbcUtils;
     }
 
     /**

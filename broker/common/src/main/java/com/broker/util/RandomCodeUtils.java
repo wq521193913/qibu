@@ -24,12 +24,14 @@ public class RandomCodeUtils {
     }
 
     public static RandomCodeUtils getInstance(){
-        synchronized (lock){
-            if(null == randomCodeUtils){
-                randomCodeUtils = new RandomCodeUtils();
+        if(null == randomCodeUtils){
+            synchronized (lock){
+                if(null == randomCodeUtils){
+                    randomCodeUtils = new RandomCodeUtils();
+                }
             }
-            return randomCodeUtils;
         }
+        return randomCodeUtils;
     }
 
     public String getRandomCode(){

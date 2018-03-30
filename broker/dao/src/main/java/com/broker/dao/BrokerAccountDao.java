@@ -3,43 +3,70 @@ package com.broker.dao;
 import com.broker.domain.BrokerAccount;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author Administrator
+ * @date 2018-03-30 11:04:27
+ */
 @Repository
 public interface BrokerAccountDao {
-    /**
-     *
-     * @mbggenerated 2018-03-10
-     */
-    int deleteByPrimaryKey(Integer uid);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 新增
+     * @param brokerAccount
+     * @return
      */
-    int insert(BrokerAccount record);
+    public void insertBrokerAccount(BrokerAccount brokerAccount);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 根据id修改
+     * @param brokerAccount
+     * @return
      */
-    int insertSelective(BrokerAccount record);
+    public void updateBrokerAccountById(BrokerAccount brokerAccount);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 删除
+     * @param id
+     * @return
      */
-    BrokerAccount selectByPrimaryKey(Integer uid);
+    public void deleteBrokerAccount(Integer id);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 根据id查询
+     * @param id
+     * @return BrokerAccount
      */
-    int updateByPrimaryKeySelective(BrokerAccount record);
+    public BrokerAccount queryBrokerAccountById(Integer id);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 查询列表
+     * @param map
+     * @return List<BrokerAccount>
      */
-    int updateByPrimaryKey(BrokerAccount record);
+    public List<BrokerAccount> queryBrokerAccountList(Map<String, Object> map);
 
-    BrokerAccount getBrokerAccountByUserId(int brokerUser);
+    /**
+     * 查询分页列表
+     * @param map
+     * @return List<BrokerAccount>
+     */
+    public List<BrokerAccount> queryBrokerAccountPageList(Map<String, Object> map);
+
+    /**
+     * 查询分页列表条数
+     * @param map
+     * @return Integer
+     */
+    public Integer queryBrokerAccountPageCount(Map<String, Object> map);
+
+    /**
+     * 查询
+     * @param brokerUserId
+     * @return
+     */
+    BrokerAccount brokerAccountByUser(int brokerUserId);
 }

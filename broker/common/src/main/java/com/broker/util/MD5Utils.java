@@ -29,17 +29,17 @@ public class MD5Utils {
         }
     }
 
-    private MD5Utils(){
-
-    }
+    private MD5Utils(){}
 
     public static MD5Utils getInstance(){
-        synchronized (lock){
-            if(null == md5Utils){
-                md5Utils = new MD5Utils();
+        if(null == md5Utils){
+            synchronized (lock){
+                if(null == md5Utils){
+                    md5Utils = new MD5Utils();
+                }
             }
-            return md5Utils;
         }
+        return md5Utils;
     }
 
     public String getFileMD5String(File file) throws IOException {

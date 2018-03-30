@@ -24,12 +24,14 @@ public class HttpUtils {
     }
 
     public static HttpUtils getInstance(){
-        synchronized (lock){
-            if(null == httpUtils){
-                httpUtils = new HttpUtils();
+        if(null == httpUtils){
+            synchronized (lock){
+                if(null == httpUtils){
+                    httpUtils = new HttpUtils();
+                }
             }
-            return httpUtils;
         }
+        return httpUtils;
     }
 
     /**

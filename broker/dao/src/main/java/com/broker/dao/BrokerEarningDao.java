@@ -6,47 +6,67 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author Administrator
+ * @date 2018-03-30 09:27:37
+ */
 @Repository
 public interface BrokerEarningDao {
-    /**
-     *
-     * @mbggenerated 2018-03-10
-     */
-    int deleteByPrimaryKey(Integer uid);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 新增
+     * @param brokerEarning
+     * @return
      */
-    int insert(BrokerEarning record);
+    public void insertBrokerEarning(BrokerEarning brokerEarning);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 根据id修改
+     * @param brokerEarning
+     * @return
      */
-    int insertSelective(BrokerEarning record);
+    public void updateBrokerEarningById(BrokerEarning brokerEarning);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 删除
+     * @param id
+     * @return
      */
-    BrokerEarning selectByPrimaryKey(Integer uid);
+    public void deleteBrokerEarning(Integer id);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
+     * 根据id查询
+     * @param id
+     * @return BrokerEarning
      */
-    int updateByPrimaryKeySelective(BrokerEarning record);
+    public BrokerEarning queryBrokerEarningById(Integer id);
 
     /**
-     *
-     * @mbggenerated 2018-03-10
-     */
-    int updateByPrimaryKey(BrokerEarning record);
-
-    /**
-     * 列表
+     * 查询列表
      * @param map
+     * @return List<BrokerEarning>
      */
-    List<BrokerEarning> getEarningPageList(Map<String, Object> map);
+    public List<BrokerEarning> queryBrokerEarningList(Map<String, Object> map);
+
+    /**
+     * 查询分页列表
+     * @param map
+     * @return List<BrokerEarning>
+     */
+    public List<BrokerEarning> queryBrokerEarningPageList(Map<String, Object> map);
+
+    /**
+     * 查询分页列表条数
+     * @param map
+     * @return Integer
+     */
+    public Integer queryBrokerEarningPageCount(Map<String, Object> map);
+
+    /**
+     * 查询 只会取limit 1
+     * @param map
+     * @return
+     */
+    BrokerEarning queryBrokerEarning(Map<String, Object> map);
 }

@@ -4,32 +4,40 @@ import com.broker.domain.BrokerEarning;
 import com.broker.service.IBrokerEarningService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
-import com.broker.util.TransformMapEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author: Administrator
- * @description:
- * @date: 2018/3/22 0022 16:20
- * @modified:
- */
+ * 
+ * @author Administrator
+ * @date 2018-03-30 09:27:36
+*/
 @Controller
 @RequestMapping(value = "/brokerEarning")
-public class BrokerEarningController extends BaseController {
-    
-    final Logger logger = Logger.getLogger(this.getClass().getName());
+public class BrokerEarningController {
+	
+	private final Logger logger = Logger.getLogger(BrokerEarningController.class);
 
     @Autowired
-    IBrokerEarningService brokerEarningService;
+    private IBrokerEarningService brokerEarningService;
 
+    /**
+     * 新增
+     * @param brokerEarning
+     * @return 
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+    */
     @RequestMapping(value = "insertBrokerEarning", method = RequestMethod.POST)
     @ResponseBody
     public Result insertBrokerEarning(BrokerEarning brokerEarning){
@@ -40,23 +48,96 @@ public class BrokerEarningController extends BaseController {
             logger.error("params:" + brokerEarning, ce);
             return Result.getSystemErrorMsg(ce);
         }catch (Exception e){
-            logger.error(e.getLocalizedMessage(),e);
-            return Result.getSystemErrorMsg();
+            result = Result.getSystemErrorMsg(e);
+            logger.error("BrokerEarningController.insertBrokerEarning error:", e);
         }
         return result;
     }
 
-    @RequestMapping(value = "getEarningPageList", method = RequestMethod.GET)
+    /**
+     * 根据id更新表数据
+     * @param brokerEarning
+     * @return 
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+    */
+    @RequestMapping(value = "updateBrokerEarningById", method = RequestMethod.POST)
     @ResponseBody
-    public Result getEarningPageList(){
+    public Result updateBrokerEarningById(BrokerEarning brokerEarning){
         Result result = new Result();
         try {
-            Map<String, Object> map = this.getWebPageParameters();
-            List<BrokerEarning> brokerEarnings = brokerEarningService.getEarningPageList(map);
-            result.setData(TransformMapEntity.getSpecifiedFieldMap("earning_source,earning_amount",brokerEarnings));
+            brokerEarningService.updateBrokerEarningById(brokerEarning);
         }catch (Exception e){
-            logger.error(e.getLocalizedMessage(),e);
-            return Result.getSystemErrorMsg();
+            result = Result.getSystemErrorMsg(e);
+            logger.error("BrokerEarningController.updateBrokerEarningById error:", e);
+        }
+        return result;
+    }
+
+    /**
+     * 删除表数据
+     * @param id
+     * @return
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+    */
+    @RequestMapping(value = "deleteBrokerEarning", method = RequestMethod.POST)
+    @ResponseBody
+    public Result deleteBrokerEarning(@RequestParam(value = "id")Integer id){
+        Result result = new Result();
+        try {
+            brokerEarningService.deleteBrokerEarning(id);
+        }catch (Exception e){
+            result = Result.getSystemErrorMsg(e);
+            logger.error("BrokerEarningController.deleteBrokerEarning error:", e);
+        }
+        return result;
+    }
+
+    /**
+     * 根据id查询数据
+     * @param id
+     * @return 
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+    */
+    @RequestMapping(value = "queryBrokerEarningById", method = RequestMethod.GET)
+    @ResponseBody
+    public Result queryBrokerEarningById(@RequestParam(value = "id")Integer id){
+        Result result = new Result();
+        try {
+            BrokerEarning brokerEarning = brokerEarningService.queryBrokerEarningById(id);
+            if(null == brokerEarning){
+                result.setSuccess(false);
+                result.setMsg("无法查询此数据");
+            }else {
+                result.setData(brokerEarning);
+            }
+        }catch (Exception e){
+            result = Result.getSystemErrorMsg(e);
+            logger.error("BrokerEarningController.queryBrokerEarningById error:", e);
+        }
+        return result;
+    }
+
+    /**
+     * 查询列表
+     * @param
+     * @return 
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+    */
+    @RequestMapping(value = "queryBrokerEarningList", method = RequestMethod.GET)
+    @ResponseBody
+    public Result queryBrokerEarningList(ServletRequest request){
+        Result result = new Result();
+        try {
+            Map<String, Object> paramMap = WebUtils.getParametersStartingWith(request,"");
+            List<BrokerEarning> brokerEarningList = brokerEarningService.queryBrokerEarningList(paramMap);
+            result.setData(brokerEarningList);
+        }catch (Exception e){
+            result = Result.getSystemErrorMsg(e);
+            logger.error("BrokerEarningController.queryBrokerEarningList error:", e);
         }
         return result;
     }

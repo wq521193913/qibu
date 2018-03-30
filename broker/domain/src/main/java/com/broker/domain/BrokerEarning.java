@@ -2,109 +2,95 @@ package com.broker.domain;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Administrator
+ * @description: 经济人收益
+ * @date 2018-03-30 09:27:36
+ */
 public class BrokerEarning {
     /**
      * uid
      */
     private Integer uid;
-
     /**
      * 经纪人ID
      */
     private Integer brokerUser;
-
     /**
      * 收益金额
      */
-    private BigDecimal earningAmount;
-
+    private BigDecimal earningsAmount;
     /**
      * 收益来源
      */
-    private String earningSource;
-
+    private String earningsSource;
     /**
      * 状态(0=待收;1=已收)
      */
-    private Byte status;
+    private Integer status;
 
     /**
-     * uid
-     * @return uid uid
+     * 来源ID
      */
-    public Integer getUid() {
-        return uid;
-    }
-
+    private Integer sourceId;
     /**
-     * uid
-     * @param uid uid
+     * 来源种类(0=登记客户;1=邀请好友;2=红包)
      */
+    private Integer sourceType;
+
     public void setUid(Integer uid) {
         this.uid = uid;
     }
 
-    /**
-     * 经纪人ID
-     * @return broker_user 经纪人ID
-     */
-    public Integer getBrokerUser() {
-        return brokerUser;
+    public Integer getUid() {
+        return this.uid;
     }
 
-    /**
-     * 经纪人ID
-     * @param brokerUser 经纪人ID
-     */
     public void setBrokerUser(Integer brokerUser) {
         this.brokerUser = brokerUser;
     }
 
-    /**
-     * 收益金额
-     * @return earning_amount 收益金额
-     */
-    public BigDecimal getearningAmount() {
-        return earningAmount;
+    public Integer getBrokerUser() {
+        return this.brokerUser;
     }
 
-    /**
-     * 收益金额
-     * @param earningAmount 收益金额
-     */
-    public void setearningAmount(BigDecimal earningAmount) {
-        this.earningAmount = earningAmount;
+    public void setEarningsAmount(BigDecimal earningsAmount) {
+        this.earningsAmount = earningsAmount;
     }
 
-    /**
-     * 收益来源
-     * @return earning_source 收益来源
-     */
-    public String getearningSource() {
-        return earningSource;
+    public BigDecimal getEarningsAmount() {
+        return this.earningsAmount;
     }
 
-    /**
-     * 收益来源
-     * @param earningSource 收益来源
-     */
-    public void setearningSource(String earningSource) {
-        this.earningSource = earningSource == null ? null : earningSource.trim();
+    public void setEarningsSource(String earningsSource) {
+        this.earningsSource = earningsSource;
     }
 
-    /**
-     * 状态(0=待收;1=已收)
-     * @return status 状态(0=待收;1=已收)
-     */
-    public Byte getStatus() {
-        return status;
+    public String getEarningsSource() {
+        return this.earningsSource;
     }
 
-    /**
-     * 状态(0=待收;1=已收)
-     * @param status 状态(0=待收;1=已收)
-     */
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getStatus() {
+        return this.status;
+    }
+
+    public Integer getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(Integer sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public Integer getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(Integer sourceType) {
+        this.sourceType = sourceType;
     }
 }
