@@ -4,19 +4,19 @@
 <mapper namespace="com.broker.dao.BrokerEarningDao">
 
   <sql id="base_columns_list">
-    uid, broker_user,earnings_amount,earnings_source,status,source_id,source_type
+    uid, broker_user,earning_amount,earning_source,status,source_id,source_type
   </sql>
 
   <insert id="insertBrokerEarning" parameterType="com.broker.domain.BrokerEarning">
-    INSERT INTO broker_earning(broker_user,earnings_amount,earnings_source,status,source_id, source_type)
-    VALUES (#{brokerUser},#{earningsAmount},#{earningsSource},#{status}, #{sourceId}, #{sourceType})
+    INSERT INTO broker_earning(broker_user,earning_amount,earning_source,status,source_id, source_type)
+    VALUES (#{brokerUser},#{earningAmount},#{earningSource},#{status}, #{sourceId}, #{sourceType})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateBrokerEarningById" parameterType="com.broker.domain.BrokerEarning">UPDATE broker_earning
     <set>
       <if test="brokerUser!=null">broker_user=#{broker_user},</if>
-      <if test="earningsAmount!=null">earnings_amount=#{earnings_amount},</if>
-      <if test="earningsSource!=null">earnings_source=#{earnings_source},</if>
+      <if test="earningAmount!=null">earning_amount=#{earningAmount},</if>
+      <if test="earningSource!=null">earning_source=#{earningSource},</if>
       <if test="status!=null">status=#{status},</if>
     </set>where uid = #{uid}
   </update>
@@ -26,8 +26,8 @@
     <where>
       <if test="uid!=null">AND uid=#{uid}</if>
       <if test="brokerUser!=null">AND broker_user=#{broker_user}</if>
-      <if test="earningsAmount!=null">AND earnings_amount=#{earnings_amount}</if>
-      <if test="earningsSource!=null">AND earnings_source=#{earnings_source}</if>
+      <if test="earningAmount!=null">AND earning_amount=#{earningAmount}</if>
+      <if test="earningSource!=null">AND earning_source=#{earningSource}</if>
       <if test="status!=null">AND status=#{status}</if>
     </where>
   </select>

@@ -13,7 +13,6 @@
   </insert>
   <update id="updateBrokerAccountById" parameterType="com.broker.domain.BrokerAccount">UPDATE broker_account
     <set>
-      <if test="!=null">uid=#{},</if>
       <if test="brokerUser!=null">broker_user=#{brokerUser},</if>
       <if test="bankNo!=null">bank_no=#{bankNo},</if>
       <if test="bankName!=null">bank_name=#{bankName},</if>

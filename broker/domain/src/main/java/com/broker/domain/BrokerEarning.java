@@ -19,11 +19,11 @@ public class BrokerEarning {
     /**
      * 收益金额
      */
-    private BigDecimal earningsAmount;
+    private BigDecimal earningAmount;
     /**
      * 收益来源
      */
-    private String earningsSource;
+    private String earningSource;
     /**
      * 状态(0=待收;1=已收)
      */
@@ -54,20 +54,20 @@ public class BrokerEarning {
         return this.brokerUser;
     }
 
-    public void setEarningsAmount(BigDecimal earningsAmount) {
-        this.earningsAmount = earningsAmount;
+    public BigDecimal getEarningAmount() {
+        return earningAmount;
     }
 
-    public BigDecimal getEarningsAmount() {
-        return this.earningsAmount;
+    public void setEarningAmount(BigDecimal earningAmount) {
+        this.earningAmount = earningAmount;
     }
 
-    public void setEarningsSource(String earningsSource) {
-        this.earningsSource = earningsSource;
+    public String getEarningSource() {
+        return earningSource;
     }
 
-    public String getEarningsSource() {
-        return this.earningsSource;
+    public void setEarningSource(String earningSource) {
+        this.earningSource = earningSource;
     }
 
     public void setStatus(Integer status) {

@@ -119,8 +119,8 @@ public class CustomerServiceImpl implements ICustomerService {
                 //给经济人新增收益
                 brokerEarning = new BrokerEarning();
                 brokerEarning.setBrokerUser(brokerUserId);
-                brokerEarning.setEarningsAmount(BigDecimal.valueOf(1000));
-                brokerEarning.setEarningsSource("登记客户洽谈成功");
+                brokerEarning.setEarningAmount(BigDecimal.valueOf(1000));
+                brokerEarning.setEarningSource("登记客户洽谈成功");
                 brokerEarning.setStatus(0);
                 brokerEarning.setSourceId(customerId);
                 brokerEarning.setSourceType(0);
@@ -139,8 +139,8 @@ public class CustomerServiceImpl implements ICustomerService {
                     //如果直接点装修完工
                     brokerEarning = new BrokerEarning();
                     brokerEarning.setBrokerUser(brokerUserId);
-                    brokerEarning.setEarningsAmount(BigDecimal.valueOf(1000));
-                    brokerEarning.setEarningsSource("登记客户洽谈成功");
+                    brokerEarning.setEarningAmount(BigDecimal.valueOf(1000));
+                    brokerEarning.setEarningSource("登记客户洽谈成功");
                     brokerEarning.setStatus(1);
                     brokerEarning.setSourceId(customerId);
                     brokerEarning.setSourceType(0);
@@ -157,11 +157,11 @@ public class CustomerServiceImpl implements ICustomerService {
                 if(null == brokerAccount){
                     brokerAccount = new BrokerAccount();
                     brokerAccount.setBrokerUser(brokerUserId);
-                    brokerAccount.setAccountBalance(brokerEarning.getEarningsAmount());
+                    brokerAccount.setAccountBalance(brokerEarning.getEarningAmount());
                     brokerAccountService.insertBrokerAccount(brokerAccount);
                 }else {
                     brokerAccount.setBrokerUser(brokerUserId);
-                    brokerAccount.setAccountBalance(brokerAccount.getAccountBalance().add(brokerEarning.getEarningsAmount()));
+                    brokerAccount.setAccountBalance(brokerAccount.getAccountBalance().add(brokerEarning.getEarningAmount()));
                     brokerAccountService.updateBrokerAccountById(brokerAccount);
                 }
 
@@ -201,8 +201,8 @@ public class CustomerServiceImpl implements ICustomerService {
                 if(null == inviteEarning){
                     inviteEarning = new BrokerEarning();
                     inviteEarning.setBrokerUser(inviteBrokerId);
-                    inviteEarning.setEarningsAmount(BigDecimal.valueOf(100));
-                    inviteEarning.setEarningsSource("邀请的好友成功接单奖励");
+                    inviteEarning.setEarningAmount(BigDecimal.valueOf(100));
+                    inviteEarning.setEarningSource("邀请的好友成功接单奖励");
                     inviteEarning.setStatus(status);
                     inviteEarning.setSourceId(customerId);
                     inviteEarning.setSourceType(1);
