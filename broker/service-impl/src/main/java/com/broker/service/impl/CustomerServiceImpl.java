@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -130,7 +131,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 break;
             case STATUS_COMPLETE:
                 //装修完成
-                map = Maps.newHashMap();
+                map = new HashMap<String, Object>(8);
                 map.put("sourceType",0);
                 map.put("sourceId", customerId);
                 map.put("brokerUser", brokerUserId);
