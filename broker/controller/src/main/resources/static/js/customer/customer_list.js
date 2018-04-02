@@ -74,11 +74,13 @@ function statusFormatter(value) {
 
 function operatorFormatter(value, rows, index) {
     var data = JSON.stringify(rows);
-    return "<button onclick='auditCustomer("+rows.uid+")'>审计</button>";
+    return "<button onclick='auditCustomer("+rows.uid+"," + rows.audit + ", " + rows.auditRemarks + ")'>审计</button>";
 }
 
-function auditCustomer(id) {
+function auditCustomer(id, audit,auditRemarks) {
     if(!id) return false;
+    $("#audit"+audit).attr("checked",true);
+    $("#auditRemarks").val(auditRemarks);
     layer.open({
         type: 1
         ,area: ['390px', '260px']
