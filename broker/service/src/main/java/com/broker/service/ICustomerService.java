@@ -1,7 +1,7 @@
 package com.broker.service;
 
 import com.broker.domain.Customer;
-import com.broker.enumerate.CustomerAuditEnum;
+import com.broker.enumerate.CustomerAuditEnums;
 import com.broker.util.CustomException;
 
 import java.util.List;
@@ -32,9 +32,9 @@ public interface ICustomerService {
     /**
      * 客户审核
      * @param id
-     * @param customerAuditEnum
+     * @param customerAuditEnums
      * @param auditRemarks
      * @return
      */
-    boolean auditCustomer(Integer id, CustomerAuditEnum customerAuditEnum, String auditRemarks) throws Exception;
+    boolean auditCustomer(Integer id, CustomerAuditEnums customerAuditEnums, String auditRemarks) throws Exception;
 }

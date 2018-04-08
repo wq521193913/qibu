@@ -1,4 +1,6 @@
+package com.broker.dao;
 
+import com.broker.domain.CaseShow;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Map;
 /**
  *
  * @author Administrator
- * @date 2018-04-08 14:47:03
+ * @date 2018-03-30 14:45:13
  */
 @Repository
 public interface CaseShowDao {
@@ -60,4 +62,18 @@ public interface CaseShowDao {
      * @return Integer
      */
     public Integer queryCaseShowPageCount(Map<String, Object> map);
+
+    /**
+     * 分页查询
+     * @param map
+     * @return
+     */
+    List<CaseShow> caseShowPageList(Map<String, Object> map);
+
+    /**
+     * 分页查询总条数
+     * @param map
+     * @return
+     */
+    int caseShowPageCount(Map<String, Object> map);
 }

@@ -22,7 +22,6 @@
   <select id="queryCaseShowById" parameterType="java.lang.Integer" resultType="com.broker.domain.CaseShow">SELECT * FROM case_show WHERE uid = #{uid}</select>
   <select id="queryCaseShowList" parameterType="java.util.Map" resultType="com.broker.domain.CaseShow">SELECT * FROM case_show
     <where>
-      <if test="!=null">AND uid=#{}</if>
       <if test="caseTitle!=null">AND case_title=#{caseTitle}</if>
       <if test="caseImg!=null">AND case_img=#{caseImg}</if>
       <if test="caseDesc!=null">AND case_desc=#{caseDesc}</if>
@@ -32,5 +31,24 @@
       <if test="updateUser!=null">AND update_user=#{updateUser}</if>
       <if test="caseStyle!=null">AND case_style=#{caseStyle}</if>
     </where>
+  </select>
+  
+  <sql id="caseShowPageList">
+    FROM case_show cs
+    <where>
+      <if test="caseTitle !=null and caseTitle !=''"> AND case_title LIKE CONCAT('%',#{caseTitle},'%')</if>
+      <if test="caseStyle !=null and caseStyle !=''"> AND case_style = #{caseStyle}</if>
+    </where>
+  </sql>
+
+  <select id="caseShowPageList" parameterType="java.util.Map" resultType="com.broker.domain.CaseShow">
+    SELECT cs.*
+    <include refid="caseShowPageList"></include>
+    LIMIT ${offset}, ${rows}
+  </select>
+
+  <select id="caseShowPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    <include refid="caseShowPageList"></include>
   </select>
 </mapper>

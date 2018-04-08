@@ -1,7 +1,7 @@
 package com.broker.domain;
 /** 
 * @author: Administrator 
-* @description:* @date 2018-03-30 14:45:13
+* @description:* @date 2018-04-08 14:47:03
 */ 
 public class CaseShow{ 
 /** 
@@ -36,6 +36,10 @@ private Date updateDate;
 * 修改人
 */
 private Integer updateUser;
+/** 
+* 风格
+*/
+private Integer caseStyle;
 public void setUid(Integer uid) { 
 this.uid = uid;
 }
@@ -98,6 +102,14 @@ this.updateUser = updateUser;
 
 public Integer getUpdateUser() {
 return this.updateUser;
+}
+
+public void setCaseStyle(Integer caseStyle) { 
+this.caseStyle = caseStyle;
+}
+
+public Integer getCaseStyle() {
+return this.caseStyle;
 }
 
 }

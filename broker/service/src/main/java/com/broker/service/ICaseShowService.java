@@ -1,3 +1,6 @@
+package com.broker.service;
+
+import com.broker.domain.CaseShow;
 
 import java.util.List;
 import java.util.Map;
@@ -5,7 +8,7 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-04-08 14:47:03
+ * @date 2018-03-30 14:45:13
 */
 public interface ICaseShowService {
 
@@ -46,4 +49,17 @@ public interface ICaseShowService {
      */
     public List<CaseShow> queryCaseShowList(Map<String, Object> map) throws Exception;
 
+    /**
+     * 分页列表
+     * @param map
+     * @return
+     */
+    List<CaseShow> caseShowPageList(Map<String, Object> map);
+
+    /**
+     * 分页列表条数
+     * @param map
+     * @return
+     */
+    int caseShowPageCount(Map<String, Object> map);
 }

@@ -1,4 +1,11 @@
+package com.broker.controller;
 
+import com.broker.domain.CaseShow;
+import com.broker.service.ICaseShowService;
+import com.broker.util.CustomException;
+import com.broker.util.PageResult;
+import com.broker.util.Result;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +22,11 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-04-08 14:47:03
+ * @date 2018-03-30 14:45:13
 */
 @Controller
 @RequestMapping(value = "/caseShow")
-public class CaseShowController {
+public class CaseShowController extends BaseController{
 	
 	private final Logger logger = Logger.getLogger(CaseShowController.class);
 
@@ -31,7 +38,7 @@ public class CaseShowController {
      * @param caseShow
      * @return 
      * @author Administrator
-     * @date 2018-04-08 14:47:03
+     * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "insertCaseShow", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +61,7 @@ public class CaseShowController {
      * @param caseShow
      * @return 
      * @author Administrator
-     * @date 2018-04-08 14:47:03
+     * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "updateCaseShowById", method = RequestMethod.POST)
     @ResponseBody
@@ -74,7 +81,7 @@ public class CaseShowController {
      * @param id
      * @return
      * @author Administrator
-     * @date 2018-04-08 14:47:03
+     * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "deleteCaseShow", method = RequestMethod.POST)
     @ResponseBody
@@ -94,7 +101,7 @@ public class CaseShowController {
      * @param id
      * @return 
      * @author Administrator
-     * @date 2018-04-08 14:47:03
+     * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "queryCaseShowById", method = RequestMethod.GET)
     @ResponseBody
@@ -120,7 +127,7 @@ public class CaseShowController {
      * @param
      * @return 
      * @author Administrator
-     * @date 2018-04-08 14:47:03
+     * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "queryCaseShowList", method = RequestMethod.GET)
     @ResponseBody
@@ -135,5 +142,38 @@ public class CaseShowController {
             logger.error("CaseShowController.queryCaseShowList error:", e);
         }
         return result;
+    }
+
+    /**
+     * 查询分页列表
+     * @param
+     * @return
+     * @author Administrator
+     * @date 2018-03-30 14:45:13
+     */
+    @RequestMapping(value = "caseShowPageList", method = RequestMethod.GET)
+    @ResponseBody
+    public Result caseShowPageList(ServletRequest request){
+        Result result = new Result();
+        try {
+            Map<String, Object> map = this.getWebPageParameters();
+            List<CaseShow> caseShowList = caseShowService.caseShowPageList(map);
+            int total = caseShowService.caseShowPageCount(map);
+            result.setData(PageResult.getPageResult(total, map.get("page"), map.get("rows"), caseShowList));
+        }catch (Exception e){
+            result = Result.getSystemErrorMsg(e);
+            logger.error(ExceptionUtils.getStackTrace(e));
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "caseListPage", method = RequestMethod.GET)
+    public String caseListPage(){
+        return "case/case_list";
+    }
+
+    @RequestMapping(value = "caseEditPage", method = RequestMethod.GET)
+    public String caseEditPage(){
+        return "case/case_edit";
     }
 }

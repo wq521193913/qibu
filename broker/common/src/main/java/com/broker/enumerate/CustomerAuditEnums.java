@@ -6,7 +6,7 @@ package com.broker.enumerate;
  * @date: Create in 2018/3/29 0029 下午 8:53
  * @modified:
  */
-public enum CustomerAuditEnum {
+public enum CustomerAuditEnums {
     STATUS_WAIT("待审核", 0),
     STATUS_UNDER_WAY("进行中",1),
     STATUS_COMPLETE("装修完成",2),
@@ -16,13 +16,13 @@ public enum CustomerAuditEnum {
     private int index;
 
 
-    CustomerAuditEnum(String name, int index) {
+    CustomerAuditEnums(String name, int index) {
         this.name = name;
         this.index = index;
     }
 
     public static String getName(int index){
-        for (CustomerAuditEnum audit : CustomerAuditEnum.values()){
+        for (CustomerAuditEnums audit : CustomerAuditEnums.values()){
             if(audit.getIndex() == index){
                 return audit.getName();
             }
@@ -30,8 +30,8 @@ public enum CustomerAuditEnum {
         return null;
     }
 
-    public static CustomerAuditEnum valueOf(int index){
-        for (CustomerAuditEnum audit : CustomerAuditEnum.values()){
+    public static CustomerAuditEnums valueOf(int index){
+        for (CustomerAuditEnums audit : CustomerAuditEnums.values()){
             if(audit.getIndex() == index){
                 return audit;
             }

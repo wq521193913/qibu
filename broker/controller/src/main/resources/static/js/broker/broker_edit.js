@@ -2,7 +2,6 @@ var addBrokerPage = 0;
 $(function () {
 
     addBrokerPage = sessionStorage.getItem("addBrokerPage");
-    console.log(addBrokerPage);
     if(addBrokerPage == 1){
         $("#EditForm").reset;
         sessionStorage.removeItem("addBrokerPage");

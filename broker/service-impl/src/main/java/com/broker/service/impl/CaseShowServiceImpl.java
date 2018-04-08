@@ -1,4 +1,9 @@
+package com.broker.service.impl;
 
+import com.broker.dao.CaseShowDao;
+import com.broker.domain.CaseShow;
+import com.broker.service.ICaseShowService;
+import com.broker.util.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +13,10 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-04-08 14:47:03
+ * @date 2018-03-30 14:45:13
 */
 @Service
-public class CaseShowServiceImpl implements ICaseShowService{
+public class CaseShowServiceImpl implements ICaseShowService {
 
     @Autowired
     private CaseShowDao caseShowDao;
@@ -73,5 +78,15 @@ public class CaseShowServiceImpl implements ICaseShowService{
      */
     public List<CaseShow> queryCaseShowPageList(Map<String, Object> map) throws Exception{
         return caseShowDao.queryCaseShowPageList(map);
+    }
+
+    @Override
+    public List<CaseShow> caseShowPageList(Map<String, Object> map) {
+        return caseShowDao.caseShowPageList(map);
+    }
+
+    @Override
+    public int caseShowPageCount(Map<String, Object> map) {
+        return caseShowDao.caseShowPageCount(map);
     }
 }

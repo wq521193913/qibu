@@ -35,12 +35,12 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseOne">
+                               href="#collapse1">
                                 经纪人管理
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapse1" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="javascript:void (0);" onclick="loadPage('brokerUser/brokerListPage')">经纪人列表</a></li>
@@ -53,12 +53,12 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseTwo">
+                               href="#collapse2">
                                 装修客户管理
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
+                    <div id="collapse2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked">
                                 <li><a href="javascript:void (0);" onclick="loadPage('customer/customerListPage')">客户列表</a></li>
@@ -67,6 +67,26 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapse3">
+                                装修案例管理
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="javascript:void (0);" onclick="loadPage('case/caseListPage')">案例列表</a></li>
+                                <li><a href="javascript:void (0);" onclick="addCase()">新增案例</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -101,9 +121,9 @@
     </div>
 
 
-    <script src="js/plugin/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/plugin/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/plugin/jquery/ajaxfileupload.js"></script>
-    <script src="js/plugin/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-editable.min.js"></script>
@@ -111,8 +131,8 @@
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-multiselect.js"></script>
-    <script src="js/plugin/layer/layer.js"></script>
-    <script src="js/main/main.js"></script>
-    <script src="js/main/utils.js"></script>
+    <script type="text/javascript" src="js/plugin/layer/layer.js"></script>
+    <script type="text/javascript" src="js/main/main.js"></script>
+    <script type="text/javascript" src="js/main/utils.js"></script>
 </body>
 </html>
