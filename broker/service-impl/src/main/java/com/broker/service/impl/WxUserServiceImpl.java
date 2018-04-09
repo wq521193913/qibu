@@ -42,7 +42,7 @@ public class WxUserServiceImpl implements IWxUserService {
             throw new CustomException("微信登录Code不能为空");
         }
 
-        String returnData = HttpUtils.getInstance().requestGet(String.format(PropertiesUtil.getProperties("wx_getOpenIdUrl"),code));
+        String returnData = HttpUtils.getInstance().requestGet(String.format(PropertiesUtils.getProperties("wx_getOpenIdUrl"),code));
         if(null == returnData){
             throw new CustomException("无法得到用户唯一标识");
         }

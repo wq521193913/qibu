@@ -154,7 +154,7 @@ public class ExcelUtils {
      */
     private List<String> userUploadField(){
         List<String> fieldList= new ArrayList<String>();
-        String fieldSource = PropertiesUtil.getSourceProperties("userUploadField");
+        String fieldSource = PropertiesUtils.getSourceProperties("userUploadField");
         String[] fieldArray = fieldSource.split(",");
         for (String field : fieldArray){
             fieldList.add(field);

@@ -35,6 +35,7 @@ jQuery.extend({
         var formId = 'jUploadForm' + id;
         var fileId = 'jUploadFile' + id;
         var form = $('<form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');
+
         // 修改前
         // var oldElement = $('#' + fileElementId);
         // var newElement = $(oldElement).clone();
@@ -42,13 +43,22 @@ jQuery.extend({
         // $(oldElement).before(newElement);
         // $(oldElement).appendTo(form);
         // 修改后
-        for(var i in fileElementId){
-            var oldElement = $('#' + fileElementId[i]);
+        if(typeof fileElementId == 'string'){
+            var oldElement = $('#' + fileElementId);
             var newElement = $(oldElement).clone();
             $(oldElement).attr('id', fileId);
             $(oldElement).before(newElement);
             $(oldElement).appendTo(form);
+        }else {
+            for(var i in fileElementId){
+                var oldElement = $('#' + fileElementId[i]);
+                var newElement = $(oldElement).clone();
+                $(oldElement).attr('id', fileId);
+                $(oldElement).before(newElement);
+                $(oldElement).appendTo(form);
+            }
         }
+
         //set attributes
         $(form).css('position', 'absolute');
         $(form).css('top', '-1200px');

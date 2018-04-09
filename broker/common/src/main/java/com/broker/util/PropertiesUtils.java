@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
  * @author:wanqing
  * @date:2017/1/2 14:20
  */
-public class PropertiesUtil {
+public class PropertiesUtils {
 
     /**
      * 获取配置属性
