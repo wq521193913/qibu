@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="case-edit-view">
-        <!--<form class="form-horizontal" role="form" id="EditForm">-->
+        <form class="form-horizontal" role="form" id="EditForm">
             <div class="form-group">
                 <label class="col-sm-2 control-label">标题:</label>
                 <div class="col-sm-10">
@@ -29,32 +29,28 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">图片:</label>
                 <div class="col-sm-10">
-                    <div class="case-imgs">
-
+                    <div class="case-imgs" id="caseImgs">
+                        
                     </div>
-                    <!--<form method="post" enctype="multipart/form-data" action="/uploadFile">-->
-                        <a href="javascript:void(0);" class="btn btn-info btn-lg" onclick="selectCaseImg()">
-                            <span class="glyphicon glyphicon-picture" style="font-size: 50px;"></span>
-                            <!--<span class="glyphicon glyphicon-plus" style="left: -23px;color: #2aabd2;border: 1px solid #2aabd2; border-radius: 45%"></span>-->
-                        </a>
-                        <input type="file" name="file" id="file" accept="image/*">
-                        <button type="button" onclick="uploadCaseImg()">上传</button>
-                    <!--</form>-->
-                    <form action="http://localhost:8762/uploadFile" method="POST" enctype="multipart/form-data">
-                        <p>单文件上传：</p><br/>
-                        <input type="file" name="file1"/>
-                        <input type="submit" value = "上传"/>
-                    </form>
-
-
+                    <a href="javascript:void(0);" class="btn btn-info btn-lg" onclick="selectCaseImg()">
+                        <span class="glyphicon glyphicon-picture" style="font-size: 50px;"></span>
+                        <!--<span class="glyphicon glyphicon-plus" style="left: -23px;color: #2aabd2;border: 1px solid #2aabd2; border-radius: 45%"></span>-->
+                    </a>
+                    <input type="file" name="file" style="display: none" id="file" accept="image/*" onchange="uploadCaseImg()">
+                    <!--<button type="button" onclick="uploadCaseImg()">上传</button>-->
                 </div>
             </div>
 
 
             <button type="button" onclick="updateSubmit()">提交</button>
             <button type="button" onclick="updateCancel()">取消</button>
-        <!--</form>-->
+        </form>
     </div>
+    
+    <div style="display: none" id="caseImgsTemp">
+        <img src="{0}" style="width: 100px;height: 100px">
+    </div>
+    
     <script type="text/javascript" src="js/case/case_edit.js"></script>
 </body>
 </html>

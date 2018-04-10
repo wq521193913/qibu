@@ -10,17 +10,21 @@ function selectCaseImg() {
 }
 
 function uploadCaseImg() {
-    console.log($("#caseImg").val());
-
     $.ajaxFileUpload({
         fileElementId: 'file',
         url:'/uploadFile',
         type:'POST',
-        dataType:'JSON',
+        dataType:'json',
         secureuri:false,
         async:false,
         success: function (result) {
             console.log(result);
+            if(result.success){
+                let path = result.data.path;
+                var el = $("#caseImgsTemp").templateModel(path);
+                console.log(el)
+                $("#caseImgs").append(el)
+            }
         },
         error: function (xhr, status, e) {
             console.log(e);

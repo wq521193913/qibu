@@ -3,6 +3,7 @@ package com.broker.controller;
 import com.broker.domain.LoginInfo;
 import com.broker.service.ISysUserService;
 import com.broker.util.CustomException;
+import com.broker.util.DateTimeUtils;
 import com.broker.util.PropertiesUtils;
 import com.broker.util.Result;
 import net.sf.json.JSONObject;
@@ -22,6 +23,11 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @author: Administrator
@@ -35,8 +41,6 @@ public class MainController extends BaseController {
     final Logger logger = Logger.getLogger(MainController.class);
     @Autowired
     ISysUserService userService;
-    @Autowired
-    CommonsMultipartResolver multipartResolver;
 
     @RequestMapping("/")
     public String index(){
@@ -73,15 +77,27 @@ public class MainController extends BaseController {
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     @ResponseBody
-    public Result uploadFile(MultipartHttpServletRequest multipartHttpServletRequest, MultipartFile multipartFile){
+    public Result uploadFile(MultipartHttpServletRequest multipartHttpServletRequest){
         Result result = new Result();
         try {
-            String path = PropertiesUtils.getProperties("uploadPath") + "/" + System.currentTimeMillis();
-//            File file = new File(path + System.currentTimeMillis());
-//            MultipartHttpServletRequest multipartRequest = multipartResolver.resolveMultipart(this.getServletRequest());
-            String uploadFilePath = multipartHttpServletRequest.getFile("file1").getOriginalFilename();
-            System.out.println(multipartFile.getName());
-            System.out.println(1);
+            String rootPath = PropertiesUtils.getProperties("uploadPath") + "/";
+            String fileDir = DateTimeUtils.getInstance().getFormatDate("yyyyMMdd", new Date());
+            if(!new File(rootPath + fileDir).exists()){
+                new File(rootPath + fileDir).mkdirs();
+            }
+            String uploadFilePath = multipartHttpServletRequest.getFile("file").getOriginalFilename();
+
+            String fileName = System.currentTimeMillis() + uploadFilePath.substring(uploadFilePath.indexOf("."));
+            File file = new File(rootPath + fileDir + File.separator + fileName);
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(multipartHttpServletRequest.getFile("file").getBytes());
+
+            result.setData(new HashMap<String, Object>(){{
+                put("path", file.getPath());
+            }});
 
         }catch (Exception e){
             logger.error(ExceptionUtils.getStackTrace(e));
