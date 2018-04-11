@@ -1,6 +1,7 @@
 $(function () {
     var addCasePage = sessionStorage.getItem("addCasePage");
     if(addCasePage && addCasePage == 1){
+        $("#EditForm").reset();
 
     }
 });
@@ -9,6 +10,16 @@ function selectCaseImg() {
     $("#file").click();
 }
 
+//提交
+function caseSubmit() {
+
+}
+
+function caseCancel() {
+    loadPage("caseShow/caseListPage");
+}
+
+//图片上传
 function uploadCaseImg() {
     $.ajaxFileUpload({
         fileElementId: 'file',

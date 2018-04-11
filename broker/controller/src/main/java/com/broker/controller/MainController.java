@@ -80,7 +80,7 @@ public class MainController extends BaseController {
             String filename = multipartHttpServletRequest.getFile("file").getOriginalFilename();
             String path = FastDfsUtils.getInstance().uploadFile(multipartHttpServletRequest.getFile("file").getBytes(), filename);
             result.setData(new HashMap<String, Object>(){{
-                put("path", path);
+                put("path", PropertiesUtils.getProperties("fileRootPath") + path);
             }});
 
         }catch (Exception e){

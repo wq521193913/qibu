@@ -29,21 +29,18 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">图片:</label>
                 <div class="col-sm-10">
-                    <div class="case-imgs" id="caseImgs">
+                    <div class="case-imgs" id="caseImgs" style="display: inline-block">
                         
                     </div>
                     <a href="javascript:void(0);" class="btn btn-info btn-lg" onclick="selectCaseImg()">
                         <span class="glyphicon glyphicon-picture" style="font-size: 50px;"></span>
-                        <!--<span class="glyphicon glyphicon-plus" style="left: -23px;color: #2aabd2;border: 1px solid #2aabd2; border-radius: 45%"></span>-->
                     </a>
                     <input type="file" name="file" style="display: none" id="file" accept="image/*" onchange="uploadCaseImg()">
-                    <!--<button type="button" onclick="uploadCaseImg()">上传</button>-->
                 </div>
             </div>
 
-
-            <button type="button" onclick="updateSubmit()">提交</button>
-            <button type="button" onclick="updateCancel()">取消</button>
+            <button type="button" onclick="caseSubmit()">提交</button>
+            <button type="button" onclick="caseCancel()">取消</button>
         </form>
     </div>
     
