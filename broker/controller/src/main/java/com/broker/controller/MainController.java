@@ -2,10 +2,7 @@ package com.broker.controller;
 
 import com.broker.domain.LoginInfo;
 import com.broker.service.ISysUserService;
-import com.broker.util.CustomException;
-import com.broker.util.DateTimeUtils;
-import com.broker.util.PropertiesUtils;
-import com.broker.util.Result;
+import com.broker.util.*;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
@@ -80,23 +77,10 @@ public class MainController extends BaseController {
     public Result uploadFile(MultipartHttpServletRequest multipartHttpServletRequest){
         Result result = new Result();
         try {
-            String rootPath = PropertiesUtils.getProperties("uploadPath") + "/";
-            String fileDir = DateTimeUtils.getInstance().getFormatDate("yyyyMMdd", new Date());
-            if(!new File(rootPath + fileDir).exists()){
-                new File(rootPath + fileDir).mkdirs();
-            }
-            String uploadFilePath = multipartHttpServletRequest.getFile("file").getOriginalFilename();
-
-            String fileName = System.currentTimeMillis() + uploadFilePath.substring(uploadFilePath.indexOf("."));
-            File file = new File(rootPath + fileDir + File.separator + fileName);
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(multipartHttpServletRequest.getFile("file").getBytes());
-
+            String filename = multipartHttpServletRequest.getFile("file").getOriginalFilename();
+            String path = FastDfsUtils.getInstance().uploadFile(multipartHttpServletRequest.getFile("file").getBytes(), filename);
             result.setData(new HashMap<String, Object>(){{
-                put("path", file.getPath());
+                put("path", path);
             }});
 
         }catch (Exception e){
