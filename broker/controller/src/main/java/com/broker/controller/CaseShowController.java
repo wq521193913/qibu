@@ -1,6 +1,7 @@
 package com.broker.controller;
 
 import com.broker.domain.CaseShow;
+import com.broker.domain.extend.CaseShowExt;
 import com.broker.service.ICaseShowService;
 import com.broker.util.CustomException;
 import com.broker.util.PageResult;
@@ -35,23 +36,23 @@ public class CaseShowController extends BaseController{
 
     /**
      * 新增
-     * @param caseShow
+     * @param caseShowExt
      * @return 
      * @author Administrator
      * @date 2018-03-30 14:45:13
     */
     @RequestMapping(value = "insertCaseShow", method = RequestMethod.POST)
     @ResponseBody
-    public Result insertCaseShow(CaseShow caseShow){
+    public Result insertCaseShow(CaseShowExt caseShowExt){
         Result result = new Result();
         try {
-            caseShowService.insertCaseShow(caseShow);
+            caseShowService.insertCaseShow(caseShowExt);
         }catch (CustomException ce){
-            logger.error("params:" + caseShow, ce);
+            logger.error("params:" + caseShowExt, ce);
             return Result.getSystemErrorMsg(ce);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("CaseShowController.insertCaseShow error:", e);
+            logger.error(ExceptionUtils.getStackTrace(e));
         }
         return result;
     }

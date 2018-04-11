@@ -2,11 +2,16 @@ package com.broker.service.impl;
 
 import com.broker.dao.CaseShowDao;
 import com.broker.domain.CaseShow;
+import com.broker.domain.extend.CaseShowExt;
 import com.broker.service.ICaseShowService;
+import com.broker.service.ICaseSketchService;
 import com.broker.util.CustomException;
+import com.broker.util.ParamCheckUtils;
+import com.broker.util.TransformMapEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,14 +25,31 @@ public class CaseShowServiceImpl implements ICaseShowService {
 
     @Autowired
     private CaseShowDao caseShowDao;
+    @Autowired
+    private ICaseSketchService caseSketchService;
 
     /**
      * 新增
-     * @param caseShow
+     * @param caseShowExt
      * @return
      * @throws Exception
      */
-    public void insertCaseShow(CaseShow caseShow) throws Exception{
+    public void insertCaseShow(CaseShowExt caseShowExt) throws Exception{
+        if(null == caseShowExt) return;
+
+        ParamCheckUtils.getInstance().paramIsRequired(caseShowExt, new HashMap<String, String>(){{
+            put("caseTitle", "案例标题");
+            put("caseImg", "案例图片");
+            put("caseStyle", "风格");
+        }});
+
+        CaseShow caseShow = new CaseShow();
+        TransformMapEntity.entityToEntity(caseShowExt, caseShow);
+
+        if(null != caseShowExt.getSketchImgs()){
+
+        }
+
         caseShowDao.insertCaseShow(caseShow);
     }
 

@@ -1,6 +1,7 @@
 package com.broker.service;
 
 import com.broker.domain.CaseShow;
+import com.broker.domain.extend.CaseShowExt;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +15,11 @@ public interface ICaseShowService {
 
     /**
      * 新增
-     * @param caseShow
+     * @param caseShowExt
      * @return
      * @throws Exception
      */
-    public void insertCaseShow(CaseShow caseShow) throws Exception;
+    public void insertCaseShow(CaseShowExt caseShowExt) throws Exception;
 
     /**
      * 根据id修改
