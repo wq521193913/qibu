@@ -21,8 +21,8 @@ import java.util.List;
 public class GeneratedUtils {
 
     private DataTableAccess dataTableAccess;
-    private String fileRoot = System.getProperty("user.dir")+"/broker/code-generator/source_file/";
-    private String templateFilePath = System.getProperty("user.dir")+"/broker/code-generator/";
+    private String fileRoot = System.getProperty("user.dir")+"/code-generator/source_file/";
+    private String templateFilePath = System.getProperty("user.dir")+"/code-generator/";
     private String codeFilePath = "";
     private String className = "";
     private String livingExample = "";
@@ -41,7 +41,7 @@ public class GeneratedUtils {
 //                ",decoration_order,decoration_own,delay_inform,dept,design_contract,earnest,flow_dept,img_path,img_source,measure,menu"+
 //                ",model_detail,owner,project_progress,project_schedule,reformation,repeal_order,role,role_app_module,role_menu"+
 //                ",schedule_detail,schedule_item,schedule_model,sys_type,user,user_register,flow_user";
-        String table = "case_show";
+        String table = "case_sketch";
         generatedUtil.generateCode(table);
         System.out.println("generate code complete...");
     }
