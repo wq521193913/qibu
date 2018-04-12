@@ -41,7 +41,7 @@
   </sql>
 
   <select id="caseShowPageList" parameterType="java.util.Map" resultType="com.broker.domain.CaseShow">
-    SELECT cs.uid, cs.case_title, CONCAT(#{fileRootPath},cs.case_img) as case_img, cs.case_desc, cs.case_style
+    SELECT cs.uid, cs.case_title, CONCAT('${fileRootPath}',cs.case_img) as case_img, cs.case_desc, cs.case_style
     <include refid="caseShowPageList"></include>
     LIMIT ${offset}, ${rows}
   </select>

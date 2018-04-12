@@ -24,8 +24,8 @@ function fillData(data) {
         }
     }
     let caseImg = obj.caseImg;
+    console.log(obj);
     $("#caseImg").attr("src",caseImg);
-
 }
 
 function getSketchImgs(caseId) {
