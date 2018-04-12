@@ -4,6 +4,7 @@ import com.broker.domain.CaseSketch;
 import com.broker.service.ICaseSketchService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -129,15 +130,15 @@ public class CaseSketchController extends BaseController{
     */
     @RequestMapping(value = "queryCaseSketchList", method = RequestMethod.GET)
     @ResponseBody
-    public Result queryCaseSketchList(ServletRequest request){
+    public Result queryCaseSketchList(){
         Result result = new Result();
         try {
-            Map<String, Object> paramMap = WebUtils.getParametersStartingWith(request,"");
+            Map<String, Object> paramMap = this.getWebParameters();
             List<CaseSketch> caseSketchList = caseSketchService.queryCaseSketchList(paramMap);
             result.setData(caseSketchList);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("CaseSketchController.queryCaseSketchList error:", e);
+            logger.error(ExceptionUtils.getStackTrace(e));
         }
         return result;
     }

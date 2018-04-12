@@ -49,4 +49,10 @@ public interface ICaseSketchService {
      */
     public List<CaseSketch> queryCaseSketchList(Map<String, Object> map) throws Exception;
 
+    /**
+     * 新增
+     * @param caseShowId
+     * @param sketchImgList
+     */
+    void insertCaseSketch(Integer caseShowId, List<String> sketchImgList) throws Exception;
 }

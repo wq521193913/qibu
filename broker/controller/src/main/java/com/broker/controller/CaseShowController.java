@@ -47,6 +47,7 @@ public class CaseShowController extends BaseController{
         Result result = new Result();
         try {
             caseShowService.insertCaseShow(caseShowExt);
+            result.setData(caseShowExt);
         }catch (CustomException ce){
             logger.error("params:" + caseShowExt, ce);
             return Result.getSystemErrorMsg(ce);

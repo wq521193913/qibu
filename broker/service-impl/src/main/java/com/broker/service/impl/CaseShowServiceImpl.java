@@ -5,9 +5,8 @@ import com.broker.domain.CaseShow;
 import com.broker.domain.extend.CaseShowExt;
 import com.broker.service.ICaseShowService;
 import com.broker.service.ICaseSketchService;
-import com.broker.util.CustomException;
-import com.broker.util.ParamCheckUtils;
-import com.broker.util.TransformMapEntity;
+import com.broker.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,12 +44,16 @@ public class CaseShowServiceImpl implements ICaseShowService {
 
         CaseShow caseShow = new CaseShow();
         TransformMapEntity.entityToEntity(caseShowExt, caseShow);
+        caseShow.setCaseImg(caseShow.getCaseImg().substring(PropertiesUtils.getProperties("fileRootPath").length()));
+        caseShowDao.insertCaseShow(caseShow);
 
         if(null != caseShowExt.getSketchImgs()){
-
+            List<String> sketchImgList = CustomStringUtils.splitToList(caseShowExt.getSketchImgs(), ";");
+            caseShowExt.setSketchImgList(sketchImgList);
+            caseSketchService.insertCaseSketch(caseShow.getUid(), sketchImgList);
         }
+        caseShowExt.setUid(caseShow.getUid());
 
-        caseShowDao.insertCaseShow(caseShow);
     }
 
     /**

@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<properties>
 		<property name="dialect" value="MySQL"/>
+		<property name="fileRootPath" value="http://116.62.149.166/"></property>
 	</properties>
 	<settings>
 		<setting name="logImpl" value="LOG4J"/>

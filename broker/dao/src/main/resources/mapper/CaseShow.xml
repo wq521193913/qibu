@@ -2,20 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.broker.dao.CaseShowDao">
-  <insert id="insertCaseShow" parameterType="com.broker.domain.CaseShow">INSERT INTO case_show(uid,case_title,case_img,case_desc,create_date,create_user,update_date,update_user,case_style) VALUES (#{uid},#{caseTitle},#{caseImg},#{caseDesc},#{createDate},#{createUser},#{updateDate},#{updateUser},#{caseStyle})
+  <insert id="insertCaseShow" parameterType="com.broker.domain.CaseShow">
+    INSERT INTO case_show(case_title,case_img,case_desc,create_date,create_user,case_style)
+    VALUES (#{caseTitle},#{caseImg},#{caseDesc},NOW(),#{createUser},#{caseStyle})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateCaseShowById" parameterType="com.broker.domain.CaseShow">UPDATE case_show
     <set>
-      <if test="!=null">uid=#{},</if>
       <if test="caseTitle!=null">case_title=#{caseTitle},</if>
       <if test="caseImg!=null">case_img=#{caseImg},</if>
       <if test="caseDesc!=null">case_desc=#{caseDesc},</if>
-      <if test="createDate!=null">create_date=#{createDate},</if>
-      <if test="createUser!=null">create_user=#{createUser},</if>
-      <if test="updateDate!=null">update_date=#{updateDate},</if>
       <if test="updateUser!=null">update_user=#{updateUser},</if>
       <if test="caseStyle!=null">case_style=#{caseStyle},</if>
+      update_date=NOW()
     </set>where uid = #{uid}
   </update>
   <delete id="deleteCaseShow" parameterType="java.lang.Integer">DELETE FROM case_show WHERE uid = #{uid}</delete>
@@ -42,7 +41,7 @@
   </sql>
 
   <select id="caseShowPageList" parameterType="java.util.Map" resultType="com.broker.domain.CaseShow">
-    SELECT cs.*
+    SELECT cs.uid, cs.case_title, CONCAT(#{fileRootPath},cs.case_img) as case_img, cs.case_desc, cs.case_style
     <include refid="caseShowPageList"></include>
     LIMIT ${offset}, ${rows}
   </select>

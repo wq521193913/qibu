@@ -77,7 +77,11 @@ public class MainController extends BaseController {
     public Result uploadFile(MultipartHttpServletRequest multipartHttpServletRequest){
         Result result = new Result();
         try {
-            String filename = multipartHttpServletRequest.getFile("file").getOriginalFilename();
+            MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
+            if(null == multipartFile){
+                return Result.getFailedResult("请选择需要上传的文件");
+            }
+            String filename = multipartFile.getOriginalFilename();
             String path = FastDfsUtils.getInstance().uploadFile(multipartHttpServletRequest.getFile("file").getBytes(), filename);
             result.setData(new HashMap<String, Object>(){{
                 put("path", PropertiesUtils.getProperties("fileRootPath") + path);

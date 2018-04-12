@@ -1,6 +1,7 @@
 package com.broker.dao;
 
 import com.broker.domain.CaseSketch;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -62,4 +63,10 @@ public interface CaseSketchDao {
      * @return Integer
      */
     public Integer queryCaseSketchPageCount(Map<String, Object> map);
+
+    /**
+     * 批量新增
+     * @param caseSketchList
+     */
+    void insertCaseSketchBatch(List<CaseSketch> caseSketchList);
 }

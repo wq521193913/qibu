@@ -1,4 +1,16 @@
 $(function () {
+
+    var data = {name:"name0",name1:"name1",name2:"name2",name3:"name3"};
+    // var data =[
+    //     {name:"name0",name1:"name1",name2:"name2",name3:"name3"},
+    //     {name:"name4",name1:"name5",name2:"name6",name3:"name7"},
+    //     {name:"name8",name1:"name9",name2:"name10",name3:"name11"},
+    //     {name:"name12",name1:"name13",name2:"name14",name3:"name15"},
+    // ]
+
+    var testEl = $("#test").templateModelByName()
+    console.log(testEl);
+    $("#testView").append(testEl);
 });
 
 /**

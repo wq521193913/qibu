@@ -46,40 +46,10 @@ $(function () {
 
 function operatorFormatter(value, rows, index) {
     var data = JSON.stringify(rows);
-    return "<button onclick='auditCustomer("+rows.uid+"," + rows.audit + ", " + rows.auditRemarks + ")'>修改</button>";
+    return "<button onclick='updateCase("+ data + ")'>修改</button>";
 }
 
-function auditCustomer(id, audit,auditRemarks) {
-    if(!id) return false;
-    $("#audit"+audit).attr("checked",true);
-    $("#auditRemarks").val(auditRemarks);
-    layer.open({
-        type: 1
-        ,area: ['390px', '260px']
-        ,shade:  [0.8, '#393D49']
-        ,shadeClose:true
-        // ,maxmin: true
-        ,content: $("#auditView")
-        ,btn: ['确定', '取消']
-        ,btn1: function(){
-            let audit = $("#auditView").find("input:radio[name='audit']:checked").val();
-            let auditRemarks = $("#auditRemarks").val();
-            if(!audit) return false;
-            $.ajaxPost({
-                url:'customer/auditCustomer',
-                data:{'id':id, 'audit': audit, 'auditRemarks': auditRemarks},
-                success: function (res) {
-                    if(res.success){
-                        $('#dataTable').bootstrapTable("refresh");
-                        layer.closeAll();
-                    }else {
-                        layer.alert(res.msg || "操作失败");
-                    }
-                }
-            })
-        }
-        ,btn2: function(){
-            layer.closeAll();
-        }
-    });
+function updateCase(data) {
+    sessionStorage.setItem("caseData", JSON.stringify(data));
+    loadPage("caseShow/caseEditPage")
 }
