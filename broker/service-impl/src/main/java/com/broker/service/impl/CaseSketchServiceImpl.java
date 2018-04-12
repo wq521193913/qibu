@@ -70,7 +70,12 @@ public class CaseSketchServiceImpl implements ICaseSketchService {
      * @return
      */
     public List<CaseSketch> queryCaseSketchList(Map<String, Object> map) throws Exception{
-        return caseSketchDao.queryCaseSketchList(map);
+        List<CaseSketch> caseSketchList = caseSketchDao.queryCaseSketchList(map);
+        String rootPath = PropertiesUtils.getProperties("fileRootPath");
+        for(CaseSketch caseSketch : caseSketchList){
+            caseSketch.setImgUrl(rootPath + caseSketch.getImgUrl());
+        }
+        return caseSketchList;
     }
 
     /**
