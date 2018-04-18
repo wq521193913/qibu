@@ -47,7 +47,12 @@ public class WxUserServiceImpl implements IWxUserService {
             throw new CustomException("无法得到用户唯一标识");
         }
         JSONObject jsonObject = JSONObject.fromObject(returnData);
-
+        if(jsonObject.containsKey("errmsg")){
+            throw new CustomException(jsonObject.get("errmsg").toString());
+        }
+        if(!jsonObject.containsKey("openid")){
+            throw new CustomException("获取用户openId失败");
+        }
         String openId = jsonObject.getString("openid");
         String sessionKey = jsonObject.getString("session_key");
         if(StringUtils.isEmpty(openId)){
