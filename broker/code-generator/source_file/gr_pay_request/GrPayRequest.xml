@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weishier.dao.GrPayRequestDao">
+  <insert id="insertGrPayRequest" parameterType="com.weishier.domain.GrPayRequest">INSERT INTO gr_pay_request(id,request_no,request_param,reqest_openid,shop_id,reqest_advance,response_param,response_code,gr_team_id) VALUES (#{id},#{requestNo},#{requestParam},#{reqestOpenid},#{shopId},#{reqestAdvance},#{responseParam},#{responseCode},#{grTeam})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateGrPayRequestById" parameterType="com.weishier.domain.GrPayRequest">UPDATE gr_pay_request
+    <set>
+      <if test="!=null">id=#{},</if>
+      <if test="requestNo!=null">request_no=#{requestNo},</if>
+      <if test="requestParam!=null">request_param=#{requestParam},</if>
+      <if test="reqestOpenid!=null">reqest_openid=#{reqestOpenid},</if>
+      <if test="shopId!=null">shop_id=#{shopId},</if>
+      <if test="reqestAdvance!=null">reqest_advance=#{reqestAdvance},</if>
+      <if test="responseParam!=null">response_param=#{responseParam},</if>
+      <if test="responseCode!=null">response_code=#{responseCode},</if>
+      <if test="grTeamId!=null">gr_team_id=#{grTeamId},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteGrPayRequest" parameterType="java.lang.Integer">DELETE FROM gr_pay_request WHERE uid = #{uid}</delete>
+  <select id="queryGrPayRequestById" parameterType="java.lang.Integer" resultType="com.weishier.domain.GrPayRequest">SELECT * FROM gr_pay_request WHERE uid = #{uid}</select>
+  <select id="queryGrPayRequestList" parameterType="java.util.Map" resultType="com.weishier.domain.GrPayRequest">SELECT * FROM gr_pay_request
+    <where>
+      <if test="!=null">AND id=#{}</if>
+      <if test="requestNo!=null">AND request_no=#{requestNo}</if>
+      <if test="requestParam!=null">AND request_param=#{requestParam}</if>
+      <if test="reqestOpenid!=null">AND reqest_openid=#{reqestOpenid}</if>
+      <if test="shopId!=null">AND shop_id=#{shopId}</if>
+      <if test="reqestAdvance!=null">AND reqest_advance=#{reqestAdvance}</if>
+      <if test="responseParam!=null">AND response_param=#{responseParam}</if>
+      <if test="responseCode!=null">AND response_code=#{responseCode}</if>
+      <if test="grTeamId!=null">AND gr_team_id=#{grTeamId}</if>
+    </where>
+  </select>
+</mapper>
