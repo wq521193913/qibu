@@ -5,7 +5,7 @@ import com.broker.domain.BrokerAccount;
 import com.broker.domain.BrokerEarning;
 import com.broker.domain.Customer;
 import com.broker.domain.InviteFriend;
-import com.broker.enumerate.CustomerAuditEnum;
+import com.broker.enumerate.CustomerAuditEnums;
 import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerEarningService;
 import com.broker.service.ICustomerService;
@@ -97,21 +97,21 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRES_NEW)
     @Override
-    public boolean auditCustomer(Integer id, CustomerAuditEnum customerAuditEnum, String auditRemarks) throws Exception{
+    public boolean auditCustomer(Integer id, CustomerAuditEnums customerAuditEnums, String auditRemarks) throws Exception{
         if(null == id) {
             throw new CustomException("参数检验有误:id is null");
         }
 
         Customer customer = customerDao.queryCustomerById(id);
         if(null == customer) throw new CustomException("无法查询到此数据");
-        if(null != customer.getAudit() && customer.getAudit() >= customerAuditEnum.getIndex()){
+        if(null != customer.getAudit() && customer.getAudit() >= customerAuditEnums.getIndex()){
             throw new CustomException("状态不能后退");
         }
         BrokerEarning brokerEarning = null;
         Map<String, Object> map = null;
         int brokerUserId = customer.getBrokerUser();
         int customerId = customer.getUid();
-        switch (customerAuditEnum){
+        switch (customerAuditEnums){
             case STATUS_WAIT:
                 //待审核
                 break;
@@ -174,7 +174,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 //TODO 发送短信
                 break;
         }
-        customer.setAudit(customerAuditEnum.getIndex());
+        customer.setAudit(customerAuditEnums.getIndex());
         customerDao.updateCustomerById(customer);
 
         return true;

@@ -2,7 +2,7 @@ package com.broker.controller;
 
 import com.broker.domain.Customer;
 import com.broker.domain.WxLoginInfo;
-import com.broker.enumerate.CustomerAuditEnum;
+import com.broker.enumerate.CustomerAuditEnums;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
@@ -75,7 +75,7 @@ public class CustomerController extends BaseController{
                                 @RequestParam(value = "auditRemarks", required = false)String auditRemarks){
         Result result = new Result();
         try {
-            boolean auditOk = customerService.auditCustomer(id,  CustomerAuditEnum.valueOf(audit), auditRemarks);
+            boolean auditOk = customerService.auditCustomer(id,  CustomerAuditEnums.valueOf(audit), auditRemarks);
         }catch (CustomException ce){
             logger.error("params:" + JSONObject.fromObject(this.getWebParameters()));
             logger.error(ce.getMessage(),ce);

@@ -223,10 +223,10 @@ public class TransformMapEntity {
 				if(null != dateFormatMap && dateFormatMap.containsKey(fieldName)){
 					String s = "";
 					if(field.getGenericType().toString().indexOf("String") > 0){
-						Date date = DateTimeUtil.convertDate(field.get(entity).toString());
-						s = DateTimeUtil.getFormatDate(dateFormatMap.get(fieldName), date);
+						Date date = DateTimeUtils.getInstance().convertDate(field.get(entity).toString());
+						s = DateTimeUtils.getInstance().getFormatDate(dateFormatMap.get(fieldName), date);
 					}else {
-						s = DateTimeUtil.getFormatDate(dateFormatMap.get(fieldName), (Date)field.get(entity));
+						s = DateTimeUtils.getInstance().getFormatDate(dateFormatMap.get(fieldName), (Date)field.get(entity));
 					}
 					resultMap.put(fieldName, null != field.get(entity) ? s : "");
 				}else {

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weishier.dao.GrGoodsDetailDao">
+  <insert id="insertGrGoodsDetail" parameterType="com.weishier.domain.GrGoodsDetail">INSERT INTO gr_goods_detail(id,goods_id,goods_size,goods_price,cost_price,goods_inventory,groupon_price) VALUES (#{id},#{goodsId},#{goodsSize},#{goodsPrice},#{costPrice},#{goodsInventory},#{grouponPrice})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateGrGoodsDetailById" parameterType="com.weishier.domain.GrGoodsDetail">UPDATE gr_goods_detail
+    <set>
+      <if test="!=null">id=#{},</if>
+      <if test="goodsId!=null">goods_id=#{goodsId},</if>
+      <if test="goodsSize!=null">goods_size=#{goodsSize},</if>
+      <if test="goodsPrice!=null">goods_price=#{goodsPrice},</if>
+      <if test="costPrice!=null">cost_price=#{costPrice},</if>
+      <if test="goodsInventory!=null">goods_inventory=#{goodsInventory},</if>
+      <if test="grouponPrice!=null">groupon_price=#{grouponPrice},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteGrGoodsDetail" parameterType="java.lang.Integer">DELETE FROM gr_goods_detail WHERE uid = #{uid}</delete>
+  <select id="queryGrGoodsDetailById" parameterType="java.lang.Integer" resultType="com.weishier.domain.GrGoodsDetail">SELECT * FROM gr_goods_detail WHERE uid = #{uid}</select>
+  <select id="queryGrGoodsDetailList" parameterType="java.util.Map" resultType="com.weishier.domain.GrGoodsDetail">SELECT * FROM gr_goods_detail
+    <where>
+      <if test="!=null">AND id=#{}</if>
+      <if test="goodsId!=null">AND goods_id=#{goodsId}</if>
+      <if test="goodsSize!=null">AND goods_size=#{goodsSize}</if>
+      <if test="goodsPrice!=null">AND goods_price=#{goodsPrice}</if>
+      <if test="costPrice!=null">AND cost_price=#{costPrice}</if>
+      <if test="goodsInventory!=null">AND goods_inventory=#{goodsInventory}</if>
+      <if test="grouponPrice!=null">AND groupon_price=#{grouponPrice}</if>
+    </where>
+  </select>
+</mapper>

@@ -31,11 +31,11 @@ public class FtpUtil {
 
 
     public FtpUtil(){
-        this.host = PropertiesUtil.getProperties("ftpHost");
-        this.port = PropertiesUtil.getProperties("ftpPort");
-        this.userName = PropertiesUtil.getProperties("ftpUser");
-        this.passWord = PropertiesUtil.getProperties("ftpPassWord");
-        this.imgServerPath = PropertiesUtil.getProperties("imgServerPath");
+        this.host = PropertiesUtils.getProperties("ftpHost");
+        this.port = PropertiesUtils.getProperties("ftpPort");
+        this.userName = PropertiesUtils.getProperties("ftpUser");
+        this.passWord = PropertiesUtils.getProperties("ftpPassWord");
+        this.imgServerPath = PropertiesUtils.getProperties("imgServerPath");
     }
 
     private boolean connect(String host, String port, String userName, String passWord){
@@ -257,12 +257,12 @@ public class FtpUtil {
     }
 
     public static String getImgServerPath(){
-        String imgServerPath = PropertiesUtil.getProperties("imgServerPath");
+        String imgServerPath = PropertiesUtils.getProperties("imgServerPath");
         return imgServerPath;
     }
 
     public static String getImgLocalPath(){
-        String imgLocalPath = PropertiesUtil.getProperties("imgLocalPath");
+        String imgLocalPath = PropertiesUtils.getProperties("imgLocalPath");
         return imgLocalPath;
     }
 }

@@ -21,14 +21,14 @@ import java.util.List;
 public class GeneratedUtils {
 
     private DataTableAccess dataTableAccess;
-    private String fileRoot = System.getProperty("user.dir")+"/broker/code-generator/source_file/";
-    private String templateFilePath = System.getProperty("user.dir")+"/broker/code-generator/";
+    private String fileRoot = System.getProperty("user.dir")+"\\broker\\code-generator/source_file/";
+    private String templateFilePath = System.getProperty("user.dir")+"\\broker\\code-generator/";
     private String codeFilePath = "";
     private String className = "";
     private String livingExample = "";
     private String columnsString = "";
     private String valuesString = "";
-    private String packageName = "com.broker";
+    private String packageName = "com.weishier";
     private List<TableColumnInfo> tableColumnInfos;
 
     public GeneratedUtils(){
@@ -41,7 +41,7 @@ public class GeneratedUtils {
 //                ",decoration_order,decoration_own,delay_inform,dept,design_contract,earnest,flow_dept,img_path,img_source,measure,menu"+
 //                ",model_detail,owner,project_progress,project_schedule,reformation,repeal_order,role,role_app_module,role_menu"+
 //                ",schedule_detail,schedule_item,schedule_model,sys_type,user,user_register,flow_user";
-        String table = "broker_account,broker_activity,broker_bribe,case_show";
+        String table = "gr_goods,gr_goods_detail,gr_team,gr_pay_request,gr_members";
         generatedUtil.generateCode(table);
         System.out.println("generate code complete...");
     }

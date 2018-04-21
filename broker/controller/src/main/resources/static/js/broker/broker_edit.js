@@ -2,19 +2,18 @@ var addBrokerPage = 0;
 $(function () {
 
     addBrokerPage = sessionStorage.getItem("addBrokerPage");
-    console.log(addBrokerPage);
     if(addBrokerPage == 1){
         $("#EditForm").reset;
         sessionStorage.removeItem("addBrokerPage");
     }else {
         var brokerData = sessionStorage.getItem("brokerData");
-        fullData(brokerData);
+        fillData(brokerData);
     }
 
 });
 
 //填充数据
-function fullData(data) {
+function fillData(data) {
     let obj = JSON.parse(data);
     var els = $("#EditForm").find("input");
     for(let i = 0; i < els.length; i++){

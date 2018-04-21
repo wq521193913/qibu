@@ -40,3 +40,8 @@ function addBrokerUser() {
     sessionStorage.setItem("addBrokerPage",1);
     loadPage('brokerUser/brokerEditPage')
 }
+
+function addCase() {
+    sessionStorage.setItem("addCasePage",1);
+    loadPage('caseShow/caseEditPage')
+}

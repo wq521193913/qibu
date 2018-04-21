@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例修改</title>
+</head>
+<body>
+    <div class="case-edit-view">
+        <form class="form-horizontal" role="form" id="editForm">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标题:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="caseTitle" id="caseTitle">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caseStyle" class="col-sm-2 control-label">风格:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="caseStyle" id="caseStyle">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="caseDesc" class="col-sm-2 control-label">描述:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="caseDesc" id="caseDesc">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">展示图:</label>
+                <div class="col-sm-10">
+                    <img id="caseImg" src="img/default.jpg" style="height: 100px;width: 100px;">
+                    <button type="button" onclick="selectCaseImg()">选择图片</button>
+                    <input type="file" name="file" style="display: none" id="caseImgFile" accept="image/*" onchange="uploadCaseImg()">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">效果图:</label>
+                <div class="col-sm-10">
+                    <div class="sketch-imgs" id="sketchImgs" style="display: inline-block">
+                        
+                    </div>
+                    <a href="javascript:void(0);" class="btn btn-info btn-lg" onclick="selectSketchImg()">
+                        <span class="glyphicon glyphicon-picture" style="font-size: 50px;"></span>
+                    </a>
+                    <input type="file" name="file" style="display: none" id="sketchImgFile" accept="image/*" onchange="uploadSketchImg()">
+                </div>
+            </div>
+
+            <button type="button" onclick="caseSubmit()">提交</button>
+            <button type="button" onclick="caseCancel()">取消</button>
+        </form>
+    </div>
+    
+    <div style="display: none" id="sketchImgsTemp">
+        <img src="{0}" style="width: 100px;height: 100px">
+    </div>
+    
+    <script type="text/javascript" src="js/case/case_edit.js"></script>
+</body>
+</html>

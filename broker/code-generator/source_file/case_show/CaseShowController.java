@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 
  * @author Administrator
- * @date 2018-03-30 14:45:13
+ * @date 2018-04-08 14:47:03
 */
 @Controller
 @RequestMapping(value = "/caseShow")
@@ -31,7 +31,7 @@ public class CaseShowController {
      * @param caseShow
      * @return 
      * @author Administrator
-     * @date 2018-03-30 14:45:13
+     * @date 2018-04-08 14:47:03
     */
     @RequestMapping(value = "insertCaseShow", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +54,7 @@ public class CaseShowController {
      * @param caseShow
      * @return 
      * @author Administrator
-     * @date 2018-03-30 14:45:13
+     * @date 2018-04-08 14:47:03
     */
     @RequestMapping(value = "updateCaseShowById", method = RequestMethod.POST)
     @ResponseBody
@@ -74,7 +74,7 @@ public class CaseShowController {
      * @param id
      * @return
      * @author Administrator
-     * @date 2018-03-30 14:45:13
+     * @date 2018-04-08 14:47:03
     */
     @RequestMapping(value = "deleteCaseShow", method = RequestMethod.POST)
     @ResponseBody
@@ -94,7 +94,7 @@ public class CaseShowController {
      * @param id
      * @return 
      * @author Administrator
-     * @date 2018-03-30 14:45:13
+     * @date 2018-04-08 14:47:03
     */
     @RequestMapping(value = "queryCaseShowById", method = RequestMethod.GET)
     @ResponseBody
@@ -120,7 +120,7 @@ public class CaseShowController {
      * @param
      * @return 
      * @author Administrator
-     * @date 2018-03-30 14:45:13
+     * @date 2018-04-08 14:47:03
     */
     @RequestMapping(value = "queryCaseShowList", method = RequestMethod.GET)
     @ResponseBody

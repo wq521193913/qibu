@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weishier.dao.GrMembersDao">
+  <insert id="insertGrMembers" parameterType="com.weishier.domain.GrMembers">INSERT INTO gr_members(id,team_id,member_openid,join_date,status,advance_no,shop_id,remarks) VALUES (#{id},#{teamId},#{memberOpenid},#{joinDate},#{status},#{advanceNo},#{shopId},#{remarks})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateGrMembersById" parameterType="com.weishier.domain.GrMembers">UPDATE gr_members
+    <set>
+      <if test="!=null">id=#{},</if>
+      <if test="teamId!=null">team_id=#{teamId},</if>
+      <if test="memberOpenid!=null">member_openid=#{memberOpenid},</if>
+      <if test="joinDate!=null">join_date=#{joinDate},</if>
+      <if test="!=null">status=#{},</if>
+      <if test="advanceNo!=null">advance_no=#{advanceNo},</if>
+      <if test="shopId!=null">shop_id=#{shopId},</if>
+      <if test="!=null">remarks=#{},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteGrMembers" parameterType="java.lang.Integer">DELETE FROM gr_members WHERE uid = #{uid}</delete>
+  <select id="queryGrMembersById" parameterType="java.lang.Integer" resultType="com.weishier.domain.GrMembers">SELECT * FROM gr_members WHERE uid = #{uid}</select>
+  <select id="queryGrMembersList" parameterType="java.util.Map" resultType="com.weishier.domain.GrMembers">SELECT * FROM gr_members
+    <where>
+      <if test="!=null">AND id=#{}</if>
+      <if test="teamId!=null">AND team_id=#{teamId}</if>
+      <if test="memberOpenid!=null">AND member_openid=#{memberOpenid}</if>
+      <if test="joinDate!=null">AND join_date=#{joinDate}</if>
+      <if test="!=null">AND status=#{}</if>
+      <if test="advanceNo!=null">AND advance_no=#{advanceNo}</if>
+      <if test="shopId!=null">AND shop_id=#{shopId}</if>
+      <if test="!=null">AND remarks=#{}</if>
+    </where>
+  </select>
+</mapper>
