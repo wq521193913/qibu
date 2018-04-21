@@ -286,6 +286,12 @@
       <version>2.4</version>
       <classifier>jdk15</classifier>
     </dependency>
+      <dependency>
+          <groupId>com.broker</groupId>
+          <artifactId>common</artifactId>
+          <version>1.0.0</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
   <build>
     <finalName>broker</finalName>
