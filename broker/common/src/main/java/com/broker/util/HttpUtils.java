@@ -100,9 +100,6 @@ public class HttpUtils {
         try {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             StringBuilder urlStr = new StringBuilder(url);
-            if(urlStr.indexOf("?") <= 0){
-                urlStr.append("?random="+System.nanoTime());
-            }
 
             if(null != params){
                 for (String key : params.keySet()){
