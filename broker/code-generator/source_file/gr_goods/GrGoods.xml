@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weishier.dao.GrGoodsDao">
+  <insert id="insertGrGoods" parameterType="com.weishier.domain.GrGoods">INSERT INTO gr_goods(id,goods_id,goods_name,groupon_name,start_date,end_date,status,is_del,groupon_desc,groupon_num,limit_num,buy_num,thumbnail) VALUES (#{id},#{goodsId},#{goodsName},#{grouponName},#{startDate},#{endDate},#{status},#{isDel},#{grouponDesc},#{grouponNum},#{limitNum},#{buyNum},#{thumbnail})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateGrGoodsById" parameterType="com.weishier.domain.GrGoods">UPDATE gr_goods
+    <set>
+      <if test="!=null">id=#{},</if>
+      <if test="goodsId!=null">goods_id=#{goodsId},</if>
+      <if test="goodsName!=null">goods_name=#{goodsName},</if>
+      <if test="grouponName!=null">groupon_name=#{grouponName},</if>
+      <if test="startDate!=null">start_date=#{startDate},</if>
+      <if test="endDate!=null">end_date=#{endDate},</if>
+      <if test="!=null">status=#{},</if>
+      <if test="isDel!=null">is_del=#{isDel},</if>
+      <if test="grouponDesc!=null">groupon_desc=#{grouponDesc},</if>
+      <if test="grouponNum!=null">groupon_num=#{grouponNum},</if>
+      <if test="limitNum!=null">limit_num=#{limitNum},</if>
+      <if test="buyNum!=null">buy_num=#{buyNum},</if>
+      <if test="!=null">thumbnail=#{},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteGrGoods" parameterType="java.lang.Integer">DELETE FROM gr_goods WHERE uid = #{uid}</delete>
+  <select id="queryGrGoodsById" parameterType="java.lang.Integer" resultType="com.weishier.domain.GrGoods">SELECT * FROM gr_goods WHERE uid = #{uid}</select>
+  <select id="queryGrGoodsList" parameterType="java.util.Map" resultType="com.weishier.domain.GrGoods">SELECT * FROM gr_goods
+    <where>
+      <if test="!=null">AND id=#{}</if>
+      <if test="goodsId!=null">AND goods_id=#{goodsId}</if>
+      <if test="goodsName!=null">AND goods_name=#{goodsName}</if>
+      <if test="grouponName!=null">AND groupon_name=#{grouponName}</if>
+      <if test="startDate!=null">AND start_date=#{startDate}</if>
+      <if test="endDate!=null">AND end_date=#{endDate}</if>
+      <if test="!=null">AND status=#{}</if>
+      <if test="isDel!=null">AND is_del=#{isDel}</if>
+      <if test="grouponDesc!=null">AND groupon_desc=#{grouponDesc}</if>
+      <if test="grouponNum!=null">AND groupon_num=#{grouponNum}</if>
+      <if test="limitNum!=null">AND limit_num=#{limitNum}</if>
+      <if test="buyNum!=null">AND buy_num=#{buyNum}</if>
+      <if test="!=null">AND thumbnail=#{}</if>
+    </where>
+  </select>
+</mapper>

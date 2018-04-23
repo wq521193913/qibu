@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weishier.dao.GrTeamDao">
+  <insert id="insertGrTeam" parameterType="com.weishier.domain.GrTeam">INSERT INTO gr_team(id,team_name,team_captain,create_date,end_date,members_num,status,version) VALUES (#{id},#{teamName},#{teamCaptain},#{createDate},#{endDate},#{membersNum},#{status},#{version})
+    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  </insert>
+  <update id="updateGrTeamById" parameterType="com.weishier.domain.GrTeam">UPDATE gr_team
+    <set>
+      <if test="!=null">id=#{},</if>
+      <if test="teamName!=null">team_name=#{teamName},</if>
+      <if test="teamCaptain!=null">team_captain=#{teamCaptain},</if>
+      <if test="createDate!=null">create_date=#{createDate},</if>
+      <if test="endDate!=null">end_date=#{endDate},</if>
+      <if test="membersNum!=null">members_num=#{membersNum},</if>
+      <if test="!=null">status=#{},</if>
+      <if test="!=null">version=#{},</if>
+    </set>where uid = #{uid}
+  </update>
+  <delete id="deleteGrTeam" parameterType="java.lang.Integer">DELETE FROM gr_team WHERE uid = #{uid}</delete>
+  <select id="queryGrTeamById" parameterType="java.lang.Integer" resultType="com.weishier.domain.GrTeam">SELECT * FROM gr_team WHERE uid = #{uid}</select>
+  <select id="queryGrTeamList" parameterType="java.util.Map" resultType="com.weishier.domain.GrTeam">SELECT * FROM gr_team
+    <where>
+      <if test="!=null">AND id=#{}</if>
+      <if test="teamName!=null">AND team_name=#{teamName}</if>
+      <if test="teamCaptain!=null">AND team_captain=#{teamCaptain}</if>
+      <if test="createDate!=null">AND create_date=#{createDate}</if>
+      <if test="endDate!=null">AND end_date=#{endDate}</if>
+      <if test="membersNum!=null">AND members_num=#{membersNum}</if>
+      <if test="!=null">AND status=#{}</if>
+      <if test="!=null">AND version=#{}</if>
+    </where>
+  </select>
+</mapper>
