@@ -4,6 +4,7 @@ import com.broker.dao.WxUserDao;
 import com.broker.domain.WxUser;
 import com.broker.service.IWxUserService;
 import com.broker.util.*;
+import com.broker.util.wx.WxApiUtils;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,8 @@ public class WxUserServiceImpl implements IWxUserService {
             throw new CustomException("微信登录Code不能为空");
         }
 
-        String returnData = HttpUtils.getInstance().requestGet(String.format(PropertiesUtils.getProperties("wx_getOpenIdUrl"),code));
+        String returnData = HttpUtils.getInstance().requestGet(String.format(WxApiUtils.WX_API_jscode2session,
+                PropertiesUtils.getProperties("wx_appid") ,PropertiesUtils.getProperties("wx_secret"),code));
         if(null == returnData){
             throw new CustomException("无法得到用户唯一标识");
         }
