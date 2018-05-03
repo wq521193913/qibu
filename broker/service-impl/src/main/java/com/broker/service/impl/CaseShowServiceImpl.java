@@ -6,7 +6,6 @@ import com.broker.domain.extend.CaseShowExt;
 import com.broker.service.ICaseShowService;
 import com.broker.service.ICaseSketchService;
 import com.broker.util.*;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,7 @@ public class CaseShowServiceImpl implements ICaseShowService {
         caseShowDao.insertCaseShow(caseShow);
 
         if(null != caseShowExt.getSketchImgs()){
-            List<String> sketchImgList = CustomStringUtils.splitToList(caseShowExt.getSketchImgs(), ";");
+            List<String> sketchImgList = MyStringUtils.splitToList(caseShowExt.getSketchImgs(), ";");
             caseShowExt.setSketchImgList(sketchImgList);
             caseSketchService.insertCaseSketch(caseShow.getUid(), sketchImgList);
         }

@@ -8,7 +8,7 @@ import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerUserService;
 import com.broker.service.IInviteFriendService;
 import com.broker.util.CustomException;
-import com.broker.util.CustomStringUtils;
+import com.broker.util.MyStringUtils;
 import com.broker.util.RandomCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class BrokerUserServiceImpl implements IBrokerUserService {
     @Override
     public void insertBrokerUser(BrokerUser brokerUser) throws Exception {
         if(null == brokerUser) throw new CustomException("参数检验有误:null");
-        if(CustomStringUtils.isEmpty(brokerUser.getBrokerPhone())) throw new CustomException("用户手机号不能为空");
+        if(MyStringUtils.isEmpty(brokerUser.getBrokerPhone())) throw new CustomException("用户手机号不能为空");
         brokerUser.setUserCode(String.valueOf(System.currentTimeMillis()));
 
         BrokerUser brokerUser1 = brokerUserDao.getBrokerUserByKey(new HashMap<String, Object>(){{

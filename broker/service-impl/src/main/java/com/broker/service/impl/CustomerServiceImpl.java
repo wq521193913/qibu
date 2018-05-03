@@ -11,7 +11,7 @@ import com.broker.service.IBrokerEarningService;
 import com.broker.service.ICustomerService;
 import com.broker.service.IInviteFriendService;
 import com.broker.util.CustomException;
-import com.broker.util.CustomStringUtils;
+import com.broker.util.MyStringUtils;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +57,10 @@ public class CustomerServiceImpl implements ICustomerService {
             throw new CustomException("此手机号的客户已被登记");
         }
 
-        customer.setAddressDetail(CustomStringUtils.nullConvertEmpty(customer.getProvince()) +
-                CustomStringUtils.nullConvertEmpty(customer.getCity()) +
-                CustomStringUtils.nullConvertEmpty(customer.getDistrict()) +
-                CustomStringUtils.nullConvertEmpty(customer.getAddress()));
+        customer.setAddressDetail(MyStringUtils.nullConvertEmpty(customer.getProvince()) +
+                MyStringUtils.nullConvertEmpty(customer.getCity()) +
+                MyStringUtils.nullConvertEmpty(customer.getDistrict()) +
+                MyStringUtils.nullConvertEmpty(customer.getAddress()));
         customerDao.insertCustomer(customer);
     }
 

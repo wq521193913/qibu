@@ -17,10 +17,10 @@ import java.util.Set;
  * @modified:
  */
 public class ParamsValidator {
-    public <T> void getValidator(T var1) throws CustomException{
+    public <T> void getValidator(T var1, Class...groups) throws CustomException{
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-        Set<ConstraintViolation<T>> constraintViolations = validator.validate(var1);
+        Set<ConstraintViolation<T>> constraintViolations = validator.validate(var1,groups);
         List<String> messageList = new ArrayList<>();
         for (ConstraintViolation<T> constraintViolation : constraintViolations) {
             messageList.add(constraintViolation.getMessage());

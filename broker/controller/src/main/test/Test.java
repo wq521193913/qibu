@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,13 +10,15 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args){
-        Map<String, Object> map = new HashMap<String, Object>();
-        int index = 0;
-        int i = 0;
-        for(;i <= 16; i++){
-            System.out.println(index);
-            map.put("key" + index, "value-" + index);
-            index ++;
-        }
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        int index = 0;
+//        int i = 0;
+//        for(;i <= 16; i++){
+//            System.out.println(index);
+//            map.put("key" + index, "value-" + index);
+//            index ++;
+//        }
+
+
     }
 }
