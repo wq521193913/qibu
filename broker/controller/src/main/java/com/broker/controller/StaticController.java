@@ -5,6 +5,7 @@ import com.broker.domain.WxUser;
 import com.broker.service.IBrokerUserService;
 import com.broker.service.IWxUserService;
 import com.broker.util.CustomException;
+import com.broker.util.RedisUtils;
 import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class StaticController extends BaseController {
     IWxUserService wxUserService;
     @Autowired
     IBrokerUserService brokerUserService;
+    @Autowired
+    RedisUtils redisUtils;
 
     @RequestMapping(value = "/wxLogin", method = RequestMethod.POST)
     @ResponseBody
@@ -39,7 +42,9 @@ public class StaticController extends BaseController {
                 resultMap.put("isRegister",false);
             }else {
                 resultMap.put("isRegister", true);
+//                redisUtils.set("user_" + wxUser.getWxOpenId(), )
             }
+
             resultMap.put("session_3rd", wxUser.getWxOpenId());
             result.setData(resultMap);
         }catch (CustomException ce){

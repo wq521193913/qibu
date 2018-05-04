@@ -11,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 public class ControllerIntercept extends HandlerInterceptorAdapter {
 
@@ -37,6 +38,7 @@ public class ControllerIntercept extends HandlerInterceptorAdapter {
                     }
                     redisUtils.set("user_" + session_3rd, wxLoginInfo, 30*60L);
                     request.getSession().setAttribute("userInfo", wxLoginInfo);
+
                 }
             }else {
                 LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute("loginInfo");

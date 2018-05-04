@@ -32,16 +32,20 @@ public class CustomerController extends BaseController{
 
     @RequestMapping(value = "insertCustomer", method = RequestMethod.POST)
     @ResponseBody
-    public Result insertCustomer(@RequestBody Customer customer){
+    public Result insertCustomer(Customer customer){
         Result result = new Result();
         try {
-            customer.setBrokerUser(((WxLoginInfo)this.getHttpSession().getAttribute("userInfo")).getBrokerId());
+            WxLoginInfo wxLoginInfo = (WxLoginInfo)this.getHttpSession().getAttribute("userInfo");
+            if(null == wxLoginInfo){
+                return Result.getFailedResult("用户尚未注册,无法操作");
+            }
+            customer.setBrokerUser(wxLoginInfo.getBrokerId());
             customerService.insertCustomer(customer);
         }catch (CustomException ce){
             logger.error("params:"+customer,ce);
             return Result.getSystemErrorMsg(ce);
         }catch (Exception e){
-            logger.error(e);
+            logger.error(ExceptionUtils.getStackTrace(e));
             return Result.getSystemErrorMsg();
         }
         return result;
