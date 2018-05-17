@@ -69,4 +69,6 @@ public interface BrokerEarningDao {
      * @return
      */
     BrokerEarning queryBrokerEarning(Map<String, Object> map);
+
+    List<BrokerEarning> getEarningPageList(Map<String, Object> map);
 }

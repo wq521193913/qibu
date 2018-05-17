@@ -57,5 +57,17 @@ public interface IBrokerEarningService {
      */
     BrokerEarning queryBrokerEarning(Map<String, Object> map);
 
+    /**
+     * 分页列表
+     * @param map
+     * @return
+     */
+    List<BrokerEarning> getEarningPageList(Map<String, Object> map);
 
+    /**
+     * 分页数据条数
+     * @param map
+     * @return
+     */
+    int getEarningPageCount(Map<String, Object> map);
 }

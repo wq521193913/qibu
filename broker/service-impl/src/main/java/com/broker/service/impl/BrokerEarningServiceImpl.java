@@ -85,4 +85,14 @@ public class BrokerEarningServiceImpl implements IBrokerEarningService {
     public BrokerEarning queryBrokerEarning(Map<String, Object> map) {
         return brokerEarningDao.queryBrokerEarning(map);
     }
+
+    @Override
+    public List<BrokerEarning> getEarningPageList(Map<String, Object> map) {
+        return brokerEarningDao.getEarningPageList(map);
+    }
+
+    @Override
+    public int getEarningPageCount(Map<String, Object> map) {
+        return 0;
+    }
 }

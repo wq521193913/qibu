@@ -4,6 +4,8 @@ import com.broker.domain.BrokerEarning;
 import com.broker.service.IBrokerEarningService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
+import com.broker.util.TransformMapEntity;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ import java.util.Map;
 */
 @Controller
 @RequestMapping(value = "/brokerEarning")
-public class BrokerEarningController {
+public class BrokerEarningController extends BaseController{
 	
 	private final Logger logger = Logger.getLogger(BrokerEarningController.class);
 
@@ -137,7 +139,30 @@ public class BrokerEarningController {
             result.setData(brokerEarningList);
         }catch (Exception e){
             result = Result.getSystemErrorMsg(e);
-            logger.error("BrokerEarningController.queryBrokerEarningList error:", e);
+            logger.error(ExceptionUtils.getStackTrace(e));
+        }
+        return result;
+    }
+
+    /**
+     * 查询列表
+     * @param
+     * @return
+     * @author Administrator
+     * @date 2018-03-30 09:27:36
+     */
+    @RequestMapping(value = "getEarningsPageList", method = RequestMethod.GET)
+    @ResponseBody
+    public Result getEarningsPageList(){
+        Result result = new Result();
+        try {
+            Map<String, Object> map = this.getWebPageParameters();
+            List<BrokerEarning> brokerEarnings = brokerEarningService.getEarningPageList(map);
+            int total = brokerEarningService.getEarningPageCount(map);
+            result.setData(TransformMapEntity.getSpecifiedFieldMap("earning_source,earning_amount",brokerEarnings));
+        }catch (Exception e){
+            logger.error(e.getLocalizedMessage(),e);
+            return Result.getSystemErrorMsg();
         }
         return result;
     }
