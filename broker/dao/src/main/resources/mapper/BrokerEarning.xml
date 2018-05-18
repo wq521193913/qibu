@@ -42,4 +42,21 @@
       </where>
       LIMIT 1
     </select>
+
+  <sql id="getEarningPageSql">
+    FROM broker_earning
+    WHERE 1=1
+    <if test="status !=null and status >=0"> and status = #{status}</if>
+  </sql>
+
+  <select id="getEarningPageList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerEarning">
+    SELECT *
+    <include refid="getEarningPageSql"></include>
+    LIMIT ${offset},${rows}
+  </select>
+
+  <select id="getEarningPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    <include refid="getEarningPageSql"></include>
+  </select>
 </mapper>

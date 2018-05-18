@@ -3,6 +3,7 @@ package com.broker.controller;
 import com.broker.domain.BrokerEarning;
 import com.broker.service.IBrokerEarningService;
 import com.broker.util.CustomException;
+import com.broker.util.PageResult;
 import com.broker.util.Result;
 import com.broker.util.TransformMapEntity;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -151,17 +152,17 @@ public class BrokerEarningController extends BaseController{
      * @author Administrator
      * @date 2018-03-30 09:27:36
      */
-    @RequestMapping(value = "getEarningsPageList", method = RequestMethod.GET)
+    @RequestMapping(value = "getEarningPageList", method = RequestMethod.GET)
     @ResponseBody
-    public Result getEarningsPageList(){
+    public Result getEarningPageList(){
         Result result = new Result();
         try {
             Map<String, Object> map = this.getWebPageParameters();
             List<BrokerEarning> brokerEarnings = brokerEarningService.getEarningPageList(map);
             int total = brokerEarningService.getEarningPageCount(map);
-            result.setData(TransformMapEntity.getSpecifiedFieldMap("earning_source,earning_amount",brokerEarnings));
+            result.setData(PageResult.getPageResult(total,map.get("page"), map.get("rows"),TransformMapEntity.getSpecifiedFieldMap("earningSource,earningAmount",brokerEarnings)));
         }catch (Exception e){
-            logger.error(e.getLocalizedMessage(),e);
+            logger.error(ExceptionUtils.getStackTrace(e));
             return Result.getSystemErrorMsg();
         }
         return result;

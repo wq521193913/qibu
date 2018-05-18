@@ -93,6 +93,6 @@ public class BrokerEarningServiceImpl implements IBrokerEarningService {
 
     @Override
     public int getEarningPageCount(Map<String, Object> map) {
-        return 0;
+        return brokerEarningDao.getEarningPageCount(map);
     }
 }
