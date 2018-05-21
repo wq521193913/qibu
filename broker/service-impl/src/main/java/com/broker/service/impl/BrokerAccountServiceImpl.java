@@ -84,4 +84,9 @@ public class BrokerAccountServiceImpl implements IBrokerAccountService {
     public BrokerAccount brokerAccountByUser(int brokerUserId) {
         return brokerAccountDao.brokerAccountByUser(brokerUserId);
     }
+
+    @Override
+    public BrokerAccount getBrokerAccountByUserId(Integer userId) {
+        return brokerAccountDao.getBrokerAccountByUserId(userId);
+    }
 }

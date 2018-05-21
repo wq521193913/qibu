@@ -69,4 +69,11 @@ public interface BrokerAccountDao {
      * @return
      */
     BrokerAccount brokerAccountByUser(int brokerUserId);
+
+    /**
+     * 用户id查询
+     * @param userId
+     * @return
+     */
+    BrokerAccount getBrokerAccountByUserId(Integer userId);
 }

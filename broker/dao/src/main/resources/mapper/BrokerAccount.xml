@@ -37,4 +37,9 @@
   <select id="brokerAccountByUser" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">
     SELECT * FROM broker_account WHERE broker_user = #{0}
   </select>
+    <select id="getBrokerAccountByUserId" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerAccount">
+      SELECT *
+      FROM broker_account
+      WHERE broker_user = #{0}
+    </select>
 </mapper>

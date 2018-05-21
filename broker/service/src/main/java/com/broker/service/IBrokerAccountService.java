@@ -55,4 +55,11 @@ public interface IBrokerAccountService {
      * @return
      */
     BrokerAccount brokerAccountByUser(int brokerUserId);
+
+    /**
+     * 根据用户id查询
+     * @param userId
+     * @return
+     */
+    BrokerAccount getBrokerAccountByUserId(Integer userId);
 }
