@@ -86,6 +86,10 @@ public class BrokerUser {
      * 微信openid
      */
     private String openId;
+    /**
+     * 手机种类(ios/android)
+     */
+    private String phoneType;
 
     /**
      * id
@@ -231,26 +235,12 @@ public class BrokerUser {
         this.openId = openId;
     }
 
-    @Override
-    public String toString() {
-        return "BrokerUser{" +
-                "uid=" + uid +
-                ", brokerNo='" + brokerNo + '\'' +
-                ", brokerName='" + brokerName + '\'' +
-                ", brokerPhone='" + brokerPhone + '\'' +
-                ", brokerSex=" + brokerSex +
-                ", brokerIdCard='" + brokerIdCard + '\'' +
-                ", brokerAddress='" + brokerAddress + '\'' +
-                ", homeAddress='" + homeAddress + '\'' +
-                ", brokerQq='" + brokerQq + '\'' +
-                ", brokerWeixin='" + brokerWeixin + '\'' +
-                ", brokerWeibo='" + brokerWeibo + '\'' +
-                ", brokerImg='" + brokerImg + '\'' +
-                ", otherTel='" + otherTel + '\'' +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                ", userCode='" + userCode + '\'' +
-                ", openId='" + openId + '\'' +
-                '}';
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public BrokerUser setPhoneType(String phoneType) {
+        this.phoneType = phoneType;
+        return this;
     }
 }
