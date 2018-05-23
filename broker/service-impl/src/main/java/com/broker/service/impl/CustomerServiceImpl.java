@@ -1,10 +1,12 @@
 package com.broker.service.impl;
 
+import com.broker.constant.EarningSouceTemplate;
 import com.broker.dao.CustomerDao;
 import com.broker.domain.BrokerAccount;
 import com.broker.domain.BrokerEarning;
 import com.broker.domain.Customer;
 import com.broker.domain.InviteFriend;
+import com.broker.enumerate.BrokerEarningStatus;
 import com.broker.enumerate.CustomerAuditEnums;
 import com.broker.service.IBrokerAccountService;
 import com.broker.service.IBrokerEarningService;
@@ -121,7 +123,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 brokerEarning = new BrokerEarning();
                 brokerEarning.setBrokerUser(brokerUserId);
                 brokerEarning.setEarningAmount(BigDecimal.valueOf(1000));
-                brokerEarning.setEarningSource("登记客户洽谈成功");
+                brokerEarning.setEarningSource(String.format(EarningSouceTemplate.ESource_DUE_Customer,customer.getCustomerName(),brokerEarning.getEarningAmount()));
                 brokerEarning.setStatus(0);
                 brokerEarning.setSourceId(customerId);
                 brokerEarning.setSourceType(0);
@@ -141,13 +143,14 @@ public class CustomerServiceImpl implements ICustomerService {
                     brokerEarning = new BrokerEarning();
                     brokerEarning.setBrokerUser(brokerUserId);
                     brokerEarning.setEarningAmount(BigDecimal.valueOf(1000));
-                    brokerEarning.setEarningSource("登记客户洽谈成功");
+                    brokerEarning.setEarningSource(String.format(EarningSouceTemplate.ESource_EARN_Customer,customer.getCustomerName(),brokerEarning.getEarningAmount()));
                     brokerEarning.setStatus(1);
                     brokerEarning.setSourceId(customerId);
                     brokerEarning.setSourceType(0);
                     brokerEarningService.insertBrokerEarning(brokerEarning);
                 }else {
                     brokerEarning.setStatus(1);
+                    brokerEarning.setEarningSource(String.format(EarningSouceTemplate.ESource_EARN_Customer,customer.getCustomerName(),brokerEarning.getEarningAmount()));
                     brokerEarningService.updateBrokerEarningById(brokerEarning);
                 }
                 //邀请奖励
@@ -165,12 +168,20 @@ public class CustomerServiceImpl implements ICustomerService {
                     brokerAccount.setAccountBalance(brokerAccount.getAccountBalance().add(brokerEarning.getEarningAmount()));
                     brokerAccountService.updateBrokerAccountById(brokerAccount);
                 }
-
-
                 //TODO 发送短信
                 break;
             case STATUS_FAIL:
                 //洽谈失败
+                map = new HashMap<String, Object>(8);
+                map.put("sourceType",0);
+                map.put("sourceId", customerId);
+                map.put("brokerUser", brokerUserId);
+                brokerEarning = brokerEarningService.queryBrokerEarning(map);
+                if(null == brokerEarning){
+                    throw new CustomException("无法查询到经济人待收益数据");
+                }
+                brokerEarning.setStatus(BrokerEarningStatus.STATUS_LOSE.getIndex());
+                brokerEarningService.updateBrokerEarningById(brokerEarning);
                 //TODO 发送短信
                 break;
         }
