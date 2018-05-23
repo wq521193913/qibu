@@ -1,7 +1,11 @@
-package com.broker.controller;
+package com.broker.app.controller;
 
+import com.broker.domain.WxLoginInfo;
 import com.broker.util.PageResult;
+import com.broker.util.RedisUtils;
 import com.broker.util.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.WebUtils;
@@ -17,16 +21,20 @@ import java.util.Map;
  * @date: Create in 2018/3/11 0011 下午 1:46
  * @modified:
  */
-public class BaseController {
+public class AppBaseController {
 
     public HttpServletRequest request;
     public HttpServletResponse response;
     public HttpSession session;
+    @Autowired
+    public RedisUtils redisUtils;
 
-//    protected LoginInfo loginInfo;
+    public WxLoginInfo wxLoginInfo;
 
+    @ModelAttribute
     protected HttpServletRequest getServletRequest(){
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request;
     }
 
     protected HttpSession getHttpSession(){
@@ -44,6 +52,13 @@ public class BaseController {
 //            e.printStackTrace();
 //        }
 //    }
+
+    @ModelAttribute
+    protected WxLoginInfo getWxLoginInfo(){
+        String token = request.getHeader("token");
+        wxLoginInfo = (WxLoginInfo) redisUtils.get("user_"+token);
+        return wxLoginInfo;
+    }
 
     /**
      * 获取页面参数

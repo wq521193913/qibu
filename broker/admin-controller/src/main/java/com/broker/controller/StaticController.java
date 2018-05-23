@@ -1,12 +1,14 @@
 package com.broker.controller;
 
 import com.broker.domain.BrokerUser;
+import com.broker.domain.WxLoginInfo;
 import com.broker.domain.WxUser;
 import com.broker.service.IBrokerUserService;
 import com.broker.service.IWxUserService;
 import com.broker.util.CustomException;
 import com.broker.util.RedisUtils;
 import com.broker.util.Result;
+import com.broker.util.TransformMapEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,14 +40,18 @@ public class StaticController extends BaseController {
                 return Result.getFailedResult("登录失败");
             }
             BrokerUser brokerUser = brokerUserService.getBrokerUserByOpenId(wxUser.getWxOpenId());
+
             if(null == brokerUser){
                 resultMap.put("isRegister",false);
             }else {
+                WxLoginInfo wxLoginInfo = new WxLoginInfo();
+                wxLoginInfo.setBrokerId(brokerUser.getUid());
+                wxLoginInfo.setBrokerName(brokerUser.getBrokerName());
+                wxLoginInfo.setBrokerPhone(brokerUser.getBrokerPhone());
                 resultMap.put("isRegister", true);
-//                redisUtils.set("user_" + wxUser.getWxOpenId(), )
+                redisUtils.set("user_" + wxUser.getWxOpenId(), wxLoginInfo);
             }
-
-            resultMap.put("session_3rd", wxUser.getWxOpenId());
+            resultMap.put("token", wxUser.getWxOpenId());
             result.setData(resultMap);
         }catch (CustomException ce){
             logger.error("params:" + wxUser, ce);

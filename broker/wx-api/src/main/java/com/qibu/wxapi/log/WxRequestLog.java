@@ -1,10 +1,11 @@
 package com.qibu.wxapi.log;
 
+import com.qibu.wxapi.dto.WxRequest;
+import com.qibu.wxapi.dto.WxResult;
 import com.qibu.wxapi.dto.pay.WxPayResult;
 import com.qibu.wxapi.dto.pay.WxPayUnifiedorder;
 import com.qibu.wxapi.dto.refund.WxRefundRequest;
 import com.qibu.wxapi.dto.refund.WxRefundResult;
-import com.weishier.groupon.wxapi.dto.*;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 
@@ -23,7 +24,10 @@ public abstract class WxRequestLog  {
 
     public Map<String, Object> extendMap = new HashMap<String, Object>();
 
-    public void saveLog(){}
+    public void saveLog(WxRequest wxRequest, WxResult wxResult){
+        logger.info(JSONObject.fromObject(wxRequest));
+        logger.info(JSONObject.fromObject(wxResult));
+    }
 
     public void savePayLog(WxPayUnifiedorder wxPayUnifiedorder, WxPayResult wxPayResult){
         logger.info(JSONObject.fromObject(wxPayUnifiedorder));

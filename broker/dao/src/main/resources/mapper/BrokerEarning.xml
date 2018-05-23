@@ -32,11 +32,11 @@
     </where>
   </select>
     <select id="queryBrokerEarning" parameterType="java.util.Map" resultType="com.broker.domain.BrokerEarning">
-      SELECT
+      SELECT *
       <include refid="base_columns_list"></include>
       FROM broker_earning
       <where>
-        <if test="brokerUser!=null and brokerUser =! ''">AND broker_user=#{brokerNser}</if>
+        <if test="brokerUser!=null and brokerUser =! ''">AND broker_user=#{brokerUser}</if>
         <if test="sourceId!=null and source_id =! ''">AND source_id=#{sourceId}</if>
         <if test="sourceType!=null and source_type =! ''">AND source_type=#{sourceType}</if>
       </where>

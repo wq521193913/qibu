@@ -1,11 +1,16 @@
 package com.broker.service.impl;
 
-import com.broker.domain.distributor.*;
 import com.broker.service.IWxApiService;
 import com.broker.util.*;
 import com.broker.util.wx.WxApiUrl;
 import com.broker.util.wx.WxApiXmlUtils;
 import com.broker.util.wx.WxSignUtils;
+import com.qibu.wxapi.dto.pay.WxPayParam;
+import com.qibu.wxapi.dto.pay.WxPayResult;
+import com.qibu.wxapi.dto.pay.WxPayUnifiedorder;
+import com.qibu.wxapi.dto.refund.WxRefundParam;
+import com.qibu.wxapi.dto.refund.WxRefundRequest;
+import com.qibu.wxapi.dto.refund.WxRefundResult;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;

@@ -5,8 +5,8 @@
   <insert id="insertCustomer" parameterType="com.broker.domain.Customer">
     INSERT INTO customer(uid,customer_phone,customer_name,address,broker_user,status,create_date,update_date,update_user
     ,remarks,province,city,district,address_detail,audit)
-    VALUES (#{uid},#{customer_phone},#{customer_name},#{address},#{broker_user},#{status},#{create_date},#{update_date},#{update_user}
-    ,#{remarks},#{province},#{city},#{district},#{address_detail},#{audit})
+    VALUES (#{uid},#{customerPhone},#{customerName},#{address},#{brokerUser},#{status},#{createDate},#{updateDate},#{updateUser}
+    ,#{remarks},#{province},#{city},#{district},#{addressDetail},#{audit})
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
   </insert>
   <update id="updateCustomerById" parameterType="com.broker.domain.Customer">UPDATE customer

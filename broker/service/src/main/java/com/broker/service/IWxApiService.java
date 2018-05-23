@@ -1,9 +1,9 @@
 package com.broker.service;
 
-import com.broker.domain.distributor.WxPayParam;
-import com.broker.domain.distributor.WxPayResult;
-import com.broker.domain.distributor.WxRefundParam;
-import com.broker.domain.distributor.WxRefundResult;
+import com.qibu.wxapi.dto.pay.WxPayParam;
+import com.qibu.wxapi.dto.pay.WxPayResult;
+import com.qibu.wxapi.dto.refund.WxRefundParam;
+import com.qibu.wxapi.dto.refund.WxRefundResult;
 
 /**
  * @author: Administrator

@@ -3,6 +3,7 @@ package com.qibu.wxapi.util;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author: Administrator
