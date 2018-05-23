@@ -29,40 +29,6 @@ public class StaticController extends BaseController {
     @Autowired
     RedisUtils redisUtils;
 
-    @RequestMapping(value = "/wxLogin", method = RequestMethod.POST)
-    @ResponseBody
-    public Result wxLogin(WxUser wxUser, @RequestParam("iv")String iv){
-        Result result = new Result();
-        Map<String, Object> resultMap = new HashMap<String, Object>(1);
-        try {
-            boolean loginOk = wxUserService.wxLogin(wxUser, iv);
-            if(!loginOk){
-                return Result.getFailedResult("登录失败");
-            }
-            BrokerUser brokerUser = brokerUserService.getBrokerUserByOpenId(wxUser.getWxOpenId());
-
-            if(null == brokerUser){
-                resultMap.put("isRegister",false);
-            }else {
-                WxLoginInfo wxLoginInfo = new WxLoginInfo();
-                wxLoginInfo.setBrokerId(brokerUser.getUid());
-                wxLoginInfo.setBrokerName(brokerUser.getBrokerName());
-                wxLoginInfo.setBrokerPhone(brokerUser.getBrokerPhone());
-                resultMap.put("isRegister", true);
-                redisUtils.set("user_" + wxUser.getWxOpenId(), wxLoginInfo);
-            }
-            resultMap.put("token", wxUser.getWxOpenId());
-            result.setData(resultMap);
-        }catch (CustomException ce){
-            logger.error("params:" + wxUser, ce);
-            return Result.getSystemErrorMsg(ce);
-        }catch (Exception e){
-            logger.error("微信用户登录异常:",e);
-            return Result.getSystemErrorMsg();
-        }
-        return result;
-    }
-
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String testPage(){
         return "test";

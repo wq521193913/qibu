@@ -1,7 +1,7 @@
 package com.broker.app.controller;
 
+import com.broker.app.AppBaseController;
 import com.broker.domain.Customer;
-import com.broker.enumerate.CustomerAuditEnums;
 import com.broker.service.ICustomerService;
 import com.broker.util.CustomException;
 import com.broker.util.Result;
@@ -12,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author: Administrator
@@ -26,7 +23,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/customer")
-public class CustomerController extends AppBaseController{
+public class CustomerController extends AppBaseController {
 
     final Logger logger = Logger.getLogger(CustomerController.class);
     @Autowired

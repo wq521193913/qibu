@@ -1,4 +1,4 @@
-package com.broker.app.controller;
+package com.broker.app;
 
 import com.broker.domain.WxLoginInfo;
 import com.broker.util.PageResult;

@@ -41,7 +41,7 @@ public class BaseController {
 
     @ModelAttribute
     protected LoginInfo getLoginInfo(){
-        loginInfo = (LoginInfo) request.getSession().getAttribute("userInfo");
+        loginInfo = (LoginInfo) request.getSession().getAttribute("loginInfo");
         return loginInfo;
     }
 

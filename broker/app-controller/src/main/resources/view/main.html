@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>后台</title>
+    <link rel="stylesheet" href="css/plugin/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/plugin/bootstrap-table.min.css">
+    <link rel="stylesheet" type="text/css" href="css/plugin/bootstrap-multiselect.css">
+    <link rel="stylesheet" type="text/css" href="css/plugin/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/main/main.css">
+</head>
+<body>
+    <div class="main-view">
+
+        <div class="main-head">
+            <div class="head-logo">
+                <img src="img/1.jpg" style="width: 150px;height: 100px;">
+            </div>
+            <div class="head-info">
+                <button class="msg-btn">
+                    <span class="glyphicon glyphicon-bell"></span>
+                </button>
+
+                <button class="msg-btn">
+                    <span class="glyphicon glyphicon-user"></span>
+                </button>
+                <label th:text="${loginInfo.userName}">userName</label>
+            </div>
+        </div>
+
+        <div class="main-menu">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapse1">
+                                经纪人管理
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="javascript:void (0);" onclick="loadPage('brokerUser/brokerListPage')">经纪人列表</a></li>
+                                <li><a href="javascript:void (0);" onclick="addBrokerUser()">新增经纪人</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapse2">
+                                装修客户管理
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="javascript:void (0);" onclick="loadPage('customer/customerListPage')">客户列表</a></li>
+                                <!--<li><a href="javascript:void (0);" onclick="addBrokerUser()">新增客户</a></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapse3">
+                                装修案例管理
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="javascript:void (0);" onclick="loadPage('caseShow/caseListPage')">案例列表</a></li>
+                                <li><a href="javascript:void (0);" onclick="addCase()">新增案例</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseThree">
+                                系统管理
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                            vice lomo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
+
+        </div>
+
+        <div class="main-foot">
+            Copyright &copy; &nbsp;&nbsp;2008-2013&nbsp;
+            <a href="#">某某科技有限公司</a> ALL RIGHT RESERVED<br/>
+            联系方式：moumou@gmail.com<br/>
+            ICP:<a href="#">湘ICP备05021949</a>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/plugin/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/plugin/jquery/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-editable.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-table-editable.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="js/plugin/bootstrap/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="js/plugin/layer/layer.js"></script>
+    <script type="text/javascript" src="js/main/main.js"></script>
+    <script type="text/javascript" src="js/main/utils.js"></script>
+</body>
+</html>

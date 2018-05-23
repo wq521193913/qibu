@@ -1,0 +1,74 @@
+﻿server:
+  port: 8763
+
+spring:
+    application:
+        name: broker-app
+#    datasource:
+#        name: broker
+#        url: jdbc:mysql://localhost:3306/qibu_broker?SSL=true
+#        username: root
+#        password: root
+#        # druid 数据库连接池
+#        type: org.apache.commons.dbcp.BasicDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        filters: stat
+#        maxActive: 20
+#        initialSize: 1
+#        maxWait: 60000
+#        minIdle: 1
+#        timeBetweenEvictionRunsMillis: 60000
+#        minEvictableIdleTimeMillis: 300000
+#        validationQuery: select 'x'
+#        testWhileIdle: true
+#        testOnBorrow: false
+#        testOnReturn: false
+#        poolPreparedStatements: true
+#        maxOpenPreparedStatements: 20
+    resources:
+      static-locations: ["/templates/", "/static/"]
+    devtools:
+      restart:
+        enabled: false
+      livereload:
+        enabled: true
+
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+      password: redis2017
+      timeout: 0
+      pool:
+        max-active: 3 #default 8 # 连接池最大连接数（使用负值表示没有限制）
+        max-idle: 3 # 连接池中的最大空闲连接
+        max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        min-idle: 0 # 连接池中的最小空闲连接
+    mvc:
+      static-path-pattern: /**
+    thymeleaf:
+      prefix: classpath:/view/
+      suffix: .html
+      encoding: UTF-8
+      content-type: text/html
+      cache: false
+      mode: LEGACYHTML5
+    http:
+      multipart:
+        max-file-size: 5MB
+        max-request-size: 5MB
+
+
+
+#mybatis:
+#  type-aliases-package: com.broker.domain
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

@@ -14,7 +14,7 @@
   </insert>
   <update id="updateBrokerEarningById" parameterType="com.broker.domain.BrokerEarning">UPDATE broker_earning
     <set>
-      <if test="brokerUser!=null">broker_user=#{broker_user},</if>
+      <if test="brokerUser!=null">broker_user=#{brokerUser},</if>
       <if test="earningAmount!=null">earning_amount=#{earningAmount},</if>
       <if test="earningSource!=null">earning_source=#{earningSource},</if>
       <if test="status!=null">status=#{status},</if>
@@ -22,7 +22,8 @@
   </update>
   <delete id="deleteBrokerEarning" parameterType="java.lang.Integer">DELETE FROM broker_earning WHERE uid = #{uid}</delete>
   <select id="queryBrokerEarningById" parameterType="java.lang.Integer" resultType="com.broker.domain.BrokerEarning">SELECT * FROM broker_earning WHERE uid = #{uid}</select>
-  <select id="queryBrokerEarningList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerEarning">SELECT * FROM broker_earning
+  <select id="queryBrokerEarningList" parameterType="java.util.Map" resultType="com.broker.domain.BrokerEarning">
+    SELECT * FROM broker_earning
     <where>
       <if test="uid!=null">AND uid=#{uid}</if>
       <if test="brokerUser!=null">AND broker_user=#{broker_user}</if>
@@ -32,7 +33,7 @@
     </where>
   </select>
     <select id="queryBrokerEarning" parameterType="java.util.Map" resultType="com.broker.domain.BrokerEarning">
-      SELECT *
+      SELECT
       <include refid="base_columns_list"></include>
       FROM broker_earning
       <where>
