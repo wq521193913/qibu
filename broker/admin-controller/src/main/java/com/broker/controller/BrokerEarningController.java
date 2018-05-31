@@ -144,27 +144,4 @@ public class BrokerEarningController extends BaseController{
         }
         return result;
     }
-
-    /**
-     * 查询列表
-     * @param
-     * @return
-     * @author Administrator
-     * @date 2018-03-30 09:27:36
-     */
-    @RequestMapping(value = "getEarningPageList", method = RequestMethod.GET)
-    @ResponseBody
-    public Result getEarningPageList(){
-        Result result = new Result();
-        try {
-            Map<String, Object> map = this.getWebPageParameters();
-            List<BrokerEarning> brokerEarnings = brokerEarningService.getEarningPageList(map);
-            int total = brokerEarningService.getEarningPageCount(map);
-            result.setData(PageResult.getPageResult(total,map.get("page"), map.get("rows"),TransformMapEntity.getSpecifiedFieldMap("earningSource,earningAmount",brokerEarnings)));
-        }catch (Exception e){
-            logger.error(ExceptionUtils.getStackTrace(e));
-            return Result.getSystemErrorMsg();
-        }
-        return result;
-    }
 }

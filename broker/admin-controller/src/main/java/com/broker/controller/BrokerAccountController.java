@@ -51,21 +51,4 @@ public class BrokerAccountController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "getAccountBySession", method = RequestMethod.POST)
-    @ResponseBody
-    public Result getAccountBySession(@RequestHeader("session_3rd")String session_3rd){
-        Result result = new Result();
-        try {
-            WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_" + session_3rd);
-            if(null == loginInfo){
-                return Result.getFailedResult("您登录已失效");
-            }
-            BrokerAccount brokerAccount = brokerAccountService.getBrokerAccountByUserId(loginInfo.getBrokerId());
-            result.setData(brokerAccount);
-        }catch (Exception e){
-            logger.error(e.getLocalizedMessage(),e);
-            return Result.getSystemErrorMsg();
-        }
-        return result;
-    }
 }
