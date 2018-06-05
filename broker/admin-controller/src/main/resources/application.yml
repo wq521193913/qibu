@@ -3,7 +3,7 @@
 
 spring:
     application:
-        name: broker
+        name: broker-admin
 #    datasource:
 #        name: broker
 #        url: jdbc:mysql://localhost:3306/qibu_broker?SSL=true

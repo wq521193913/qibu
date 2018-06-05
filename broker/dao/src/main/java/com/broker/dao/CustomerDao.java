@@ -66,4 +66,6 @@ public interface CustomerDao {
      * @return
      */
     int getCompleteCount(int brokerUserId);
+
+    List<Customer> queryMyCustomerList(Map<String, Object> map);
 }

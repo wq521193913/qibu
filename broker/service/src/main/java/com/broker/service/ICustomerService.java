@@ -37,4 +37,5 @@ public interface ICustomerService {
      * @return
      */
     boolean auditCustomer(Integer id, CustomerAuditEnums customerAuditEnums, String auditRemarks) throws Exception;
+
 }
