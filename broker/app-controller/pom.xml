@@ -13,7 +13,7 @@
     <artifactId>app-controller</artifactId>
     <packaging>war</packaging>
 
-    <name>api-controller Maven Webapp</name>
+    <name>app-controller</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 

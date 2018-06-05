@@ -6,10 +6,10 @@
     <groupId>com.broker</groupId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>controller</artifactId>
+  <artifactId>admin-controller</artifactId>
   <packaging>war</packaging>
   <version>${parent.version}</version>
-  <name>broker</name>
+  <name>broker-admin</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>

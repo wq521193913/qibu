@@ -137,7 +137,7 @@
     </dependency>
 
     <dependency>
-      <groupId>com.qibu</groupId>
+      <groupId>com.qibu.wxapi</groupId>
       <artifactId>wx-api</artifactId>
       <version>1.0.0</version>
     </dependency>

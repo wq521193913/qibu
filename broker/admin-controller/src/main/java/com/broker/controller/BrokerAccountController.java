@@ -1,7 +1,6 @@
 package com.broker.controller;
 
 import com.broker.domain.BrokerAccount;
-import com.broker.domain.WxLoginInfo;
 import com.broker.service.IBrokerAccountService;
 import com.broker.util.CustomException;
 import com.broker.util.RedisUtils;
@@ -9,7 +8,10 @@ import com.broker.util.Result;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/brokerAccount")
@@ -51,21 +53,4 @@ public class BrokerAccountController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "getAccountBySession", method = RequestMethod.POST)
-    @ResponseBody
-    public Result getAccountBySession(@RequestHeader("session_3rd")String session_3rd){
-        Result result = new Result();
-        try {
-            WxLoginInfo loginInfo = (WxLoginInfo)redisUtils.get("user_" + session_3rd);
-            if(null == loginInfo){
-                return Result.getFailedResult("您登录已失效");
-            }
-            BrokerAccount brokerAccount = brokerAccountService.getBrokerAccountByUserId(loginInfo.getBrokerId());
-            result.setData(brokerAccount);
-        }catch (Exception e){
-            logger.error(e.getLocalizedMessage(),e);
-            return Result.getSystemErrorMsg();
-        }
-        return result;
-    }
 }
