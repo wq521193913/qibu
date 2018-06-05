@@ -55,7 +55,7 @@ public class AppBaseController {
 
     @ModelAttribute
     protected WxLoginInfo getWxLoginInfo(){
-        String token = request.getHeader("token");
+        String token = getServletRequest().getHeader("token");
         wxLoginInfo = (WxLoginInfo) redisUtils.get("user_"+token);
         return wxLoginInfo;
     }

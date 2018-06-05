@@ -9,7 +9,7 @@
   <artifactId>admin-controller</artifactId>
   <packaging>war</packaging>
   <version>${parent.version}</version>
-  <name>broker-admin</name>
+  <name>admin-controller</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>

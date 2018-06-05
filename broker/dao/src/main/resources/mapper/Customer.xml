@@ -55,6 +55,7 @@
       <if test="customerPhone != null and customerPhone != ''"> AND c.customer_phone = #{customerPhone}</if>
       <if test="customerName != null and customerName != ''"> AND c.customer_name LIKE CONCAT('%',#{customerName},'%')</if>
       <if test="brokerName != null and brokerName != ''"> AND bu.broker_name LIKE CONCAT('%',#{brokerName},'%')</if>
+      <if test="brokerUser != null and brokerUser != ''"> AND c.broker_user = #{brokerUser}</if>
     </where>
   </sql>
 

@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date: Create in 2018/5/23 0023 下午 10:04
  * @modified:
  */
+
 @Controller
 @RequestMapping(value = "/brokerAccount")
-public class BrokerAccountController extends AppBaseController{
+public class BrokerAccountController extends AppBaseController {
 
     final Logger logger = Logger.getLogger(BrokerAccountController.class);
     @Autowired
