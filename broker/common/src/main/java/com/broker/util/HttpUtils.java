@@ -7,9 +7,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.ssl.SSLContexts;
@@ -17,9 +22,15 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.security.KeyStore;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -93,6 +104,38 @@ public class HttpUtils {
 
             HttpGet httpGet = new HttpGet(urlStr.toString());
             CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            if(null != httpEntity){
+                result = EntityUtils.toString(httpEntity);
+                logger.debug("response data:" + result);
+                return result;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * @author: wq
+     * @description: http get method
+     * @param url
+     * @param params
+     * @return: string
+     * @date: Create in 2018/3/15 0015 下午 9:53
+     * @modified:
+     */
+    public String httpsPost(String url, String params){
+        logger.debug("request url:"+url);
+        logger.debug("request params:" + JSONObject.fromObject(params));
+        String result = "";
+        try {
+            CloseableHttpClient httpClient = new SSLClient();
+            StringEntity se = new StringEntity(params, "UTF-8");
+            HttpPost httpPost = new HttpPost(url.toString());
+            httpPost.setEntity(se);
+            CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             if(null != httpEntity){
                 result = EntityUtils.toString(httpEntity);
@@ -222,6 +265,47 @@ public class HttpUtils {
             }
         }
         return result;
+    }
+
+
+
+    public static void main(String[] args){
+        String url = "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=11_VJFr4ipGytD4Gb_JcgsI67zKNhZ8l3xFaLMyWZPlhzgDQW_TyAjqDY_I9ALx4COHZc-Ap_TB8UPL19S9y8_U2OTu6VnA9Ugs3iX6DI7geKgBDc0XhVfD58QJfxd1KSBdXKUOVULIxg2ePKWHWBXeACAEJF";
+        Map<String, Object> params = new HashMap<>();
+        params.put("openid","osZRV40IuQ0MT5UbgiLytkdTW7Yg");
+        params.put("templateId","rJS8GInfW7FlW7FT_r-4AotPCbTFLHMyQIpbXH_G5mY");
+        params.put("formId","72f48a1874bd047b140f9287a47bc0cb");
+        params.put("content","{\"keyword1\":{\"value\":\"抽奖活动倒计时通知\", \"color\": \"#173177\"},\"keyword2\":{\"value\":\"卡通木垫\", \"color\": \"#173177\"},\"keyword3\":{\"value\":\"距离抽奖结束仅剩一小时,您还未获得抽奖资格，立即邀请好友获得抽奖机会.\", \"color\": \"#173177\"}}");
+        params.put("accessToken","11_VJFr4ipGytD4Gb_JcgsI67zKNhZ8l3xFaLMyWZPlhzgDQW_TyAjqDY_I9ALx4COHZc-Ap_TB8UPL19S9y8_U2OTu6VnA9Ugs3iX6DI7geKgBDc0XhVfD58QJfxd1KSBdXKUOVULIxg2ePKWHWBXeACAEJF");
+
+        System.out.println(HttpUtils.getInstance().httpsPost(url, JSONObject.fromObject(params).toString()));
+
+    }
+
+    class SSLClient extends DefaultHttpClient {
+        public SSLClient() throws Exception{
+            super();
+            SSLContext ctx = SSLContext.getInstance("TLS");
+            X509TrustManager tm = new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {
+                }
+                @Override
+                public void checkServerTrusted(X509Certificate[] chain,
+                                               String authType) throws CertificateException {
+                }
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            };
+            ctx.init(null, new TrustManager[]{tm}, null);
+            SSLSocketFactory ssf = new SSLSocketFactory(ctx,SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            ClientConnectionManager ccm = this.getConnectionManager();
+            SchemeRegistry sr = ccm.getSchemeRegistry();
+            sr.register(new Scheme("https", 443, ssf));
+        }
     }
 
 }
