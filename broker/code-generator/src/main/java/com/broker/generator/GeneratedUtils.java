@@ -41,8 +41,8 @@ public class GeneratedUtils {
 //                ",decoration_order,decoration_own,delay_inform,dept,design_contract,earnest,flow_dept,img_path,img_source,measure,menu"+
 //                ",model_detail,owner,project_progress,project_schedule,reformation,repeal_order,role,role_app_module,role_menu"+
 //                ",schedule_detail,schedule_item,schedule_model,sys_type,user,user_register,flow_user";
-        String table = "gr_order_log";
-        generatedUtil.generateCode(table);
+        String table = "dis_account,dis_apply,dis_brokerage,dis_brokerage_detail,dis_config,dis_member,dis_member_relation,dis_order,dis_poster,dis_withdrawl_apply";
+        generatedUtil.generateCode("mall_company_theme");
         System.out.println("generate code complete...");
     }
 
@@ -310,12 +310,16 @@ public class GeneratedUtils {
                 fileGetAndSetCode.append("}\r\n");
                 fileGetAndSetCode.append("\r\n");
                 this.columnsString += tableColumnInfo.getColumnName() +",";
-                if(tableColumnInfo.getColumnName().indexOf("_") > 0){
-                    valueColumn = tableColumnInfo.getColumnName().split("_")[0] + tableColumnInfo.getColumnName().split("_")[1].substring(0,1).toUpperCase() + tableColumnInfo.getColumnName().split("_")[1].substring(1);
-                }else {
-                    valueColumn = tableColumnInfo.getColumnName();
-                }
-                this.valuesString += String.format("#{%s},",valueColumn);
+//                if(tableColumnInfo.getColumnName().indexOf("_") > 0){
+//                    String[] columnNames = tableColumnInfo.getColumnName().split("_");
+//                    for (String  column : columnNames){
+//                        valueColumn += column.substring(0,1).toUpperCase() + column.substring(1);
+//                    }
+//                    valueColumn = valueColumn.substring(0,1).toLowerCase() + valueColumn.substring(1);
+//                }else {
+//                    valueColumn = tableColumnInfo.getColumnName();
+//                }
+                this.valuesString += String.format("#{%s},",fieldName);
             }
             this.columnsString = this.columnsString.substring(0,this.columnsString.length() - 1);
             this.valuesString = this.valuesString.substring(0,this.valuesString.length() - 1);
