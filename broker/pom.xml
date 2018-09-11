@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <url></url>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -11,7 +10,7 @@
   <groupId>com.broker</groupId>
   <artifactId>broker</artifactId>
   <packaging>pom</packaging>
-  <version>${my.version}</version>
+  <version>1.0.0</version>
   <name>broker-root</name>
   <url>http://maven.apache.org</url>
   <modules>
@@ -145,13 +144,6 @@
   </dependencies>
 
   <build>
-
-    <resources>
-      <resource>
-        <targetPath>version.properties</targetPath>
-      </resource>
-    </resources>
-
     <plugins><!-- 要将源码放上去，需要加入这个插件 -->
       <plugin>
         <artifactId>maven-source-plugin</artifactId>

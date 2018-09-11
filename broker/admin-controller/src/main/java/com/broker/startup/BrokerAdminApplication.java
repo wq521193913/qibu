@@ -4,9 +4,7 @@ import org.apache.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
@@ -19,13 +17,9 @@ import javax.servlet.MultipartConfigElement;
 @EnableTransactionManagement
 @ComponentScan(value = {"com.broker"})
 @MapperScan("com.broker.dao")
-public class BrokerApplication extends SpringBootServletInitializer{
+public class BrokerAdminApplication {
 
-	final Logger logger = Logger.getLogger(BrokerApplication.class);
-
-//	static {
-//		PropertyConfigurator.configure(DemoApplication.class.getResource("/").getPath()+"/log4j.properties");
-//	}
+	final Logger logger = Logger.getLogger(BrokerAdminApplication.class);
 
 	@Bean
 	public MultipartConfigElement multipartConfigElement() {
@@ -41,13 +35,13 @@ public class BrokerApplication extends SpringBootServletInitializer{
 	}
 
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(BrokerApplication.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(BrokerApplication.class);
+//	}
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(BrokerApplication.class, args);
+		SpringApplication.run(BrokerAdminApplication.class, args);
 	}
 }

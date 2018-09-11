@@ -19,9 +19,9 @@ import javax.servlet.MultipartConfigElement;
 @EnableTransactionManagement
 @ComponentScan(value = {"com.broker"})
 @MapperScan("com.broker.dao")
-public class BrokerApplication extends SpringBootServletInitializer{
+public class BrokerAppApplication extends SpringBootServletInitializer{
 
-	final Logger logger = Logger.getLogger(BrokerApplication.class);
+	final Logger logger = Logger.getLogger(BrokerAppApplication.class);
 
 //	static {
 //		PropertyConfigurator.configure(DemoApplication.class.getResource("/").getPath()+"/log4j.properties");
@@ -43,11 +43,11 @@ public class BrokerApplication extends SpringBootServletInitializer{
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(BrokerApplication.class);
+		return builder.sources(BrokerAppApplication.class);
 	}
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(BrokerApplication.class, args);
+		SpringApplication.run(BrokerAppApplication.class, args);
 	}
 }

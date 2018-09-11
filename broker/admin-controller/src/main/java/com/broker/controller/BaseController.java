@@ -39,7 +39,7 @@ public class BaseController {
         return getServletRequest().getSession();
     }
 
-    @ModelAttribute
+//    @ModelAttribute
     protected LoginInfo getLoginInfo(){
         loginInfo = (LoginInfo) request.getSession().getAttribute("loginInfo");
         return loginInfo;
