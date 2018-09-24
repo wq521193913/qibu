@@ -229,10 +229,11 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <!--不打包资源文件-->
-                    <excludes>
-                        <exclude>*.**</exclude>
-                        <exclude>*/*.xml</exclude>
-                    </excludes>
+                    <includes>
+                        <include>**/com/broker/**</include>
+                        <!-- <include>**/static/*</include>
+                        <include>**/view/*</include> -->
+                    </includes>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
@@ -285,6 +286,38 @@
                                 </resource>
                             </resources>
                             <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-bin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/bin</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/bin</outputDirectory>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-view</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/view</directory>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/view</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

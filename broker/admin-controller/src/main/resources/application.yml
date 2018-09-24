@@ -1,4 +1,6 @@
-﻿server:
+﻿view:
+  path: file:${user.dir}/admin-controller/target/view
+server:
   port: 8762
 
 spring:
@@ -26,7 +28,7 @@ spring:
 #        poolPreparedStatements: true
 #        maxOpenPreparedStatements: 20
     resources:
-      static-locations: ["/templates/", "/static/"]
+      static-locations: "${view.path}/static/"
     devtools:
       restart:
         enabled: false
@@ -45,9 +47,9 @@ spring:
         max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
         min-idle: 0 # 连接池中的最小空闲连接
     mvc:
-      static-path-pattern: /**
+      static-path-pattern: /static/**
     thymeleaf:
-      prefix: classpath:/view/
+      prefix: ${view.path}/html/
       suffix: .html
       encoding: UTF-8
       content-type: text/html

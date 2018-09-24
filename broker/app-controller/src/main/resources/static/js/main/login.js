@@ -1,5 +1,5 @@
 $(function(){
-    $.backstretch("img/1.jpg");
+    $.backstretch("/static/img/1.jpg");
 });
 
 /**
