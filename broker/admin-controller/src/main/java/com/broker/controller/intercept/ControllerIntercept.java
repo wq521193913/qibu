@@ -1,8 +1,6 @@
 package com.broker.controller.intercept;
 
-import com.broker.domain.BrokerUser;
 import com.broker.domain.LoginInfo;
-import com.broker.domain.WxLoginInfo;
 import com.broker.service.IBrokerUserService;
 import com.broker.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 public class ControllerIntercept extends HandlerInterceptorAdapter {
 

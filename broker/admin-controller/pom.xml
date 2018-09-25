@@ -231,8 +231,6 @@
                     <!--不打包资源文件-->
                     <includes>
                         <include>**/com/broker/**</include>
-                        <!-- <include>**/static/*</include>
-                        <include>**/view/*</include> -->
                     </includes>
                     <archive>
                         <manifest>

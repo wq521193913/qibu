@@ -10,7 +10,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>/src/main/bin</directory>
+            <directory>src/main/bin</directory>
             <outputDirectory>${file.separator}bin</outputDirectory>
         </fileSet>
         <fileSet>
@@ -22,8 +22,8 @@
             </excludes>
         </fileSet>
         <fileSet>
-            <directory>src/main/resources</directory>
-            <outputDirectory>${file.separator}web</outputDirectory>
+            <directory>src/main/view</directory>
+            <outputDirectory>${file.separator}view</outputDirectory>
             <includes>
                 <include>static/**</include>
                 <include>templates/**</include>
