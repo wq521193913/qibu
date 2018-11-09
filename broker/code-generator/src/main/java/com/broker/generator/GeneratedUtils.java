@@ -41,8 +41,8 @@ public class GeneratedUtils {
 //                ",decoration_order,decoration_own,delay_inform,dept,design_contract,earnest,flow_dept,img_path,img_source,measure,menu"+
 //                ",model_detail,owner,project_progress,project_schedule,reformation,repeal_order,role,role_app_module,role_menu"+
 //                ",schedule_detail,schedule_item,schedule_model,sys_type,user,user_register,flow_user";
-        String table = "dis_account,dis_apply,dis_brokerage,dis_brokerage_detail,dis_config,dis_member,dis_member_relation,dis_order,dis_poster,dis_withdrawl_apply";
-        generatedUtil.generateCode("mall_company_theme");
+        String table = "mall_take_address";
+        generatedUtil.generateCode(table);
         System.out.println("generate code complete...");
     }
 

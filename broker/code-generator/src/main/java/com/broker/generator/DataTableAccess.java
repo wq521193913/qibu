@@ -14,7 +14,7 @@ public class DataTableAccess {
 
     private void connect(){
         try {
-            String url = "jdbc:mysql://119.27.162.40:3306/" + dataBase + "?user=root&password=weishier123456&useUnicode=true&characterEncoding=utf-8";
+            String url = "jdbc:mysql://118.24.180.160:3306/" + dataBase + "?user=root&password=weishier123456&useUnicode=true&characterEncoding=utf-8";
 //            String url = "jdbc:mysql://123.206.176.29:3306/" + dataBase + "?user=root&password=weishier123456&useUnicode=true&characterEncoding=utf-8";
             Class.forName("com.mysql.jdbc.Driver");
             this.connection = DriverManager.getConnection(url);
